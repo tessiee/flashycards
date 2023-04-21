@@ -1,3 +1,13 @@
+:root {
+--light-orange: rgb(234, 186, 165);
+--medium-orange: rgb(255, 126, 67);
+--dark-orange: rgb(255, 97, 24);
+--light-grey: rgb(151, 188, 217);
+--medium-grey: rgb(84, 154, 179);
+--dark-grey: rgb(38, 132, 158);
+}
+
+
 * {
     margin: 0;
     padding: 0;
@@ -14,7 +24,7 @@ body {
     min-height: 100%;
     max-width: 100%;
     max-height: 100%;
-    background-color: rgb(255, 81, 0);
+    background-color: var(--light-grey);
     color: white;
     font-family: "Courier New", Courier, monospace;
     font-size: 18px;
@@ -23,25 +33,45 @@ body {
     justify-content: center;
     margin-top: 40px;
     position: relative;
-    overflow-x: hidden;
+    overflow: hidden;
+  }
+
+  h1 {
+    color: var(--medium-orange);
+    font-size: 50px;
+  }
+
+  hr {
+    border: 2px solid var(--medium-orange);
   }
   
-::-webkit-scrollbar {
-    width: 15px;
-    border: hidden;
-  }
-  
-::-webkit-scrollbar-track {
-    background-color: transparent;
-    border-radius: 50px;
-  }
-  
-::-webkit-scrollbar-thumb {
-    background: rgb(226, 72, 0);
-    border-radius: 6px;
-  }
-  
-::-webkit-scrollbar-corner {
-    background-color: transparent;
-  }
-  
+/*SIDE MENU*/
+
+.sidebar {
+  background-color: var(--light-orange);
+  border: 8px double var(--medium-orange);
+  border-radius: 15px;
+  position: fixed;
+  top: 125px;
+  left: 50px;
+  width: 200px;
+  height: 400px;
+  box-shadow: 0 2px 10px var(--medium-grey);
+}
+
+.sidebar ul {
+  list-style-type: none;
+}
+
+.sidebar ul li {
+  padding: 5px;
+}
+
+.sidebar ul li a {
+  color: var(--dark-orange);
+  text-decoration: none;
+}
+
+.sidebar ul li a:hover {
+  font-size: 19.5px;
+}
