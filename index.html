@@ -1,27 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css"  />
-    <link rel="icon" href="images/flashycard.jpeg"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="images/flashycard.png" />
     <title>Flashycards - flashcards for everyone!</title>
-</head>
-<body>
-    <h1>Flashycards</h1>
-<hr>
+  </head>
+  <body>
+    <button class="button" id="logInButton" onclick="showLoginWindow()">
+      Log In
+    </button>
+    <button
+      class="button"
+      id="registrationButton"
+      onclick="showRegistrationForm()"
+    >
+      Register Here
+    </button>
 
-    <nav class="sidebar hideSidebar" id="sidebar">
-        <ul id="menuLinks">
-          <li><a href="#/" id="at_home"><b>At home</b></a></li>
-          <li><a href="#/" id="people"><b>People</b></a></li>
-          <li><a href="#/" id="descriptions"><b>Descriptions</b></a></li>
-          <li><a href="#/" id="consumables"><b>Consumables</b></a></li>
-          <li><a href="#/" id="nature"><b>Nature</b></a></li>
+    <header>
+      <h1>Flashycards</h1>
+    </header>
+
+    <nav class="sidebar" id="leftSidebar">
+      <h2>Flashy Card Sets</h2>
+      <h3>Categories</h3>
+      <ul id="firstCategory">
+        <a href="#/" class="setCategories" id="leftFirst" onclick="showSets()"
+          ><b>Nouns</b></a
+        >
+        <li class="flashySet invisible" id="firstNoun">People</li>
+      </ul>
+
+      <ul id="secondCategory">
+        <a href="#/" class="setCategories" id="leftSecond" onclick="showSets()"
+          ><b>Adjectives</b></a
+        >
+        <li class="flashySet invisible" id="firstAdjective">Shapes</li>
+      </ul>
+
+      <ul id="thirdCategory">
+        <a href="#/" class="setCategories" id="leftThird" onclick="showSets()"
+          ><b>Verbs</b></a
+        >
+        <li>
+          <a href="#/" class="flashySet invisible" id="firstVerb"
+            ><b>Sports</b></a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <div class="cardContainer" id="cardContainer">
+      <div class="card" id="card">
+        <div class="word" id="word">Word</div>
+        <div class="word hidden" id="translation">Translation</div>
+        <hr />
+      </div>
+    </div>
+
+    <nav class="sidebar" id="rightSidebar">
+      <h2>My Own Card Sets</h2>
+      <ul id="newSet">
+        <li>
+          <a href="#/" id="createNewSet" onclick="createNewSet()"
+            ><b>Create a New Set</b></a
+          >
+        </li>
+      </ul>
+
+      <h3>Saved Sets</h3>
+
+      <ul id="savedSets">
+        <li>
+          <a href="#/" class="savedSet" id="savedSet1"><b>My Set</b></a>
+        </li>
+      </ul>
+    </nav>
+
+    <footer>
+      <nav class="footerMenu" id="footerMenu">
+        <ul id="footerMenuLinks">
+          <li>
+            <a href="#/" id="footerFirst"><b>About Flashycards</b></a>
+          </li>
+          <li>
+            <a href="#/" id="footerSecond"><b>Register</b></a>
+          </li>
         </ul>
       </nav>
-    
+    </footer>
+
     <script type="text/javascript" src="script.js"></script>
-</body>
+  </body>
 </html>
