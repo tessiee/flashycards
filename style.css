@@ -48,18 +48,32 @@ body {
   cursor: pointer;
 }
 
+.button:hover {
+  transform: scale(110%);
+}
+
+.lightButton {
+  border: none;
+  border-radius: 10px;
+  background-color: white;
+  color: var(--dark-blue);
+}
+
+.darkButton {
+  border: none;
+  border-radius: 10px;
+  background-color: var(--dark-blue);
+  color: var(--lighter-blue);
+}
+
 /* LOGIN BUTTON */
 
 #logInButton {
   position: fixed;
-  top: 2px;
+  top: 4px;
   right: 340px;
-  background-color: white;
-  padding: 2px;
   width: 80px;
-  border-radius: 10px;
-  border: solid 0.1px var(--dark-blue);
-  color: var(--dark-blue);
+  padding: 1px;
   z-index: 1;
 }
 
@@ -67,14 +81,10 @@ body {
 
 #registrationButton {
   position: fixed;
-  top: 3px;
+  top: 4px;
   right: 210px;
   width: 140px;
   padding: 1px;
-  background: var(--dark-blue);
-  border-radius: 10px;
-  border: solid 0.1px var(--dark-blue);
-  color: var(--lighter-blue);
 }
 
 /* HEADER */
@@ -93,15 +103,29 @@ header h1 {
   padding-top: 10px;
 }
 
+header p {
+  position: fixed;
+  top: 110px;
+  left: 50%;
+  transform: translateX(15%);
+  font-size: 15px;
+  
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  font-size: 19.5px;
+  cursor: pointer;
+}
+
 ul {
   list-style-type: none;
 }
 
-ul li a {
-  text-decoration: none;
-}
-
-ul li a:hover {
+ul li:hover {
   font-size: 19.5px;
   cursor: pointer;
 }
@@ -109,7 +133,7 @@ ul li a:hover {
 /* SIDE MENUS */
 
 .sidebar {
-  width: 175px;
+  width: 200px;
   height: 100%;
   position: fixed;
   z-index: 1;
@@ -135,34 +159,39 @@ ul li a:hover {
 }
 
 .sidebar h2 {
-  margin-top: 100px;
+  margin-top: 50px;
   color: var(--dark-orange);
 }
 
 .sidebar h3 {
-  margin: 50px 0px 25px;
+  margin: 50px 0px 20px;
   color: var(--dark-orange);
 }
 
+/* LANGUAGES */
+
+.flashyLanguage {
+  cursor: pointer;
+  color: white;
+}
+
+
+/* CATEGORIES */
+
 .setCategories {
 color: var(--medium-orange);
+cursor: pointer;
+padding: 10px;
 }
 
-.flashySet {
+.flashySet, .savedSet, #createNewSet {
   color: white;
 }
+
+/* OWN SETS */
 
 #newSet {
-  margin-top: 50px;
-}
-
-#createNewSet {
-  margin-top: 20px;
-  color: white;
-}
-
-.savedSet {
-  color: white;
+margin-top: 50px;
 }
 
 /* CARD CONTAINER */
@@ -177,7 +206,7 @@ color: var(--medium-orange);
   border-width: 8px 8px 4px 4px;
   border-color: var(--dark-blue);
   border-radius: 25px 25px 25px 0px;
-  width: 1100px;
+  width: 1000px;
   height: 600px;
   position: fixed;
   top: 150px;
@@ -208,13 +237,13 @@ color: var(--medium-orange);
 
 #word {
   font-size: 45px;
-  margin-top: 85px;
+  margin-top: 95px;
   color: white;
 }
 
 #translation {
   font-size: 45px;
-  margin-top: 85px;
+  margin-top: 90px;
   color: var(--dark-orange);
 }
 
@@ -224,6 +253,40 @@ color: var(--medium-orange);
   top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+/* HINT BUTTON */
+
+#hintButton {
+  position: fixed;
+  bottom: 50px;
+  left: 25%;
+  width: 80px;
+  padding: 2px;
+}
+
+/* REVEAL BUTTON */
+
+#revealButton {
+  position: fixed;
+  bottom: 50px;
+  right: 25%;
+  width: 80px;
+  padding: 2px;
+}
+
+/* NEXT BUTTON */
+
+#nextButton {
+  position: fixed;
+  bottom: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 25px;
+  padding: 2px;
+  border-radius: 15px;
+  z-index: 1;
 }
 
 /* FOOTER */
@@ -237,12 +300,11 @@ footer {
 }
 
 footer ul {
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
 footer ul li {
   display: inline;
-  padding: 80px;
 }
 
 footer ul li a {

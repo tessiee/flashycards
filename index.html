@@ -6,14 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" href="images/flashycard.png" />
-    <title>Flashycards - flashcards for everyone!</title>
+    <title>Flashycards - A new language in a flash</title>
   </head>
   <body>
-    <button class="button" id="logInButton" onclick="showLoginWindow()">
+    <button
+      class="button lightButton invisible"
+      id="logInButton"
+      onclick="showLoginWindow()"
+    >
       Log In
     </button>
     <button
-      class="button"
+      class="button darkButton invisible"
       id="registrationButton"
       onclick="showRegistrationForm()"
     >
@@ -22,72 +26,95 @@
 
     <header>
       <h1>Flashycards</h1>
+      <p>A new language in a flash</p>
     </header>
 
     <nav class="sidebar" id="leftSidebar">
       <h2>Flashy Card Sets</h2>
+
+      <h3>Languages</h3>
+      <div id="flashySetsLanguages">
+        <ul id="languageOptions">
+          <li class="flashyLanguage" id="language_1" onclick="handleClick()">
+            Spanish
+          </li>
+        </ul>
+      </div>
+
       <h3>Categories</h3>
-      <ul id="firstCategory">
-        <a href="#/" class="setCategories" id="leftFirst" onclick="showSets()"
-          ><b>Nouns</b></a
-        >
-        <li class="flashySet invisible" id="firstNoun">People</li>
-      </ul>
+      <div class="spanish" id="flashySetsCategory_1_es">
+        <ul class="setCategories" id="category_1_es" onclick="showSets()">
+          Nouns
+          <li class="flashySet invisible" id="set_1_1_es" onclick="openSet()">
+            People
+          </li>
+          <li class="flashySet invisible" id="set_1_2_es" onclick="openSet()">
+            Animals
+          </li>
+        </ul>
+      </div>
 
-      <ul id="secondCategory">
-        <a href="#/" class="setCategories" id="leftSecond" onclick="showSets()"
-          ><b>Adjectives</b></a
-        >
-        <li class="flashySet invisible" id="firstAdjective">Shapes</li>
-      </ul>
+      <div class="spanish" id="flashySetsCategory_2_es">
+        <ul class="setCategories" id="category_2_es" onclick="showSets()">
+          Adjectives
+          <li class="flashySet invisible" id="set_2_1_es" onclick="openSet()">
+            Shapes
+          </li>
+          <li class="flashySet invisible" id="set_2_2_es" onclick="openSet()">
+            Colours
+          </li>
+        </ul>
+      </div>
 
-      <ul id="thirdCategory">
-        <a href="#/" class="setCategories" id="leftThird" onclick="showSets()"
-          ><b>Verbs</b></a
-        >
-        <li>
-          <a href="#/" class="flashySet invisible" id="firstVerb"
-            ><b>Sports</b></a
-          >
-        </li>
-      </ul>
+      <div class="spanish" id="flashySetsCategory_3_es">
+        <ul class="setCategories" id="category_3_es" onclick="showSets()">
+          Verbs
+          <li class="flashySet invisible" id="set_3_1_es" onclick="openSet()">
+            Frequently used
+          </li>
+        </ul>
+      </div>
     </nav>
 
-    <div class="cardContainer" id="cardContainer">
-      <div class="card" id="card">
-        <div class="word" id="word">Word</div>
-        <div class="word hidden" id="translation">Translation</div>
+    <div id="cardContainer">
+      <div id="card">
+        <div id="word">Hello</div>
+        <div class="invisible" id="translation">Hola</div>
         <hr />
+        <button class="button lightButton" id="hintButton" onclick="showHint()">
+          Hint
+        </button>
+        <button class="button darkButton" id="revealButton" onclick="revealTranslation()">
+          Reveal
+        </button>
+        <button class="button lightButton invisible" id="nextButton" onclick="nextWord()">
+          NEXT
+        </button>
       </div>
     </div>
 
     <nav class="sidebar" id="rightSidebar">
       <h2>My Own Card Sets</h2>
-      <ul id="newSet">
-        <li>
-          <a href="#/" id="createNewSet" onclick="createNewSet()"
-            ><b>Create a New Set</b></a
-          >
-        </li>
-      </ul>
+
+      <div id="newSet">
+      <a href="#/" id="createNewSet" onclick="createNewSet()"
+        >Create a New Set</a
+      >
+    </div>
 
       <h3>Saved Sets</h3>
 
       <ul id="savedSets">
-        <li>
-          <a href="#/" class="savedSet" id="savedSet1"><b>My Set</b></a>
-        </li>
+        <li class="savedSet" id="savedSet1">My Set 1</li>
+        <li class="savedSet" id="savedSet2">My Set 2</li>
       </ul>
     </nav>
 
     <footer>
-      <nav class="footerMenu" id="footerMenu">
+      <nav id="footerMenu">
         <ul id="footerMenuLinks">
           <li>
             <a href="#/" id="footerFirst"><b>About Flashycards</b></a>
-          </li>
-          <li>
-            <a href="#/" id="footerSecond"><b>Register</b></a>
           </li>
         </ul>
       </nav>
