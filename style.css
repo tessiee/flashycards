@@ -3,8 +3,8 @@
   --light-orange: rgb(253, 155, 109);
   --medium-orange: rgb(255, 126, 67);
   --dark-orange: rgb(255, 97, 24);
-  --lighter-blue: rgb(91, 157, 181);
-  --light-blue: rgb(84, 154, 179);
+  --lighter-blue: rgb(184, 213, 224);
+  --light-blue: rgb(122, 168, 184);
   --medium-blue: rgb(38, 132, 158);
   --dark-blue: rgb(20, 86, 104);
   --darker-blue: rgb(10, 75, 93);
@@ -29,7 +29,7 @@ body {
   max-width: 100%;
   max-height: 100%;
   background-color: var(--darker-blue);
-  color: var(--medium-orange);
+  color: white;
   font-family: fantasy;
   font-size: 18px;
   text-align: center;
@@ -38,19 +38,72 @@ body {
   overflow: hidden;
 }
 
+h1 {
+  font-size: 70px;
+  color: var(--dark-orange);
+}
+
+h2 {
+  font-size: 40px;
+  color: var(--dark-orange);
+}
+
+h3 {
+  font-size: 30px;
+  color: var(--dark-orange);
+}
+
+h4 {
+  font-size: 25px;
+  color: var(--medium-orange);
+}
+
+input {
+  width: 150px;
+  margin: 1px 5px;
+  padding: 2px 5px 2px 5px;
+  border: double 2px var(--dark-blue);
+  border-radius: 5px;
+  background-color: var(--lighter-blue);
+  color: var(--dark-blue);
+}
+
+input:focus {
+  outline: var(--medium-blue) solid 2px;
+}
+
+button:hover {
+  cursor: pointer;
+  transform: scale(110%);
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a:hover,
+ul li:hover {
+  font-size: 19.5px;
+  cursor: pointer;
+}
+
 .invisible {
   display: none;
 }
 
-/* BUTTONS */
-
-.button {
-  cursor: pointer;
+.center {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.button:hover {
-  transform: scale(110%);
-}
+/* GENERAL BUTTON CLASSES */
 
 .lightButton {
   border: none;
@@ -98,8 +151,6 @@ header {
 }
 
 header h1 {
-  color: var(--dark-orange);
-  font-size: 70px;
   padding-top: 10px;
 }
 
@@ -109,28 +160,9 @@ header p {
   left: 50%;
   transform: translateX(15%);
   font-size: 15px;
-  
 }
 
-a {
-  text-decoration: none;
-}
-
-a:hover {
-  font-size: 19.5px;
-  cursor: pointer;
-}
-
-ul {
-  list-style-type: none;
-}
-
-ul li:hover {
-  font-size: 19.5px;
-  cursor: pointer;
-}
-
-/* SIDE MENUS */
+/* SIDEBARS */
 
 .sidebar {
   width: 200px;
@@ -158,45 +190,31 @@ ul li:hover {
   );
 }
 
-.sidebar h2 {
-  margin-top: 50px;
-  color: var(--dark-orange);
-}
-
+.sidebar h2,
 .sidebar h3 {
   margin: 50px 0px 20px;
-  color: var(--dark-orange);
 }
-
-/* LANGUAGES */
-
-.flashyLanguage {
-  cursor: pointer;
-  color: white;
-}
-
 
 /* CATEGORIES */
 
 .setCategories {
-color: var(--medium-orange);
-cursor: pointer;
-padding: 10px;
+  cursor: pointer;
+  padding: 5px;
 }
 
-.flashySet, .savedSet, #createNewSet {
-  color: white;
+.setCategories:hover {
+  font-size: 26px;
 }
 
 /* OWN SETS */
 
 #newSet {
-margin-top: 50px;
+  margin-top: 50px;
 }
 
-/* CARD CONTAINER */
+/* CONTENT CONTAINER */
 
-#cardContainer {
+#contentContainer {
   background-image: linear-gradient(
     to top right,
     var(--dark-blue),
@@ -214,9 +232,15 @@ margin-top: 50px;
   transform: translateX(-50%);
 }
 
-/* CARDS */
+/* ABOUT FLASHYCARDS */
 
-#card {
+#aboutFlashycards h2 {
+  padding-bottom: 40px;
+}
+
+/* FLASHCARDS */
+
+#flashcard {
   background-image: linear-gradient(
     var(--even-darker-blue),
     var(--darker-blue)
@@ -227,13 +251,7 @@ margin-top: 50px;
   border-color: var(--darker-blue);
   width: 400px;
   height: 450px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
-
-/* WORDS */
 
 #word {
   font-size: 45px;
@@ -247,7 +265,7 @@ margin-top: 50px;
   color: var(--dark-orange);
 }
 
-#card hr {
+#flashcard hr {
   width: 250px;
   position: fixed;
   top: 70%;
@@ -255,29 +273,27 @@ margin-top: 50px;
   transform: translate(-50%, -50%);
 }
 
-/* HINT BUTTON */
-
-#hintButton {
-  position: fixed;
-  bottom: 50px;
-  left: 25%;
-  width: 80px;
-  padding: 2px;
-}
-
-/* REVEAL BUTTON */
-
+#hintButton,
 #revealButton {
   position: fixed;
   bottom: 50px;
-  right: 25%;
   width: 80px;
   padding: 2px;
 }
 
-/* NEXT BUTTON */
+#hintButton {
+  left: 25%;
+}
 
-#nextButton {
+#revealButton {
+  right: 25%;
+}
+
+/* NEXT BUTTON & CREATING SETS BUTTONS */
+
+#nextButton,
+#startCreating,
+#createSetButton {
   position: fixed;
   bottom: 45px;
   left: 50%;
@@ -287,6 +303,123 @@ margin-top: 50px;
   padding: 2px;
   border-radius: 15px;
   z-index: 1;
+}
+
+/* SET OVERVIEW */
+
+#setOverview h3 {
+  padding-top: 10px;
+}
+
+.setWord {
+  background-color: var(--light-blue);
+}
+
+#previousWordsButton {
+  position: fixed;
+  left: 28%;
+  bottom: 18%;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+}
+
+#nextWordsButton {
+  position: fixed;
+  right: 28%;
+  bottom: 18%;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+}
+
+#startPractice {
+  position: fixed;
+  bottom: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 25px;
+  padding: 2px;
+  border-radius: 15px;
+  z-index: 1;
+}
+
+#setOverviewContainer,
+#createNewSetContainer {
+  background-image: linear-gradient(
+    var(--even-darker-blue),
+    var(--darkest-blue)
+  );
+  border-style: solid;
+  border-width: 4px;
+  border-radius: 8px;
+  border-color: var(--darker-blue);
+  width: 800px;
+  height: 450px;
+  z-index: 1;
+}
+
+/* CREATE NEW SET */
+
+#newSetStart h2 {
+  padding: 70px;
+}
+
+#setNameContainer h3 {
+  padding: 1px;
+  font-size: 18px;
+  color: white;
+  position: fixed;
+  left: 10px;
+  top: 5px;
+}
+
+#setNameContainer input {
+  position: fixed;
+  left: 90px;
+  top: 6px;
+  width: 140px;
+}
+
+#setWordsContainer {
+  margin-top: 8px;
+}
+
+#setWordsContainer h4 {
+  display: inline-block;
+  width: 150px;
+}
+
+.newWord {
+  background-color: var(--light-blue);
+}
+
+#moreFieldsButton {
+  position: fixed;
+  right: 30%;
+  bottom: 15%;
+  width: 15px;
+  height: 15px;
+  font-weight: bold;
+}
+
+#previousFieldsButton {
+  position: fixed;
+  left: 30%;
+  bottom: 15%;
+  width: 15px;
+  height: 15px;
+  font-size: 15px;
+}
+
+#nextFieldsButton {
+  position: fixed;
+  right: 30%;
+  bottom: 15%;
+  width: 15px;
+  height: 15px;
+  font-size: 15px;
 }
 
 /* FOOTER */
@@ -305,8 +438,4 @@ footer ul {
 
 footer ul li {
   display: inline;
-}
-
-footer ul li a {
-  color: var(--medium-orange);
 }
