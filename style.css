@@ -292,6 +292,7 @@ header p {
 /* NEXT BUTTON & CREATING SETS BUTTONS */
 
 #nextButton,
+#restartButton,
 #startCreating,
 #createSetButton {
   position: fixed;
@@ -311,14 +312,39 @@ header p {
   padding-top: 10px;
 }
 
+.setDuoContainer {
+  float: left;
+  margin: 15px 0px 0px 30px;
+  width: 350px;
+  height: 275px;
+}
+
+.duo {
+  position: relative;
+  display: inline-block;
+  width: 350px;
+  height: 30px;
+  margin: 0px 0px 4px 0px;
+}
+
 .setWord {
-  background-color: var(--light-blue);
+  background-color: var(--darkest-blue);
+  display: inline-block;
+  width: 150px;
+  padding-top: 3px;
+}
+
+.setTranslation {
+  background-color: var(--dark-blue);
+  display: inline-block;
+  width: 150px;
+  padding-top: 3px;
 }
 
 #previousWordsButton {
   position: fixed;
-  left: 28%;
-  bottom: 18%;
+  left: 25%;
+  bottom: 15%;
   width: 20px;
   height: 20px;
   font-size: 20px;
@@ -326,8 +352,8 @@ header p {
 
 #nextWordsButton {
   position: fixed;
-  right: 28%;
-  bottom: 18%;
+  right: 25%;
+  bottom: 15%;
   width: 20px;
   height: 20px;
   font-size: 20px;
@@ -347,6 +373,7 @@ header p {
 
 #setOverviewContainer,
 #createNewSetContainer {
+  position: relative;
   background-image: linear-gradient(
     var(--even-darker-blue),
     var(--darkest-blue)

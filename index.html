@@ -48,46 +48,23 @@
       <div class="spanish" id="flashySetsCategory_1_es">
         <h4 class="setCategories" id="category_1_es">Nouns</h4>
         <ul class="categorySets">
-          <li
-            class="flashySet cat_1 invisible"
-            id="set_1_1_es"
-          >
-            People
-          </li>
-          <li
-            class="flashySet cat_1 invisible"
-            id="set_1_2_es"
-          >
-            Animals
-          </li>
+          <li class="flashySet cat_1 invisible" id="set_1_1_es">People</li>
+          <li class="flashySet cat_1 invisible" id="set_1_2_es">Animals</li>
         </ul>
       </div>
 
       <div class="spanish" id="flashySetsCategory_2_es">
         <h4 class="setCategories" id="category_2_es">Adjectives</h4>
         <ul class="categorySets">
-          <li
-            class="flashySet cat_2 invisible"
-            id="set_2_1_es"
-          >
-            Shapes
-          </li>
-          <li
-            class="flashySet cat_2 invisible"
-            id="set_2_2_es"
-          >
-            Colours
-          </li>
+          <li class="flashySet cat_2 invisible" id="set_2_1_es">Shapes</li>
+          <li class="flashySet cat_2 invisible" id="set_2_2_es">Colours</li>
         </ul>
       </div>
 
       <div class="spanish" id="flashySetsCategory_3_es">
         <h4 class="setCategories" id="category_3_es">Verbs</h4>
         <ul class="categorySets">
-          <li
-            class="flashySet cat_3 invisible"
-            id="set_3_1_es"
-          >
+          <li class="flashySet cat_3 invisible" id="set_3_1_es">
             Frequently used
           </li>
         </ul>
@@ -100,18 +77,30 @@
       <div class="center" id="aboutFlashycards">
         <h2>Pick a set to begin!</h2>
         <p>
-        1. Pick a set <br>
-        2. Go through the words <br>
-        3. Practice with flashcards <br>
-      </p>
+          1. Pick a set <br />
+          2. Go through the words <br />
+          3. Practice with flashcards <br />
+        </p>
       </div>
       <!-- SET OVERVIEW -->
       <div class="center invisible" id="setOverviewContainer">
         <div id="setOverview">
           <h3>Set overview</h3>
         </div>
-        <button class="darkButton" id="previousWordsButton" onclick="showPreviousWords()">P</button>
-        <button class="lightButton" id="nextWordsButton" onclick="showNextWords()">N</button>
+        <button
+          class="darkButton invisible"
+          id="previousWordsButton"
+          onclick="showPreviousWords()"
+        >
+          P
+        </button>
+        <button
+          class="lightButton invisible"
+          id="nextWordsButton"
+          onclick="showNextWords()"
+        >
+          N
+        </button>
         <button
           class="lightButton"
           id="startPractice"
@@ -139,9 +128,16 @@
         <button
           class="button lightButton invisible"
           id="nextButton"
-          onclick="nextWord()"
+          onclick="nextPracticeWord()"
         >
           NEXT
+        </button>
+        <button
+          class="button darkButton invisible"
+          id="restartButton"
+          onclick="reStartPractice()"
+        >
+          RESTART
         </button>
       </div>
 
@@ -150,9 +146,9 @@
         <div class="invisible" id="newSetStart">
           <h2>Create your own set of flashcards</h2>
           <p>
-          1. Pick a name for your set <br>
-          2. Add your words & translations <br>
-          3. Click "Create set" and done! <br>
+            1. Pick a name for your set <br />
+            2. Add your words & translations <br />
+            3. Click "Create set" and done! <br />
           </p>
           <button
             class="lightButton"
@@ -171,11 +167,17 @@
             <h4>Word</h4>
             <h4>Translation</h4>
             <br />
-            <input class="newWord" id="newWord_1" type="text" placeholder="Hello" />
+            <input
+              class="newWord"
+              id="newWord_1"
+              type="text"
+              placeholder="Hello"
+            />
             <input
               class="newTranslation"
               id="newTranslation_1"
-              type="text" placeholder="Hola"
+              type="text"
+              placeholder="Hola"
             /><br />
             <input class="newWord" id="newWord_2" type="text" />
             <input
@@ -183,57 +185,27 @@
               id="newTranslation_2"
               type="text"
             /><br />
-            <input class="newWord" id="newWord_3" type="text" />
-            <input
-              class="newTranslation"
-              id="newTranslation_3"
-              type="text"
-            /><br />
-            <input class="newWord" id="newWord_4" type="text" />
-            <input
-              class="newTranslation"
-              id="newTranslation_4"
-              type="text"
-            /><br />
-            <input class="newWord" id="newWord_5" type="text" />
-            <input
-              class="newTranslation"
-              id="newTranslation_5"
-              type="text"
-            /><br />
-            <input class="newWord" id="newWord_6" type="text" />
-            <input
-              class="newTranslation"
-              id="newTranslation_6"
-              type="text"
-            /><br />
-            <input class="newWord" id="newWord_7" type="text" />
-            <input
-              class="newTranslation"
-              id="newTranslation_7"
-              type="text"
-            /><br />
-            <input class="newWord" id="newWord_8" type="text" />
-            <input
-              class="newTranslation"
-              id="newTranslation_8"
-              type="text"
-            /><br />
-            <input class="newWord" id="newWord_9" type="text" />
-            <input
-              class="newTranslation"
-              id="newTranslation_9"
-              type="text"
-            /><br />
-            <input class="newWord" id="newWord_10" type="text" />
-            <input
-              class="newTranslation"
-              id="newTranslation_10"
-              type="text"
-            /><br />
-            <button class="darkButton" id="previousFieldsButton" onclick="showPreviousFields()">P</button>
-            <button class="darkButton" id="nextFieldsButton" onclick="showNextFields()">N</button>
-            <button class="lightButton" id="moreFieldsButton" onclick="showMoreFields()">+</button>
+            <button
+              class="darkButton"
+              id="previousFieldsButton"
+              onclick="showPreviousFields()"
+            >
+              P
+            </button>
+            <button
+              class="darkButton"
+              id="nextFieldsButton"
+              onclick="showNextFields()"
+            >
+              N
+            </button>
+            <button
+              class="lightButton"
+              id="moreFieldsButton"
+              onclick="showMoreFields()"
+            >
+              +
+            </button>
             <button
               class="lightButton"
               id="createSetButton"
@@ -275,7 +247,9 @@
       <nav id="footerMenu">
         <ul id="footerMenuLinks">
           <li>
-            <a href="#/" id="footerFirst" onclick="showAboutFlashy()"><b>About Flashycards</b></a>
+            <a href="#/" id="footerFirst" onclick="showAboutFlashy()"
+              ><b>About Flashycards</b></a
+            >
           </li>
         </ul>
       </nav>

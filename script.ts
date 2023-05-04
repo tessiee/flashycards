@@ -2,7 +2,7 @@
 let aboutFlashycards: HTMLElement = document.getElementById(
   "aboutFlashycards"
 ) as HTMLInputElement;
-let visibleSets: any;
+let visibleSets: HTMLCollection;
 let flashyCategories: HTMLCollection =
   document.getElementsByClassName("setCategories");
 let setOverviewContainer: HTMLElement = document.getElementById(
@@ -38,76 +38,189 @@ let previousFieldsButton: HTMLElement = document.getElementById(
 let moreFieldsButton: HTMLElement = document.getElementById(
   "moreFieldsButton"
 ) as HTMLInputElement;
+let practiceWord: HTMLElement = document.getElementById(
+  "word"
+) as HTMLInputElement;
+let practiceTranslation: HTMLElement = document.getElementById(
+  "translation"
+) as HTMLInputElement;
+let nextDuos: HTMLElement = document.getElementById(
+  "nextWordsButton"
+) as HTMLInputElement;
+let previousDuos: HTMLElement = document.getElementById(
+  "previousWordsButton"
+) as HTMLInputElement;
 let language: String = "spanish";
+let practiceDuoIndex: number;
+let practiceWordsArray: any;
+let practiceTranslationsArray: any;
+let duoContainerNumber: number;
+let setDuoIndex: number;
 
 // LEFT SIDEBAR
 
 window.onclick = function showSets(event) {
-  for (let x = 1; x <= flashyCategories.length; x++)
-    if ((<HTMLElement>event.target).matches(`#category_${x}_es`)) {
-      visibleSets = document.getElementsByClassName(`cat_${x}`);
-      for (let i = 0; i < visibleSets.length; i++) {
-        let showSet = visibleSets[i];
-        if (showSet.classList.contains("invisible")) {
-          showSet.classList.remove("invisible");
-        } else {
-          showSet.classList.add("invisible");
+  if ((<HTMLElement>event.target).classList.contains("setCategories")) {
+    for (let x = 1; x <= flashyCategories.length; x++)
+      // get clicked h4 element
+      if ((<HTMLElement>event.target).matches(`#category_${x}_es`)) {
+        // get sets belonging to category
+        visibleSets = document.getElementsByClassName(`cat_${x}`);
+        for (let i = 0; i < visibleSets.length; i++) {
+          if (visibleSets[i].classList.contains("invisible")) {
+            // open category sets
+            visibleSets[i].classList.remove("invisible");
+          } else {
+            // close category sets
+            visibleSets[i].classList.add("invisible");
+          }
         }
       }
-    }
-  if ((<HTMLElement>event.target).classList.contains("flashySet")) {
-    // first close previously opened set
-    closePreviousSet();
-    // set the chosen category
-    let category: String = (<HTMLElement>event.target).innerText.toLowerCase();
-    loadCorrectSet(category);
+  } else if ((<HTMLElement>event.target).classList.contains("flashySet")) {
     // close other windows
     aboutFlashycards.classList.add("invisible");
     createNewSetContainer.classList.add("invisible");
-    flashcard.classList.add("invisible");
+    closePractice();
+    // clear previous category set
+    clearPreviousSet();
+    // set the chosen category
+    let category: String = (<HTMLElement>event.target).innerText.toLowerCase();
+    loadCategorySet(category);
     // open set overview
-    setOverviewContainer.classList.remove("invisible");
+    showSetOverview();
   }
 };
 
-function loadCorrectSet(category: String) {
+async function loadCategorySet(category: String) {
   fetch(`flashySets/${language}/${category}.json`)
     .then((res) => {
       return res.json();
     })
     .then((data) => {
-      data.forEach((animal: { word: any; translation: any }) => {
+      // create container for 8 word/translation duos
+      duoContainerNumber = 1;
+      let setDuoContainer = document.createElement("div");
+      setDuoContainer.id = `duoContainer_${duoContainerNumber}`;
+      setDuoContainer.classList.add("setDuoContainer");
+      setOverview.appendChild(setDuoContainer);
+      let currentContainer: HTMLElement = document.getElementById(
+        `duoContainer_${duoContainerNumber}`
+      ) as HTMLInputElement;
+      // create element for each word / translation duo
+      data.forEach((duo: { word: any; translation: any }) => {
         const wordTranslationDuo = document.createElement("div");
         wordTranslationDuo.classList.add("duo");
         wordTranslationDuo.innerHTML = `
-        <div class="setWord">${animal.word}</div>
-        <div class="setTranslation">${animal.translation}
+        <div class="setWord">${duo.word}</div>
+        <div class="setTranslation">${duo.translation}
+        </div>
         </div>
         `;
-        setOverview.appendChild(wordTranslationDuo);
+        // append duo element to duo container
+        if (currentContainer.childElementCount < 8) {
+          currentContainer.appendChild(wordTranslationDuo);
+          // if more than 8, create new container and append
+        } else {
+          // increase container number
+          duoContainerNumber++;
+          // create new container
+          let newSetDuoContainer = document.createElement("div");
+          newSetDuoContainer.id = `duoContainer_${duoContainerNumber}`;
+          newSetDuoContainer.classList.add("setDuoContainer");
+          // add invisible class for extra containers
+          if (duoContainerNumber > 2) {
+            newSetDuoContainer.classList.add("invisible");
+            nextDuos.classList.remove("invisible");
+          }
+          // append to overview element
+          setOverview.appendChild(newSetDuoContainer);
+          // select new container
+          currentContainer = document.getElementById(
+            `duoContainer_${duoContainerNumber}`
+          ) as HTMLInputElement;
+          currentContainer.appendChild(wordTranslationDuo);
+        }
+        setDuoIndex = 0;
       });
     });
 }
 
-function closePreviousSet() {
-  setOverview.innerHTML = "";
+function clearPreviousSet() {
+  setOverview.innerHTML = "<h3>Set overview</h3>";
+}
+
+function showSetOverview() {
+  if (duoContainerNumber > 2) {
+    nextDuos.classList.remove("invisible");
+  }
+  setOverviewContainer.classList.remove("invisible");
 }
 
 // SET OVERVIEW
 
 function showPreviousWords() {
-  // if statement eerste input, dan:
-  //previousWordsButton.classList.add("invisible")
+  let duoContainerCollection: HTMLCollection =
+    document.getElementsByClassName("setDuoContainer");
+
+  // hide current set duos
+  if ( (setDuoIndex == duoContainerNumber - 1)  && (setDuoIndex % 2 == 0)) {
+    duoContainerCollection[setDuoIndex].classList.add("invisible");
+    setDuoIndex--;
+  }  else {
+    duoContainerCollection[setDuoIndex].classList.add("invisible");
+    setDuoIndex++;
+    duoContainerCollection[setDuoIndex].classList.add("invisible");
+    setDuoIndex--;
+    setDuoIndex--;
+  }
+
+  // show previous set duos
+  duoContainerCollection[setDuoIndex].classList.remove("invisible");
+  setDuoIndex--;
+  duoContainerCollection[setDuoIndex].classList.remove("invisible");
+
+  // hide previous button if at first set duos
+  if (setDuoIndex == 0) {
+    previousDuos.classList.add("invisible");
+  }
+
+  // show next button
+  nextDuos.classList.remove("invisible");
 }
 
 function showNextWords() {
-  // if statement laatste input:
-  //nextWordsButton.classList.add("invisible")
+  let duoContainerCollection: HTMLCollection =
+    document.getElementsByClassName("setDuoContainer");
+  // add invisble class to current 2 word containers
+  duoContainerCollection[setDuoIndex].classList.add("invisible");
+  setDuoIndex++;
+  duoContainerCollection[setDuoIndex].classList.add("invisible");
+  setDuoIndex++;
+
+  // show next word containers
+  if (setDuoIndex == duoContainerNumber - 1) {
+    duoContainerCollection[setDuoIndex].classList.remove("invisible");
+  } else {
+    duoContainerCollection[setDuoIndex].classList.remove("invisible");
+    setDuoIndex++;
+    duoContainerCollection[setDuoIndex].classList.remove("invisible");
+  }
+
+  // hide next button or decrease index
+  if (setDuoIndex == duoContainerNumber - 1) {
+    nextDuos.classList.add("invisible");
+  } else {
+    setDuoIndex--;
+  }
+
+  previousDuos.classList.remove("invisible");
 }
 
 function startPractice() {
-  flashcard.classList.remove("invisible");
   setOverviewContainer.classList.add("invisible");
+  flashcard.classList.remove("invisible");
+  fillFlashcardPracticeArrays();
+  loadWordIntoCard();
 }
 
 // RIGHT SIDEBAR
@@ -156,11 +269,27 @@ function createNewSet() {
 
 // CARDS
 
+function fillFlashcardPracticeArrays() {
+  practiceWordsArray = [];
+  practiceTranslationsArray = [];
+  practiceWordsArray = document.getElementsByClassName("setWord");
+  practiceTranslationsArray = document.getElementsByClassName("setTranslation");
+  practiceDuoIndex = 0;
+}
+
+function loadWordIntoCard() {
+  practiceWord.innerText = practiceWordsArray[practiceDuoIndex].innerText;
+  practiceTranslation.innerText =
+    practiceTranslationsArray[practiceDuoIndex].innerText;
+  practiceDuoIndex++;
+}
+
 function showHint() {
   let translation: HTMLElement = document.getElementById(
     "translation"
   ) as HTMLInputElement;
   translation.classList.add("hint");
+  // show first character of translation
 }
 
 function showTranslation() {
@@ -191,18 +320,48 @@ function hideNextButton() {
   nextButton.classList.add("invisible");
 }
 
-function revealTranslation() {
-  showTranslation();
-  showNextButton();
+function showRestartButton() {
+  let restartButton: HTMLElement = document.getElementById(
+    "restartButton"
+  ) as HTMLInputElement;
+  restartButton.classList.remove("invisible");
 }
 
-function nextWord() {
+function hideRestartButton() {
+  let restartButton: HTMLElement = document.getElementById(
+    "restartButton"
+  ) as HTMLInputElement;
+  restartButton.classList.add("invisible");
+}
+
+function revealTranslation() {
+  showTranslation();
+  if (practiceDuoIndex == practiceWordsArray.length) {
+    showRestartButton();
+  } else {
+    showNextButton();
+  }
+}
+
+function nextPracticeWord() {
   hideTranslation();
   hideNextButton();
+  loadWordIntoCard();
 }
 
 function reStartPractice() {
-  //reload current set
+  practiceDuoIndex = 0;
+  hideTranslation();
+  hideRestartButton();
+  loadWordIntoCard();
+}
+
+function closePractice() {
+  hideTranslation();
+  hideNextButton();
+  hideRestartButton();
+  flashcard.classList.add("invisible");
+  practiceDuoIndex = 0;
 }
 
 // FOOTER

@@ -1,6 +1,6 @@
 [
   {
-    "word": "I / me",
+    "word": "I",
     "translation": "Yo"
   },
   {
@@ -18,5 +18,53 @@
   {
     "word": "She",
     "translation": "Ella"
+  },
+  {
+    "word": "Boy",
+    "translation": "Niño"
+  },
+  {
+    "word": "Girl",
+    "translation": "Niña"
+  },
+  {
+    "word": "Woman",
+    "translation": "Mujer"
+  },
+  {
+    "word": "Man",
+    "translation": "Hombre"
+  },
+  {
+    "word": "Father",
+    "translation": "Padre / Papá"
+  },
+  {
+    "word": "Mother",
+    "translation": "Madre / Mamá"
+  },
+  {
+    "word": "Sister",
+    "translation": "Hermana"
+  },
+  {
+    "word": "Brother",
+    "translation": "Hermano"
+  },
+  {
+    "word": "Uncle",
+    "translation": "Tio"
+  },
+  {
+    "word": "Aunt",
+    "translation": "Tia"
+  },
+  {
+    "word": "Friend",
+    "translation": "Amigo/a"
+  },
+  {
+    "word": "Neighbor",
+    "translation": "Vecino/a"
   }
 ]
