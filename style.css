@@ -234,6 +234,11 @@ header p {
 
 /* ABOUT FLASHYCARDS */
 
+#aboutFlashycards {
+  position: relative;
+  top: 45%;
+}
+
 #aboutFlashycards h2 {
   padding-bottom: 40px;
 }

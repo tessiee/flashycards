@@ -59,7 +59,7 @@ let setDuoIndex: number;
 
 // LEFT SIDEBAR
 
-window.onclick = function showSets(event) {
+window.onclick = function showSets(event: MouseEvent) {
   if ((<HTMLElement>event.target).classList.contains("setCategories")) {
     for (let x = 1; x <= flashyCategories.length; x++)
       // get clicked h4 element
@@ -91,7 +91,7 @@ window.onclick = function showSets(event) {
   }
 };
 
-async function loadCategorySet(category: String) {
+function loadCategorySet(category: String) {
   fetch(`flashySets/${language}/${category}.json`)
     .then((res) => {
       return res.json();
@@ -147,6 +147,11 @@ async function loadCategorySet(category: String) {
 
 function clearPreviousSet() {
   setOverview.innerHTML = "<h3>Set overview</h3>";
+  nextDuos.classList.add("invisible");
+  previousDuos.classList.add("invisible");
+  duoContainerNumber = 0;
+  setDuoIndex = 0;
+  
 }
 
 function showSetOverview() {
