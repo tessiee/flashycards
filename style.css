@@ -1,0 +1,473 @@
+:root {
+  --lighter-orange: rgb(248, 170, 133);
+  --light-orange: rgb(253, 155, 109);
+  --medium-orange: rgb(255, 126, 67);
+  --dark-orange: rgb(255, 97, 24);
+  --lighter-blue: rgb(184, 213, 224);
+  --light-blue: rgb(122, 168, 184);
+  --medium-blue: rgb(38, 132, 158);
+  --dark-blue: rgb(20, 86, 104);
+  --darker-blue: rgb(10, 75, 93);
+  --even-darker-blue: rgb(7, 55, 68);
+  --darkest-blue: rgb(4, 39, 48);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  min-width: 100%;
+  min-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  background-color: var(--darker-blue);
+  color: white;
+  font-family: fantasy;
+  font-size: 18px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 70px;
+  color: var(--dark-orange);
+}
+
+h2 {
+  font-size: 40px;
+  color: var(--dark-orange);
+}
+
+h3 {
+  font-size: 30px;
+  color: var(--dark-orange);
+}
+
+h4 {
+  font-size: 25px;
+  color: var(--medium-orange);
+}
+
+input {
+  width: 150px;
+  margin: 1px 5px;
+  padding: 2px 5px 2px 5px;
+  border: double 2px var(--dark-blue);
+  border-radius: 5px;
+  background-color: var(--lighter-blue);
+  color: var(--dark-blue);
+}
+
+input:focus {
+  outline: var(--medium-blue) solid 2px;
+}
+
+button:hover {
+  cursor: pointer;
+  transform: scale(110%);
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a:hover,
+ul li:hover {
+  font-size: 19.5px;
+  cursor: pointer;
+}
+
+.invisible {
+  display: none;
+}
+
+.center {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* GENERAL BUTTON CLASSES */
+
+.lightButton {
+  border: none;
+  border-radius: 10px;
+  background-color: white;
+  color: var(--dark-blue);
+}
+
+.darkButton {
+  border: none;
+  border-radius: 10px;
+  background-color: var(--dark-blue);
+  color: var(--lighter-blue);
+}
+
+/* LOGIN BUTTON */
+
+#logInButton {
+  position: fixed;
+  top: 4px;
+  right: 340px;
+  width: 80px;
+  padding: 1px;
+  z-index: 1;
+}
+
+/* REGISTRATION BUTTON */
+
+#registrationButton {
+  position: fixed;
+  top: 4px;
+  right: 210px;
+  width: 140px;
+  padding: 1px;
+}
+
+/* HEADER */
+
+header {
+  position: fixed;
+  width: 100%;
+  height: 120px;
+  top: 25px;
+  background-image: linear-gradient(var(--dark-blue), var(--darker-blue));
+}
+
+header h1 {
+  padding-top: 10px;
+}
+
+header p {
+  position: fixed;
+  top: 110px;
+  left: 50%;
+  transform: translateX(15%);
+  font-size: 15px;
+}
+
+/* SIDEBARS */
+
+.sidebar {
+  width: 200px;
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  opacity: 0.8;
+}
+
+#leftSidebar {
+  left: 0px;
+  background-image: linear-gradient(
+    to left,
+    var(--darkest-blue),
+    var(--even-darker-blue)
+  );
+}
+
+#rightSidebar {
+  right: 0px;
+  background-image: linear-gradient(
+    to right,
+    var(--darkest-blue),
+    var(--even-darker-blue)
+  );
+}
+
+.sidebar h2,
+.sidebar h3 {
+  margin: 50px 0px 20px;
+}
+
+/* CATEGORIES */
+
+.setCategories {
+  cursor: pointer;
+  padding: 5px;
+}
+
+.setCategories:hover {
+  font-size: 26px;
+}
+
+/* OWN SETS */
+
+#newSet {
+  margin-top: 50px;
+}
+
+/* CONTENT CONTAINER */
+
+#contentContainer {
+  background-image: linear-gradient(
+    to top right,
+    var(--dark-blue),
+    var(--medium-blue)
+  );
+  border-style: solid;
+  border-width: 8px 8px 4px 4px;
+  border-color: var(--dark-blue);
+  border-radius: 25px 25px 25px 0px;
+  width: 1000px;
+  height: 600px;
+  position: fixed;
+  top: 150px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ABOUT FLASHYCARDS */
+
+#aboutFlashycards {
+  position: relative;
+  top: 45%;
+}
+
+#aboutFlashycards h2 {
+  padding-bottom: 40px;
+}
+
+/* FLASHCARDS */
+
+#flashcard {
+  background-image: linear-gradient(
+    var(--even-darker-blue),
+    var(--darker-blue)
+  );
+  border-style: solid;
+  border-width: 4px;
+  border-radius: 8px;
+  border-color: var(--darker-blue);
+  width: 400px;
+  height: 450px;
+}
+
+#word {
+  font-size: 45px;
+  margin-top: 95px;
+  color: white;
+}
+
+#translation {
+  font-size: 45px;
+  margin-top: 90px;
+  color: var(--dark-orange);
+}
+
+#flashcard hr {
+  width: 250px;
+  position: fixed;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#hintButton,
+#revealButton {
+  position: fixed;
+  bottom: 50px;
+  width: 80px;
+  padding: 2px;
+}
+
+#hintButton {
+  left: 25%;
+}
+
+#revealButton {
+  right: 25%;
+}
+
+/* NEXT BUTTON & CREATING SETS BUTTONS */
+
+#nextButton,
+#restartButton,
+#startCreating,
+#createSetButton {
+  position: fixed;
+  bottom: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 25px;
+  padding: 2px;
+  border-radius: 15px;
+  z-index: 1;
+}
+
+/* SET OVERVIEW */
+
+#setOverview h3 {
+  padding-top: 10px;
+}
+
+.setDuoContainer {
+  float: left;
+  margin: 15px 0px 0px 30px;
+  width: 350px;
+  height: 275px;
+}
+
+.duo {
+  position: relative;
+  display: inline-block;
+  width: 350px;
+  height: 30px;
+  margin: 0px 0px 4px 0px;
+}
+
+.setWord {
+  background-color: var(--darkest-blue);
+  display: inline-block;
+  width: 150px;
+  padding-top: 3px;
+}
+
+.setTranslation {
+  background-color: var(--dark-blue);
+  display: inline-block;
+  width: 150px;
+  padding-top: 3px;
+}
+
+#previousWordsButton {
+  position: fixed;
+  left: 25%;
+  bottom: 15%;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+}
+
+#nextWordsButton {
+  position: fixed;
+  right: 25%;
+  bottom: 15%;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+}
+
+#startPractice {
+  position: fixed;
+  bottom: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 25px;
+  padding: 2px;
+  border-radius: 15px;
+  z-index: 1;
+}
+
+#setOverviewContainer,
+#createNewSetContainer {
+  position: relative;
+  background-image: linear-gradient(
+    var(--even-darker-blue),
+    var(--darkest-blue)
+  );
+  border-style: solid;
+  border-width: 4px;
+  border-radius: 8px;
+  border-color: var(--darker-blue);
+  width: 800px;
+  height: 450px;
+  z-index: 1;
+}
+
+/* CREATE NEW SET */
+
+#newSetStart h2 {
+  padding: 70px;
+}
+
+#setNameContainer h3 {
+  padding: 1px;
+  font-size: 18px;
+  color: white;
+  position: fixed;
+  left: 10px;
+  top: 5px;
+}
+
+#setNameContainer input {
+  position: fixed;
+  left: 90px;
+  top: 6px;
+  width: 140px;
+}
+
+#setWordsContainer {
+  margin-top: 8px;
+}
+
+#setWordsContainer h4 {
+  display: inline-block;
+  width: 150px;
+}
+
+.newWord {
+  background-color: var(--light-blue);
+}
+
+#moreFieldsButton {
+  position: fixed;
+  right: 30%;
+  bottom: 15%;
+  width: 15px;
+  height: 15px;
+  font-weight: bold;
+}
+
+#previousFieldsButton {
+  position: fixed;
+  left: 30%;
+  bottom: 15%;
+  width: 15px;
+  height: 15px;
+  font-size: 15px;
+}
+
+#nextFieldsButton {
+  position: fixed;
+  right: 30%;
+  bottom: 15%;
+  width: 15px;
+  height: 15px;
+  font-size: 15px;
+}
+
+/* FOOTER */
+
+footer {
+  position: fixed;
+  width: 100%;
+  height: 100px;
+  bottom: 0px;
+  background-image: linear-gradient(var(--darker-blue), var(--medium-blue));
+}
+
+footer ul {
+  margin-top: 40px;
+}
+
+footer ul li {
+  display: inline;
+}

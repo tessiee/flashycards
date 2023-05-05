@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="images/flashycard.png" />
+    <title>Flashycards - A new language in a flash</title>
+  </head>
+  <body>
+    <!--Functionality to be added later-->
+    <button
+      class="lightButton invisible"
+      id="logInButton"
+      onclick="showLoginWindow()"
+    >
+      Log In
+    </button>
+    <!--Functionality to be added later-->
+    <button
+      class="darkButton invisible"
+      id="registrationButton"
+      onclick="showRegistrationForm()"
+    >
+      Register Here
+    </button>
+
+    <header>
+      <h1>Flashycards</h1>
+      <p>A new language in a flash</p>
+    </header>
+
+    <nav class="sidebar" id="leftSidebar">
+      <h2>Flashy Card Sets</h2>
+
+      <!--Functionality to be added later-->
+      <h3>Languages</h3>
+      <div id="flashySetsLanguages">
+        <ul id="languageOptions">
+          <li class="flashyLanguage" id="language_1">Spanish</li>
+        </ul>
+      </div>
+
+      <!-- CATEGORIES -->
+
+      <h3>Categories</h3>
+      <div class="spanish" id="flashySetsCategory_1_es">
+        <h4 class="setCategories" id="category_1_es" onclick="showSets()">Nouns</h4>
+        <ul class="categorySets">
+          <li class="flashySet cat_1 invisible" id="set_1_1_es" onclick="openSetOverview()">People</li>
+          <li class="flashySet cat_1 invisible" id="set_1_2_es" onclick="openSetOverview()">Animals</li>
+        </ul>
+      </div>
+
+      <div class="spanish" id="flashySetsCategory_2_es">
+        <h4 class="setCategories" id="category_2_es" onclick="showSets()">Adjectives</h4>
+        <ul class="categorySets">
+          <li class="flashySet cat_2 invisible" id="set_2_1_es" onclick="openSetOverview()">Shapes</li>
+          <li class="flashySet cat_2 invisible" id="set_2_2_es" onclick="openSetOverview()">Colours</li>
+        </ul>
+      </div>
+
+      <div class="spanish" id="flashySetsCategory_3_es">
+        <h4 class="setCategories" id="category_3_es" onclick="showSets()">Verbs</h4>
+        <ul class="categorySets">
+          <li class="flashySet cat_3 invisible" id="set_3_1_es" onclick="openSetOverview()">
+            Frequently used
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- CONTENT CONTAINER, CONTAINS: SET START, SET CARDS, CREATE SET, ABOUT FLASHY -->
+    <div id="contentContainer">
+      <!-- ABOUT FLASHY -->
+      <div class="center" id="aboutFlashycards">
+        <h2>Pick a set to begin!</h2>
+        <p>
+          1. Pick a set <br />
+          2. Go through the words <br />
+          3. Practice with flashcards <br />
+        </p>
+      </div>
+      <!-- SET OVERVIEW -->
+      <div class="center invisible" id="setOverviewContainer">
+        <div id="setOverview">
+          <h3>Set overview</h3>
+        </div>
+        <button
+          class="darkButton invisible"
+          id="previousWordsButton"
+          onclick="showPreviousWords()"
+        >
+          P
+        </button>
+        <button
+          class="lightButton invisible"
+          id="nextWordsButton"
+          onclick="showNextWords()"
+        >
+          N
+        </button>
+        <button
+          class="lightButton"
+          id="startPractice"
+          onclick="startPractice()"
+        >
+          Start Practice!
+        </button>
+      </div>
+
+      <!-- SET CARDS -->
+      <div class="center invisible" id="flashcard">
+        <div id="word">Hello</div>
+        <div class="invisible" id="translation">Hola</div>
+        <hr />
+        <button class="button lightButton" id="hintButton" onclick="showHint()">
+          Hint
+        </button>
+        <button
+          class="button darkButton"
+          id="revealButton"
+          onclick="revealTranslation()"
+        >
+          Reveal
+        </button>
+        <button
+          class="button lightButton invisible"
+          id="nextButton"
+          onclick="nextPracticeWord()"
+        >
+          NEXT
+        </button>
+        <button
+          class="button darkButton invisible"
+          id="restartButton"
+          onclick="reStartPractice()"
+        >
+          RESTART
+        </button>
+      </div>
+
+      <!-- CREATE SET -->
+      <div class="center invisible" id="createNewSetContainer">
+        <div class="invisible" id="newSetStart">
+          <h2>Create your own set of flashcards</h2>
+          <p>
+            1. Pick a name for your set <br />
+            2. Add your words & translations <br />
+            3. Click "Create set" and done! <br />
+          </p>
+          <button
+            class="lightButton"
+            id="startCreating"
+            onclick="startCreatingSet()"
+          >
+            Start Creating
+          </button>
+        </div>
+        <div class="invisible" id="newSetForm">
+          <div id="setNameContainer">
+            <h3>Set name</h3>
+            <input id="newSetName" type="text" /> <br />
+          </div>
+          <div id="setWordsContainer">
+            <h4>Word</h4>
+            <h4>Translation</h4>
+            <br />
+            <input
+              class="newWord"
+              id="newWord_1"
+              type="text"
+              placeholder="Hello"
+            />
+            <input
+              class="newTranslation"
+              id="newTranslation_1"
+              type="text"
+              placeholder="Hola"
+            /><br />
+            <input class="newWord" id="newWord_2" type="text" />
+            <input
+              class="newTranslation"
+              id="newTranslation_2"
+              type="text"
+            /><br />
+            <button
+              class="darkButton"
+              id="previousFieldsButton"
+              onclick="showPreviousFields()"
+            >
+              P
+            </button>
+            <button
+              class="darkButton"
+              id="nextFieldsButton"
+              onclick="showNextFields()"
+            >
+              N
+            </button>
+            <button
+              class="lightButton"
+              id="moreFieldsButton"
+              onclick="showMoreFields()"
+            >
+              +
+            </button>
+            <button
+              class="lightButton"
+              id="createSetButton"
+              onclick="createNewSet()"
+            >
+              Create Set
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDEBAR-->
+
+    <nav class="sidebar" id="rightSidebar">
+      <h2>My Own Card Sets</h2>
+
+      <div id="newSet">
+        <a href="#/" id="createNewSet" onclick="openNewSetCreator()"
+          >Create a New Set</a
+        >
+      </div>
+
+      <!-- SAVED SETS -->
+
+      <div id="savedSetsContainer">
+        <h3>Saved Sets</h3>
+
+        <ul id="savedSets">
+          <li class="savedSet" id="savedSet1">My Set 1</li>
+          <li class="savedSet" id="savedSet2">My Set 2</li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- FOOTER -->
+
+    <footer>
+      <nav id="footerMenu">
+        <ul id="footerMenuLinks">
+          <li>
+            <a href="#/" id="footerFirst" onclick="showAboutFlashy()"
+              ><b>About Flashycards</b></a
+            >
+          </li>
+        </ul>
+      </nav>
+    </footer>
+
+    <script type="text/javascript" src="script.js"></script>
+  </body>
+</html>
