@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe("homepage of Flashycards", () => {
+describe('homepage of Flashycards', () => {
   beforeEach(() => {
     cy.visit("http://127.0.0.1:5501/");
   });

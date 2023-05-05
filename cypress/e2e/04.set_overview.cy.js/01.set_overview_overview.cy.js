@@ -1,14 +1,16 @@
 /// <reference types="cypress" />
 
-describe("Overview of the Set Overviews", () => {
+describe('Overview of the Set Overviews', () => {
   beforeEach(() => {
     cy.visit("http://127.0.0.1:5501/");
   });
 
-  it("displays all the expected items in the set overview", () => {
+  it('displays all the expected items in the set overview', () => {
     cy.openCategory("es", 1, 2);
-    cy.get("#setOverview h3").should("have.text", "Set overview");
-    cy.get("#duoContainer_1").should("not.have.class", "invisible");
+    cy.get("#setOverview").find("h3").should("have.text", "Set overview");
+    cy.get("#setOverview")
+      .find("#duoContainer_1")
+      .should("not.have.class", "invisible");
     cy.get("#duoContainer_1")
       .find(".duo")
       .should("have.length", 6)
@@ -26,7 +28,7 @@ describe("Overview of the Set Overviews", () => {
     cy.get("#startPractice").should("not.have.class", "invisible");
   });
 
-  it("only the first two duo containers are displayed", () => {
+  it('only the first two duo containers are displayed', () => {
     cy.openCategory("es", 1, 1);
     cy.get("#duoContainer_1").should("not.have.class", "invisible");
     cy.get("#duoContainer_2").should("not.have.class", "invisible");
@@ -40,9 +42,9 @@ describe("Overview of the Set Overviews", () => {
     cy.get("#duoContainer_3")
       .should("not.be.visible")
       .and("have.class", "invisible");
-    cy.get("#nextWordsButton")
+    cy.get("#setOverviewContainer")
+      .find("#nextWordsButton")
       .should("be.visible")
       .and("not.have.class", "invisible");
   });
-
 });

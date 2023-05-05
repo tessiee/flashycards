@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe("Events in left navigation bar of Flashycards", () => {
+describe('Events in left navigation bar of Flashycards', () => {
     beforeEach(() => {
       cy.visit("http://127.0.0.1:5501/");
     });

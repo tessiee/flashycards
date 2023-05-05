@@ -260,13 +260,13 @@ header p {
 
 #word {
   font-size: 45px;
-  margin-top: 95px;
+  margin-top: 15px;
   color: white;
 }
 
 #translation {
   font-size: 45px;
-  margin-top: 90px;
+  margin-top: 10px;
   color: var(--dark-orange);
 }
 
