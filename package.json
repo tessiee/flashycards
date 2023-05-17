@@ -1,5 +1,44 @@
 {
+  "name": "flashycards",
+  "version": "1.0.0",
+  "description": "flashycards app with cypress cucumber automation framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run --browser chrome --spec cypress/e2e/*.feature",
+    "smoke-test": "cypress run -e TAGS=\"@smoke\" --browser chrome",
+    "regression-test": "cypress run -e TAGS=\"@regression\" --browser chrome && node cucumber-html-report.js",
+    "homepage-test": "cypress run -e TAGS=\"@homepage\" --browser chrome",
+    "left-nav-bar-test": "cypress run -e TAGS=\"@left-nav-bar\" --browser chrome",
+    "right-nav-bar-test": "cypress run -e TAGS=\"@right-nav-bar\" --browser chrome",
+    "flashcards-test": "cypress run -e TAGS=\"@flashcards\" --browser chrome",
+    "flashcards-set-overview-test": "cypress run -e TAGS=\"@flashcards-set-overview\" --browser chrome",
+    "flashcards-practice-test": "cypress run -e TAGS=\"@flashcards-practice\" --browser chrome",
+    "create-new-set-test": "cypress run -e TAGS=\"@create-new-set\" --browser chrome",
+    "saved-sets-test": "cypress run -e TAGS=\"@saved-sets\" --browser chrome",
+    "footer-menu-test": "cypress run -e TAGS=\"@footer-menu\" --browser chrome"
+  },
+  "author": "tessie",
+  "license": "ISC",
   "devDependencies": {
-    "cypress": "^12.11.0"
+    "@badeball/cypress-cucumber-preprocessor": "^17.1.0",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
+    "cypress": "^12.11.0",
+    "ts-loader": "^9.4.2"
+  },
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": "cypress/support/step_definitions/*.js",
+    "html": {
+      "enabled": true,
+      "output": "cypress/reports/cucumber-html/cucumber-report.html"
+    },
+    "messages": {
+      "enabled": true,
+      "output": "cypress/reports/cucumber-ndjson/cucumber-report.ndjson"
+    },
+    "json": {
+      "enabled": true,
+      "formatter": "cucumber-json-formatter",
+      "output": "cypress/reports/cucumber-json/cucumber-report.json"
+    }
   }
 }
