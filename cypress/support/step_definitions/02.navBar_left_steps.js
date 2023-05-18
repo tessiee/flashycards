@@ -24,6 +24,9 @@ Then(/^The left navigation bar should contain '(.*)'/, (item) => {
   navBar_left.shouldContain(item);
 });
 
-Then(/^The category '(.*)' is for the language '(.*)'/, (categoryName, language) => {
-  navBar_left.verifyCategoryLanguage(categoryName, language);
-});
+Then(
+  /^The category '(.*)' is for the language '(.*)'/,
+  (categoryName, language) => {
+    navBar_left.verifyCategoryLanguage(categoryName, language);
+  }
+);

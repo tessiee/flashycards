@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 class Base_PO {
-  navigateToHomepage() {
+  navigate() {
     cy.fixture("config.json").then((data) => {
       cy.visit(data.baseUrl);
     });

@@ -8,7 +8,11 @@ class Homepage_PO extends Base_PO {
   }
 
   shouldDisplayWidget(item) {
-    cy.get().find(item);
+    switch (item) {
+      case "setOverviewContainer":
+        cy.get('#setOverviewContainer').should('be.visible');
+        break;
+    }
   }
 }
 

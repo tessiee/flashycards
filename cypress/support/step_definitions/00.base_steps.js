@@ -18,5 +18,5 @@ Then(/^The page should contain '(.*)'/, (text) => {
 });
 
 Then(/^The page title should be '(.*)'/, (title) => {
-  basePage.getPageTitle().should(have.text(title));
+  basePage.getPageTitle().should("contain", title);
 });

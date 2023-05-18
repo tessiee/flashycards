@@ -9,5 +9,5 @@ Given(/^I navigate to the flashycards homepage/, () => {
 });
 
 Then(/^The window '(.*)' should be displayed in the center/, (item) => {
-  homePage.shouldContainWidget(item);
+  homePage.shouldDisplayWidget(item);
 });

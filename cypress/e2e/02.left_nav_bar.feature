@@ -34,3 +34,6 @@ Feature: Left Navigation Bar Overview
     Scenario: Left navigation bar displays the correct sets for the chosen category - Verbs
         When I select the category 'Verbs'
         Then The left navigation bar should contain 'Frequently used'
+
+    @smoke
+    Scenario: When I click on a set name, the widget 'Set Overview' should be opened
