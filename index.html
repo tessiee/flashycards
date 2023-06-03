@@ -112,8 +112,8 @@
 
       <!-- SET CARDS -->
       <div class="center invisible" id="flashcard">
-        <div id="word">Hello</div>
-        <div class="invisible" id="translation">Hola</div>
+        <div id="word"></div>
+        <div id="translation"></div>
         <hr />
         <button class="button lightButton" id="hintButton" onclick="showHint()">
           Hint
@@ -167,42 +167,24 @@
             <h4>Word</h4>
             <h4>Translation</h4>
             <br />
-            <input
-              class="newWord"
-              id="newWord_1"
-              type="text"
-              placeholder="Hello"
-            />
-            <input
-              class="newTranslation"
-              id="newTranslation_1"
-              type="text"
-              placeholder="Hola"
-            /><br />
-            <input class="newWord" id="newWord_2" type="text" />
-            <input
-              class="newTranslation"
-              id="newTranslation_2"
-              type="text"
-            /><br />
             <button
-              class="darkButton"
+              class="darkButton invisible"
               id="previousFieldsButton"
-              onclick="showPreviousFields()"
+              onclick="showPreviousData()"
             >
               P
             </button>
             <button
-              class="darkButton"
+              class="darkButton invisible"
               id="nextFieldsButton"
-              onclick="showNextFields()"
+              onclick="showNextData()"
             >
               N
             </button>
             <button
               class="lightButton"
               id="moreFieldsButton"
-              onclick="showMoreFields()"
+              onclick="emptyInputFields()"
             >
               +
             </button>

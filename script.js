@@ -1,6 +1,5 @@
 // letIABLES
 const aboutFlashycards = document.getElementById("aboutFlashycards");
-let visibleSets;
 let flashyCategories = document.getElementsByClassName("setCategories");
 const setOverviewContainer = document.getElementById("setOverviewContainer");
 const setOverview = document.getElementById("setOverview");
@@ -10,6 +9,7 @@ const flashcard = document.getElementById("flashcard");
 const createNewSetContainer = document.getElementById("createNewSetContainer");
 const newSetStart = document.getElementById("newSetStart");
 const newSetForm = document.getElementById("newSetForm");
+const setWordsContainer = document.getElementById("setWordsContainer");
 const nextFieldsButton = document.getElementById("nextFieldsButton");
 const previousFieldsButton = document.getElementById("previousFieldsButton");
 const moreFieldsButton = document.getElementById("moreFieldsButton");
@@ -18,11 +18,11 @@ let practiceTranslation = document.getElementById("translation");
 const nextDuos = document.getElementById("nextWordsButton");
 const previousDuos = document.getElementById("previousWordsButton");
 let language = "spanish";
-let practiceDuoIndex;
-let practiceWordsArray = [];
-let practiceTranslationsArray = [];
-let duoContainerNumber;
-let setDuoIndex;
+let practiceWordsArray = [],
+  practiceTranslationsArray = [];
+let practiceDuoIndex, duoContainerNumber, setDuoIndex, visibleSets;
+let hint, translation;
+let currentInputFields;
 
 // LEFT SIDEBAR
 function showSets() {
@@ -76,12 +76,7 @@ function loadCategorySet(category) {
       data.forEach(function (duo) {
         let wordTranslationDuo = document.createElement("div");
         wordTranslationDuo.classList.add("duo");
-        wordTranslationDuo.innerHTML = `<div class="setWord">
-          ${duo.word}</div>
-          <div class="setTranslation">
-          ${duo.translation}
-        </div>
-        </div>`;
+        wordTranslationDuo.innerHTML = `<div class="setWord">${duo.word}</div><div class="setTranslation">${duo.translation}</div></div>`;
         // append duo element to duo container
         if (currentContainer.childElementCount < 8) {
           currentContainer.appendChild(wordTranslationDuo);
@@ -110,6 +105,7 @@ function loadCategorySet(category) {
       });
     });
 }
+
 function clearPreviousSet() {
   setOverview.innerHTML = "<h3>Set overview</h3>";
   nextDuos.classList.add("invisible");
@@ -117,12 +113,14 @@ function clearPreviousSet() {
   duoContainerNumber = 0;
   setDuoIndex = 0;
 }
+
 function showSetOverview() {
   if (duoContainerNumber > 2) {
     nextDuos.classList.remove("invisible");
   }
   setOverviewContainer.classList.remove("invisible");
 }
+
 // SET OVERVIEW
 function showPreviousWords() {
   let duoContainerCollection =
@@ -149,6 +147,7 @@ function showPreviousWords() {
   // show next button
   nextDuos.classList.remove("invisible");
 }
+
 function showNextWords() {
   let duoContainerCollection =
     document.getElementsByClassName("setDuoContainer");
@@ -173,12 +172,14 @@ function showNextWords() {
   }
   previousDuos.classList.remove("invisible");
 }
+
 function startPractice() {
   setOverviewContainer.classList.add("invisible");
   flashcard.classList.remove("invisible");
   fillFlashcardPracticeArrays();
-  loadWordIntoCard();
+  loadFlashCardWords();
 }
+
 // RIGHT SIDEBAR
 function openNewSetCreator() {
   aboutFlashycards.classList.add("invisible");
@@ -188,33 +189,69 @@ function openNewSetCreator() {
   newSetStart.classList.remove("invisible");
   newSetForm.classList.add("invisible");
 }
+
 // CREATE OWN SET
 function startCreatingSet() {
   newSetStart.classList.add("invisible");
   newSetForm.classList.remove("invisible");
+  loadInputFields();
 }
-function showMoreFields() {
-  //create new list of input fields
+
+function loadInputFields() {
+  for (let i = 1; i < 11; i++) {
+    let newDuo = document.createElement("div");
+    newDuo.innerHTML = `<input class="newWord" id="newWord_${i}" type="text"/><input class="newTranslation" id="newTranslation_${i}"text"/><br />`;
+    setWordsContainer.appendChild(newDuo);
+  }
+}
+
+function emptyInputFields() {
+  storeCurrentData();
+  // function for +button
+  for (let i = 1; i < 11; i++) {
+    document
+      .getElementById(`newWord_${i}`)
+      .value = "";
+    document
+      .getElementById(`newTranslation_${i}`)
+      .value = "";
+  }
   previousFieldsButton.classList.remove("invisible");
 }
-function showPreviousFields() {
+
+function storeCurrentData() {
+let obj = {
+  duos: []
+};
+for (let i = 1; i < 11; i++) {
+obj.duos.push()
+}
+}
+
+function showPreviousData() {
+  // function for Pbutton
+  // retrieve data from JSON file
   moreFieldsButton.classList.add("invisible");
   nextFieldsButton.classList.remove("invisible");
   //go back to previous input fields
   // if statement eerste input, dan:
   previousFieldsButton.classList.add("invisible");
 }
-function showNextFields() {
+
+function showNextData() {
+  // function for Nbutton
   previousFieldsButton.classList.remove("invisible");
   //go forward to next input fields
   // if statement laatste input:
   nextFieldsButton.classList.add("invisible");
   moreFieldsButton.classList.remove("invisible");
 }
+
 function createNewSet() {
   createNewSetContainer.classList.add("invisible");
   setOverviewContainer.classList.remove("invisible");
 }
+
 // CARDS
 function fillFlashcardPracticeArrays() {
   practiceWordsArray = [];
@@ -223,41 +260,44 @@ function fillFlashcardPracticeArrays() {
   practiceTranslationsArray = document.getElementsByClassName("setTranslation");
   practiceDuoIndex = 0;
 }
-function loadWordIntoCard() {
+
+function loadFlashCardWords() {
+  practiceTranslation.innerText = "";
   practiceWord.innerText = practiceWordsArray[practiceDuoIndex].innerText;
-  practiceTranslation.innerText =
-    practiceTranslationsArray[practiceDuoIndex].innerText;
+  hint = practiceTranslationsArray[practiceDuoIndex].innerText.slice(0, 1);
+  translation =
+    practiceTranslationsArray[practiceDuoIndex].innerText.substring(1);
   practiceDuoIndex++;
 }
+
 function showHint() {
-  let translation = document.getElementById("translation");
-  translation.classList.add("hint");
-  // show first character of translation
+  practiceTranslation.innerText = hint;
 }
+
 function showTranslation() {
-  let translation = document.getElementById("translation");
-  translation.classList.remove("invisible");
+  practiceTranslation.innerText = hint + translation;
 }
-function hideTranslation() {
-  let translation = document.getElementById("translation");
-  translation.classList.add("invisible");
-}
+
 function showNextButton() {
   let nextButton = document.getElementById("nextButton");
   nextButton.classList.remove("invisible");
 }
+
 function hideNextButton() {
   let nextButton = document.getElementById("nextButton");
   nextButton.classList.add("invisible");
 }
+
 function showRestartButton() {
   let restartButton = document.getElementById("restartButton");
   restartButton.classList.remove("invisible");
 }
+
 function hideRestartButton() {
   let restartButton = document.getElementById("restartButton");
   restartButton.classList.add("invisible");
 }
+
 function revealTranslation() {
   showTranslation();
   if (practiceDuoIndex == practiceWordsArray.length) {
@@ -266,24 +306,25 @@ function revealTranslation() {
     showNextButton();
   }
 }
+
 function nextPracticeWord() {
-  hideTranslation();
   hideNextButton();
-  loadWordIntoCard();
+  loadFlashCardWords();
 }
+
 function reStartPractice() {
   practiceDuoIndex = 0;
-  hideTranslation();
   hideRestartButton();
-  loadWordIntoCard();
+  loadFlashCardWords();
 }
+
 function closePractice() {
-  hideTranslation();
   hideNextButton();
   hideRestartButton();
   flashcard.classList.add("invisible");
   practiceDuoIndex = 0;
 }
+
 // FOOTER
 function showAboutFlashy() {
   aboutFlashycards.classList.remove("invisible");
