@@ -161,7 +161,7 @@
         <div class="invisible" id="newSetForm">
           <div id="setNameContainer">
             <h3>Set name</h3>
-            <input id="newSetName" type="text" /> <br />
+            <input id="newSetName" type="text" oninput="storeValue()"/> <br />
           </div>
           <div id="setWordsContainer">
             <h4>Word</h4>
@@ -195,6 +195,9 @@
             >
               Create Set
             </button>
+            <div id="setNameError" class="invisible">
+              <p>Please provide a set name</p>
+            </div>
           </div>
         </div>
       </div>

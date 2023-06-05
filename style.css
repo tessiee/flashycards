@@ -454,6 +454,15 @@ header p {
   font-size: 15px;
 }
 
+#setNameError p {
+  position: fixed;
+  top: 35px;
+  left: 7px;
+  color: red;
+  font-weight: bolder;
+  font-size: 20px;
+}
+
 /* FOOTER */
 
 footer {

@@ -17,6 +17,8 @@ let practiceWord = document.getElementById("word");
 let practiceTranslation = document.getElementById("translation");
 const nextDuos = document.getElementById("nextWordsButton");
 const previousDuos = document.getElementById("previousWordsButton");
+let setName = document.getElementById("newSetName");
+let setNameError = document.getElementById("setNameError");
 let language = "spanish";
 let practiceWordsArray = [],
   practiceTranslationsArray = [];
@@ -25,6 +27,7 @@ let hint, translation;
 let unsavedInputFields, amountOfPreviousDuos, emptyForm;
 let storedDuos = [];
 let uniqueStoredDuos = [];
+let hasSetName = false;
 
 // LEFT SIDEBAR
 function showSets() {
@@ -288,7 +291,7 @@ function newInputFields() {
 function showPreviousData() {
   //update array with changes to already existing data
   if (unsavedInputFields == 0) {
-  updateCurrentData();
+    updateCurrentData();
   }
 
   // store current data if coming from first input
@@ -350,17 +353,44 @@ function showNextData() {
   amountOfPreviousDuos -= 10;
 }
 
-function createNewSet() {
-  filterDuplicateOrEmptyDuos();
-  createNewSetContainer.classList.add("invisible");
-  setOverviewContainer.classList.remove("invisible");
+function checkForSetName() {
+  console.log(setName.value);
+  if (setName.value == "") {
+    hasSetName = false;
+  } else {
+    hasSetName = true;
+  }
 }
 
-function filterDuplicateOrEmptyDuos() {
-  // if invoegen
-  //if (!(duoObj.wordValue == "" && duoObj.wordTranslation == "")) {
-  //}
+function displaySetNameError() {
+  setNameError.classList.remove("invisible");
+}
 
+function hideSetNameError() {
+  setNameError.classList.add("invisible");
+}
+
+function createNewSet() {
+  checkForSetName();
+  if (hasSetName) {
+    hideSetNameError();
+    filterDuplicateDuos();
+    createNewSetContainer.classList.add("invisible");
+    setOverviewContainer.classList.remove("invisible");
+  } else {
+    displaySetNameError();
+  }
+}
+
+function filterDuplicateDuos() {
+  // remove empty fields
+  for (i = 0; i < storedDuos.length - 1; i++) {
+    if (storedDuos[i].wordValue == "" && storedDuos[i].wordTranslation == "") {
+      storedDuos.splice(i);
+    }
+  }
+
+  //remove duplicate duos
   uniqueStoredDuos = storedDuos.reduce(function (total, currentValue) {
     if (
       !total.some(function (el) {
@@ -373,7 +403,6 @@ function filterDuplicateOrEmptyDuos() {
       total.push(currentValue);
     return total;
   }, []);
-  console.log(uniqueStoredDuos);
 }
 
 // CARDS
