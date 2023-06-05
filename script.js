@@ -199,20 +199,27 @@ function openNewSetCreator() {
 
 // CREATE OWN SET
 function startCreatingSet() {
+  // close set start screen
   newSetStart.classList.add("invisible");
+  // open the container and load input fields
   newSetForm.classList.remove("invisible");
   loadInputFields();
+  // initialize variables
   amountOfPreviousDuos = 0;
   unsavedInputFields = 1;
 }
 
 function loadInputFields() {
+  let hasDuos = document.getElementsByClassName('newDuo')
+  if (hasDuos.length == 0)
+  {
   for (let i = 1; i < 11; i++) {
     let newDuo = document.createElement("div");
     newDuo.setAttribute("id", `newDuo_${i}`);
+    newDuo.setAttribute("class", "newDuo");
     newDuo.innerHTML = `<input class="newWord" id="newWord_${i}" type="text" oninput="storeValue()" /><input class="newTranslation" id="newTranslation_${i}" type="text" oninput="storeValue()" />`;
     setWordsContainer.appendChild(newDuo);
-  }
+  }} 
 }
 
 function emptyInputFields() {
@@ -450,31 +457,31 @@ function openSavedSet() {
     let wordTranslationDuo = document.createElement("div");
     wordTranslationDuo.classList.add("duo");
     wordTranslationDuo.innerHTML = `<div class="setWord">${uniqueStoredDuos[i].wordValue}</div><div class="setTranslation">${uniqueStoredDuos[i].wordTranslation}</div></div>`;
-  
-  // append duo element to duo container
-  if (currentContainer.childElementCount < 8) {
-    currentContainer.appendChild(wordTranslationDuo);
-    // if more than 8, create new container and append
-  } else {
-    // create new container
-    duoContainerNumber++;
-    let newSetDuoContainer = document.createElement("div");
-    newSetDuoContainer.id = `duoContainer_${duoContainerNumber}`;
-    newSetDuoContainer.classList.add("setDuoContainer");
-    // add invisible class for extra containers
-    if (duoContainerNumber > 2) {
-      newSetDuoContainer.classList.add("invisible");
-      nextDuos.classList.remove("invisible");
-    }
 
-    // append to overview element
-    setOverview.appendChild(newSetDuoContainer);
-    // select new container
-    currentContainer = document.getElementById(
-      `duoContainer_${duoContainerNumber}`
-    );
-    currentContainer.appendChild(wordTranslationDuo);
-  }
+    // append duo element to duo container
+    if (currentContainer.childElementCount < 8) {
+      currentContainer.appendChild(wordTranslationDuo);
+      // if more than 8, create new container and append
+    } else {
+      // create new container
+      duoContainerNumber++;
+      let newSetDuoContainer = document.createElement("div");
+      newSetDuoContainer.id = `duoContainer_${duoContainerNumber}`;
+      newSetDuoContainer.classList.add("setDuoContainer");
+      // add invisible class for extra containers
+      if (duoContainerNumber > 2) {
+        newSetDuoContainer.classList.add("invisible");
+        nextDuos.classList.remove("invisible");
+      }
+
+      // append to overview element
+      setOverview.appendChild(newSetDuoContainer);
+      // select new container
+      currentContainer = document.getElementById(
+        `duoContainer_${duoContainerNumber}`
+      );
+      currentContainer.appendChild(wordTranslationDuo);
+    }
   }
   setDuoIndex = 0;
 }
