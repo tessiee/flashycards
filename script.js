@@ -1,4 +1,4 @@
-// letIABLES
+// VARIABLES
 const aboutFlashycards = document.getElementById("aboutFlashycards");
 let flashyCategories = document.getElementsByClassName("setCategories");
 const setOverviewContainer = document.getElementById("setOverviewContainer");
@@ -22,7 +22,9 @@ let practiceWordsArray = [],
   practiceTranslationsArray = [];
 let practiceDuoIndex, duoContainerNumber, setDuoIndex, visibleSets;
 let hint, translation;
-let currentInputFields;
+let unsavedInputFields, amountOfPreviousDuos, emptyForm;
+let storedDuos = [];
+let uniqueStoredDuos = [];
 
 // LEFT SIDEBAR
 function showSets() {
@@ -195,61 +197,183 @@ function startCreatingSet() {
   newSetStart.classList.add("invisible");
   newSetForm.classList.remove("invisible");
   loadInputFields();
+  amountOfPreviousDuos = 0;
+  unsavedInputFields = 1;
 }
 
 function loadInputFields() {
   for (let i = 1; i < 11; i++) {
     let newDuo = document.createElement("div");
-    newDuo.innerHTML = `<input class="newWord" id="newWord_${i}" type="text"/><input class="newTranslation" id="newTranslation_${i}"text"/><br />`;
+    newDuo.setAttribute("id", `newDuo_${i}`);
+    newDuo.innerHTML = `<input class="newWord" id="newWord_${i}" type="text" oninput="storeValue()" /><input class="newTranslation" id="newTranslation_${i}" type="text" oninput="storeValue()" />`;
     setWordsContainer.appendChild(newDuo);
   }
 }
 
 function emptyInputFields() {
-  storeCurrentData();
-  // function for +button
   for (let i = 1; i < 11; i++) {
-    document
-      .getElementById(`newWord_${i}`)
-      .value = "";
-    document
-      .getElementById(`newTranslation_${i}`)
-      .value = "";
+    document.getElementById(`newWord_${i}`).value = "";
+    document.getElementById(`newTranslation_${i}`).value = "";
   }
-  previousFieldsButton.classList.remove("invisible");
+}
+
+function checkForEmptyForm() {
+  let i = 0;
+  do {
+    i++;
+  } while (
+    i <= 10 &&
+    document.getElementById(`newWord_${i}`).value == "" &&
+    document.getElementById(`newTranslation_${i}`).value == ""
+  );
+
+  if (i == 11) {
+    emptyForm = true;
+  } else {
+    emptyForm = false;
+  }
+}
+
+function storeValue() {
+  let field = event.target;
+  let input = event.target.value;
+  field.setAttribute("value", input);
 }
 
 function storeCurrentData() {
-let obj = {
-  duos: []
-};
-for (let i = 1; i < 11; i++) {
-obj.duos.push()
+  if (unsavedInputFields == 1) {
+    for (let i = 1; i < 11; i++) {
+      let duoObj = {
+        wordValue: document.getElementById(`newWord_${i}`).value,
+        wordTranslation: document.getElementById(`newTranslation_${i}`).value,
+      };
+      storedDuos.push(duoObj);
+      amountOfPreviousDuos++;
+    }
+  }
 }
+
+function updateCurrentData() {
+  let duoIndex = amountOfPreviousDuos;
+  for (let i = 1; i < 11; i++) {
+    storedDuos[duoIndex] = {
+      wordValue: document.getElementById(`newWord_${i}`).value,
+      wordTranslation: document.getElementById(`newTranslation_${i}`).value,
+    };
+    duoIndex++;
+  }
+}
+
+function newInputFields() {
+  // update data if triggered from previous input
+  if (unsavedInputFields == 0) {
+    updateCurrentData();
+    emptyInputFields();
+    amountOfPreviousDuos += 10;
+    unsavedInputFields = 1;
+    previousFieldsButton.classList.remove("invisible");
+  }
+
+  // store current data if new input and not completely empty
+  if (unsavedInputFields == 1) {
+    checkForEmptyForm();
+    if (!emptyForm) {
+      storeCurrentData();
+      emptyInputFields();
+      previousFieldsButton.classList.remove("invisible");
+    }
+  }
 }
 
 function showPreviousData() {
-  // function for Pbutton
-  // retrieve data from JSON file
-  moreFieldsButton.classList.add("invisible");
-  nextFieldsButton.classList.remove("invisible");
-  //go back to previous input fields
-  // if statement eerste input, dan:
-  previousFieldsButton.classList.add("invisible");
+  //update array with changes to already existing data
+  if (unsavedInputFields == 0) {
+  updateCurrentData();
+  }
+
+  // store current data if coming from first input
+  if (unsavedInputFields == 1) {
+    checkForEmptyForm();
+    if (!emptyForm) {
+      storeCurrentData();
+      amountOfPreviousDuos -= 10;
+    }
+    unsavedInputFields = 0;
+  }
+
+  emptyInputFields();
+
+  // display previous duos in input fields
+  for (let i = 10; i > 0; i--) {
+    document.getElementById(`newWord_${i}`).value =
+      storedDuos[amountOfPreviousDuos - 1].wordValue;
+    document.getElementById(`newTranslation_${i}`).value =
+      storedDuos[amountOfPreviousDuos - 1].wordTranslation;
+    amountOfPreviousDuos--;
+  }
+
+  //buttons
+  if (amountOfPreviousDuos == 0) {
+    previousFieldsButton.classList.add("invisible");
+  }
+  if (!(storedDuos.length == amountOfPreviousDuos + 10)) {
+    moreFieldsButton.classList.add("invisible");
+    nextFieldsButton.classList.remove("invisible");
+  }
 }
 
 function showNextData() {
-  // function for Nbutton
+  //update array with changes to data
+  updateCurrentData();
+
+  //add the currently displayed duos to the previous duos
+  amountOfPreviousDuos += 10;
+  emptyInputFields();
+
+  // display next duos in input fields
+  for (let i = 1; i < 11; i++) {
+    document.getElementById(`newWord_${i}`).value =
+      storedDuos[amountOfPreviousDuos].wordValue;
+    document.getElementById(`newTranslation_${i}`).value =
+      storedDuos[amountOfPreviousDuos].wordTranslation;
+    amountOfPreviousDuos++;
+  }
+
+  //buttons
+  if (amountOfPreviousDuos == storedDuos.length) {
+    nextFieldsButton.classList.add("invisible");
+    moreFieldsButton.classList.remove("invisible");
+  }
   previousFieldsButton.classList.remove("invisible");
-  //go forward to next input fields
-  // if statement laatste input:
-  nextFieldsButton.classList.add("invisible");
-  moreFieldsButton.classList.remove("invisible");
+
+  // return to first data object of currently displayed input
+  amountOfPreviousDuos -= 10;
 }
 
 function createNewSet() {
+  filterDuplicateOrEmptyDuos();
   createNewSetContainer.classList.add("invisible");
   setOverviewContainer.classList.remove("invisible");
+}
+
+function filterDuplicateOrEmptyDuos() {
+  // if invoegen
+  //if (!(duoObj.wordValue == "" && duoObj.wordTranslation == "")) {
+  //}
+
+  uniqueStoredDuos = storedDuos.reduce(function (total, currentValue) {
+    if (
+      !total.some(function (el) {
+        return (
+          el.wordValue === currentValue.wordValue &&
+          el.wordTranslation === currentValue.wordTranslation
+        );
+      })
+    )
+      total.push(currentValue);
+    return total;
+  }, []);
+  console.log(uniqueStoredDuos);
 }
 
 // CARDS
