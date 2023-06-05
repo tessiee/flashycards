@@ -19,6 +19,8 @@ const nextDuos = document.getElementById("nextWordsButton");
 const previousDuos = document.getElementById("previousWordsButton");
 let setName = document.getElementById("newSetName");
 let setNameError = document.getElementById("setNameError");
+let savedSets = document.getElementById("savedSets");
+let amountOfSavedSets = 0;
 let language = "spanish";
 let practiceWordsArray = [],
   practiceTranslationsArray = [];
@@ -354,7 +356,6 @@ function showNextData() {
 }
 
 function checkForSetName() {
-  console.log(setName.value);
   if (setName.value == "") {
     hasSetName = false;
   } else {
@@ -371,12 +372,20 @@ function hideSetNameError() {
 }
 
 function createNewSet() {
+  // save current data
+  if (unsavedInputFields == 1) {
+    storeCurrentData();
+  } else {
+    updateCurrentData();
+  }
+
   checkForSetName();
   if (hasSetName) {
     hideSetNameError();
     filterDuplicateDuos();
-    createNewSetContainer.classList.add("invisible");
-    setOverviewContainer.classList.remove("invisible");
+    //storeDataInMySetArray();
+    addSettoSavedSets();
+    openMySetOverview();
   } else {
     displaySetNameError();
   }
@@ -403,6 +412,84 @@ function filterDuplicateDuos() {
       total.push(currentValue);
     return total;
   }, []);
+}
+
+// SAVED SETS (MY SETS)
+
+function addSettoSavedSets() {
+  amountOfSavedSets++;
+  let newSavedSet = document.createElement("li");
+  newSavedSet.setAttribute("id", `savedSet${i}`);
+  newSavedSet.setAttribute("class", "savedSet");
+  newSavedSet.innerText = setName.value;
+  savedSets.appendChild(newSavedSet);
+}
+
+function storeDataInMySetArray() {
+  console.log(setName.value);
+  let newSetArrayName = setName.value;
+  eval(
+    "let " + "savedSet_" + newSetArrayName + "= " + "uniqueStoredDuos" + ";"
+  );
+  console.log(savedSet_TestArray);
+}
+
+function openSavedSet() {
+  // create container for 8 word/translation duos
+  duoContainerNumber = 1;
+  let setDuoContainer = document.createElement("div");
+  setDuoContainer.id = `duoContainer_${duoContainerNumber}`;
+  setDuoContainer.classList.add("setDuoContainer");
+  setOverview.appendChild(setDuoContainer);
+  let currentContainer = document.getElementById(
+    `duoContainer_${duoContainerNumber}`
+  );
+
+  // create element for each word / translation duo
+  for (let i = 0; i < uniqueStoredDuos.length; i++) {
+    let wordTranslationDuo = document.createElement("div");
+    wordTranslationDuo.classList.add("duo");
+    wordTranslationDuo.innerHTML = `<div class="setWord">${uniqueStoredDuos[i].wordValue}</div><div class="setTranslation">${uniqueStoredDuos[i].wordTranslation}</div></div>`;
+  
+  // append duo element to duo container
+  if (currentContainer.childElementCount < 8) {
+    currentContainer.appendChild(wordTranslationDuo);
+    // if more than 8, create new container and append
+  } else {
+    // create new container
+    duoContainerNumber++;
+    let newSetDuoContainer = document.createElement("div");
+    newSetDuoContainer.id = `duoContainer_${duoContainerNumber}`;
+    newSetDuoContainer.classList.add("setDuoContainer");
+    // add invisible class for extra containers
+    if (duoContainerNumber > 2) {
+      newSetDuoContainer.classList.add("invisible");
+      nextDuos.classList.remove("invisible");
+    }
+
+    // append to overview element
+    setOverview.appendChild(newSetDuoContainer);
+    // select new container
+    currentContainer = document.getElementById(
+      `duoContainer_${duoContainerNumber}`
+    );
+    currentContainer.appendChild(wordTranslationDuo);
+  }
+  }
+  setDuoIndex = 0;
+}
+
+function openMySetOverview() {
+  // close other windows
+  aboutFlashycards.classList.add("invisible");
+  createNewSetContainer.classList.add("invisible");
+  closePractice();
+  // clear previous category set
+  clearPreviousSet();
+  // set the chosen category
+  openSavedSet();
+  // open set overview
+  showSetOverview();
 }
 
 // CARDS
