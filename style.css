@@ -458,9 +458,39 @@ header p {
   position: fixed;
   top: 35px;
   left: 7px;
-  color: red;
+  color: var(--dark-orange);
   font-weight: bolder;
   font-size: 20px;
+}
+
+#incompleteDuosError {
+  width: 250px;
+  height: 170px;
+  padding-top: 20px;
+  background-color: var(--lighter-blue);
+  color: var(--darkest-blue);
+  font-weight: bolder;
+  font-size: 18px;
+  border: 11px double var(--darker-blue);
+  border-radius: 10px;
+}
+
+#acceptIncompleteError {
+  position: fixed;
+  right: 20px;
+  bottom: 15px;
+  width: 80px;
+  height: 20px;
+  font-size: 14px;
+}
+
+#declineIncompleteError {
+  position: fixed;
+  left: 20px;
+  bottom: 15px;
+  width: 80px;
+  height: 20px;
+  font-size: 14px;
 }
 
 /* FOOTER */

@@ -19,6 +19,7 @@ const nextDuos = document.getElementById("nextWordsButton");
 const previousDuos = document.getElementById("previousWordsButton");
 let setName = document.getElementById("newSetName");
 let setNameError = document.getElementById("setNameError");
+let incompleteDuosError = document.getElementById("incompleteDuosError");
 let savedSets = document.getElementById("savedSets");
 let amountOfSavedSets = 0;
 let language = "spanish";
@@ -29,7 +30,10 @@ let hint, translation;
 let unsavedInputFields, amountOfPreviousDuos, emptyForm;
 let storedDuos = [];
 let uniqueStoredDuos = [];
+let mySavedSets = [];
 let hasSetName = false;
+let incompleteDuos;
+let savedSetIndex;
 
 // LEFT SIDEBAR
 function showSets() {
@@ -189,37 +193,58 @@ function startPractice() {
 
 // RIGHT SIDEBAR
 function openNewSetCreator() {
+  // close other screens
   aboutFlashycards.classList.add("invisible");
   setOverviewContainer.classList.add("invisible");
   flashcard.classList.add("invisible");
+  newSetForm.classList.add("invisible");
+  // open create screen
   createNewSetContainer.classList.remove("invisible");
   newSetStart.classList.remove("invisible");
-  newSetForm.classList.add("invisible");
 }
 
 // CREATE OWN SET
+
+//Screen
 function startCreatingSet() {
   // close set start screen
   newSetStart.classList.add("invisible");
-  // open the container and load input fields
+  // open the container
   newSetForm.classList.remove("invisible");
+  // display correct buttons
+  previousFieldsButton.classList.add("invisible");
+  nextFieldsButton.classList.add("invisible");
+  moreFieldsButton.classList.remove("invisible");
+  // create input fields
   loadInputFields();
+  // delete previous data
+  emptyInputFields();
+  emptySetName();
+  hideSetNameError();
+  hideIncompleteDuosError();
+  
   // initialize variables
   amountOfPreviousDuos = 0;
   unsavedInputFields = 1;
 }
 
+function returnToCreateSetStart() {
+  newSetForm.classList.add("invisible");
+  newSetStart.classList.remove("invisible");
+}
+
+//Input fields
 function loadInputFields() {
-  let hasDuos = document.getElementsByClassName('newDuo')
-  if (hasDuos.length == 0)
-  {
-  for (let i = 1; i < 11; i++) {
-    let newDuo = document.createElement("div");
-    newDuo.setAttribute("id", `newDuo_${i}`);
-    newDuo.setAttribute("class", "newDuo");
-    newDuo.innerHTML = `<input class="newWord" id="newWord_${i}" type="text" oninput="storeValue()" /><input class="newTranslation" id="newTranslation_${i}" type="text" oninput="storeValue()" />`;
-    setWordsContainer.appendChild(newDuo);
-  }} 
+  let hasDuos = document.getElementsByClassName("newDuo");
+  if (hasDuos.length == 0) {
+    for (let i = 1; i < 11; i++) {
+      let newDuo = document.createElement("div");
+      newDuo.setAttribute("id", `newDuo_${i}`);
+      newDuo.setAttribute("class", "newDuo");
+      newDuo.innerHTML = `<input class="newWord" id="newWord_${i}" type="text" oninput="storeValue()" /><input class="newTranslation" id="newTranslation_${i}" type="text" oninput="storeValue()" />`;
+      setWordsContainer.appendChild(newDuo);
+    }
+  }
 }
 
 function emptyInputFields() {
@@ -252,6 +277,7 @@ function storeValue() {
   field.setAttribute("value", input);
 }
 
+//Data storage
 function storeCurrentData() {
   if (unsavedInputFields == 1) {
     for (let i = 1; i < 11; i++) {
@@ -276,7 +302,8 @@ function updateCurrentData() {
   }
 }
 
-function newInputFields() {
+//Buttons
+function moreInputFields() {
   // update data if triggered from previous input
   if (unsavedInputFields == 0) {
     updateCurrentData();
@@ -362,12 +389,17 @@ function showNextData() {
   amountOfPreviousDuos -= 10;
 }
 
+//Set name
 function checkForSetName() {
   if (setName.value == "") {
     hasSetName = false;
   } else {
     hasSetName = true;
   }
+}
+
+function emptySetName() {
+  setName.value = "";
 }
 
 function displaySetNameError() {
@@ -378,35 +410,64 @@ function hideSetNameError() {
   setNameError.classList.add("invisible");
 }
 
-function createNewSet() {
-  // save current data
-  if (unsavedInputFields == 1) {
-    storeCurrentData();
-  } else {
-    updateCurrentData();
+//Incomplete duos check
+function checkForIncompleteDuos() {
+  for (i = 0; i < storedDuos.length - 1; i++) {
+    if (storedDuos[i].wordValue == "" && !storedDuos[i].wordTranslation == "") {
+      incompleteDuos = true;
+    } else if (storedDuos[i].wordTranslation == "" && !storedDuos[i].wordValue == "") {
+      incompleteDuos = true;
+    }
   }
+}
 
-  checkForSetName();
-  if (hasSetName) {
-    hideSetNameError();
-    filterDuplicateDuos();
-    //storeDataInMySetArray();
-    addSettoSavedSets();
-    openMySetOverview();
-  } else {
-    displaySetNameError();
+function displayIncompleteDuosError() {
+  incompleteDuosError.classList.remove("invisible");
+}
+
+function hideIncompleteDuosError() {
+  incompleteDuosError.classList.add("invisible");
+}
+
+function acceptIncompleteDuosError() {
+  incompleteDuosError.classList.add("invisible");
+  removeIncompleteDuos();
+  createNewSet();
+}
+
+function declineIncompleteDuosError() {
+  incompleteDuosError.classList.add("invisible");
+  incompleteDuos = undefined;
+}
+
+function removeIncompleteDuos() {
+  for (i = 0; i < storedDuos.length - 1; i++) {
+    if (storedDuos[i].wordValue == "") {
+      storedDuos.splice(i, 1);
+      i--;
+    } else if (storedDuos[i].wordTranslation == "") {
+      storedDuos.splice(i, 1);
+      i--;
+    } 
+  }
+  incompleteDuos = false;
+  unsavedInputFields = undefined;
+}
+
+//Input validation
+function removeEmptyInput() {
+  console.log(storedDuos, storedDuos.length);
+  for (i = 0; i < storedDuos.length - 1; i++) {
+    if (storedDuos[i].wordValue == "" && storedDuos[i].wordTranslation == "") {
+      storedDuos.splice(i);
+      i--;
+      console.log("splice", i);
+      console.log(storedDuos, storedDuos.length);
+    }
   }
 }
 
 function filterDuplicateDuos() {
-  // remove empty fields
-  for (i = 0; i < storedDuos.length - 1; i++) {
-    if (storedDuos[i].wordValue == "" && storedDuos[i].wordTranslation == "") {
-      storedDuos.splice(i);
-    }
-  }
-
-  //remove duplicate duos
   uniqueStoredDuos = storedDuos.reduce(function (total, currentValue) {
     if (
       !total.some(function (el) {
@@ -421,27 +482,82 @@ function filterDuplicateDuos() {
   }, []);
 }
 
-// SAVED SETS (MY SETS)
+//Create set
+function createNewSet() {
+  // save or update current data
+  if (unsavedInputFields == 1) {
+    storeCurrentData();
+    unsavedInputFields = 0;
+    // return to 0 in case of a setname/incompletes error
+    amountOfPreviousDuos -=10;
+  } else if (unsavedInputFields == 0) {
+    updateCurrentData();
+  }
 
-function addSettoSavedSets() {
-  amountOfSavedSets++;
-  let newSavedSet = document.createElement("li");
-  newSavedSet.setAttribute("id", `savedSet${i}`);
-  newSavedSet.setAttribute("class", "savedSet");
-  newSavedSet.innerText = setName.value;
-  savedSets.appendChild(newSavedSet);
+  // check if set has a name
+  checkForSetName();
+  if (hasSetName) {
+    // check if duos are complete
+    hideSetNameError();
+    checkForIncompleteDuos();
+    if (incompleteDuos) {
+      displayIncompleteDuosError();
+    } else {
+      // filter set and store set
+      removeEmptyInput();
+      filterDuplicateDuos();
+      storeSetInMySetsArray();
+      addLinkToSavedSets();
+      // clear screen + initial array
+      returnToCreateSetStart();
+      clearStoredDuosArrays();
+    }
+  } else {
+    displaySetNameError();
+  }
 }
 
-function storeDataInMySetArray() {
-  console.log(setName.value);
-  let newSetArrayName = setName.value;
-  eval(
-    "let " + "savedSet_" + newSetArrayName + "= " + "uniqueStoredDuos" + ";"
-  );
-  console.log(savedSet_TestArray);
+//Reset arrays
+function clearStoredDuosArrays() {
+storedDuos = [];
+uniqueStoredDuos = [];
+}
+
+//Add to Saved Sets
+function storeSetInMySetsArray() {
+  mySavedSets.push(uniqueStoredDuos);
+}
+
+function addLinkToSavedSets() {
+  // create element
+  let newSavedSet = document.createElement("li");
+  // set attributes
+  newSavedSet.setAttribute("id", `savedSet${amountOfSavedSets}`);
+  newSavedSet.setAttribute("class", "savedSet");
+  newSavedSet.setAttribute("onclick", "openMySetOverview()");
+  // add set name
+  newSavedSet.innerText = setName.value;
+  // append to sidebar
+  savedSets.appendChild(newSavedSet);
+  // increase amount
+  amountOfSavedSets++;
+}
+
+// SAVED SETS (MY SETS)
+
+function retrieveCorrectSetIndex() {
+  for (let x = 0; x < mySavedSets.length; x++)
+  // find clicked saved set
+  if (event.target.matches(`#savedSet${x}`)) {
+    // assign index variable
+    savedSetIndex = x;
+}
 }
 
 function openSavedSet() {
+  // find set index
+  retrieveCorrectSetIndex();
+  let setArray = mySavedSets[savedSetIndex];
   // create container for 8 word/translation duos
   duoContainerNumber = 1;
   let setDuoContainer = document.createElement("div");
@@ -453,10 +569,10 @@ function openSavedSet() {
   );
 
   // create element for each word / translation duo
-  for (let i = 0; i < uniqueStoredDuos.length; i++) {
+  for (let i = 0; i < setArray.length; i++) {
     let wordTranslationDuo = document.createElement("div");
     wordTranslationDuo.classList.add("duo");
-    wordTranslationDuo.innerHTML = `<div class="setWord">${uniqueStoredDuos[i].wordValue}</div><div class="setTranslation">${uniqueStoredDuos[i].wordTranslation}</div></div>`;
+    wordTranslationDuo.innerHTML = `<div class="setWord">${setArray[i].wordValue}</div><div class="setTranslation">${setArray[i].wordTranslation}</div></div>`;
 
     // append duo element to duo container
     if (currentContainer.childElementCount < 8) {

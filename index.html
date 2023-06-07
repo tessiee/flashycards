@@ -184,7 +184,7 @@
             <button
               class="lightButton"
               id="moreFieldsButton"
-              onclick="newInputFields()"
+              onclick="moreInputFields()"
             >
               +
             </button>
@@ -197,6 +197,23 @@
             </button>
             <div id="setNameError" class="invisible">
               <p>Please provide a set name</p>
+            </div>
+            <div id="incompleteDuosError" class="center invisible">
+              <p>If you proceed, incomplete and duplicate duos will be removed</p>
+          <button
+            class="lightButton"
+            id="declineIncompleteError"
+            onclick="declineIncompleteDuosError()"
+          >
+            cancel
+          </button>
+          <button
+          class="darkButton"
+          id="acceptIncompleteError"
+          onclick="acceptIncompleteDuosError()"
+        >
+          create set
+        </button>
             </div>
           </div>
         </div>
