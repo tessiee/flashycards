@@ -5,6 +5,8 @@ const setOverviewContainer = document.getElementById("setOverviewContainer");
 const setOverview = document.getElementById("setOverview");
 const nextWordsButton = document.getElementById("nextWordsButton");
 const previousWordsButton = document.getElementById("previousWordsButton");
+const startPracticeButton = document.getElementById("startPractice");
+const editSavedSetButton = document.getElementById("editSavedSetButton");
 const flashcard = document.getElementById("flashcard");
 const createNewSetContainer = document.getElementById("createNewSetContainer");
 const newSetStart = document.getElementById("newSetStart");
@@ -66,6 +68,8 @@ function openSetOverview() {
   loadCategorySet(category);
   // open set overview
   showSetOverview();
+  // buttons
+  showFlashySetButtons();
 }
 
 function loadCategorySet(category) {
@@ -189,6 +193,16 @@ function startPractice() {
   flashcard.classList.remove("invisible");
   fillFlashcardPracticeArrays();
   loadFlashCardWords();
+}
+
+function showFlashySetButtons() {
+  startPracticeButton.classList.remove('savedSet');
+  editSavedSetButton.classList.add('invisible');
+}
+
+function showSavedSetButtons() {
+  startPracticeButton.classList.add('savedSet');
+  editSavedSetButton.classList.remove('invisible');
 }
 
 // RIGHT SIDEBAR
@@ -457,7 +471,7 @@ function removeIncompleteDuos() {
 //Input validation
 function removeEmptyInput() {
   console.log(storedDuos, storedDuos.length);
-  for (i = 0; i < storedDuos.length - 1; i++) {
+  for (i = 0; i < storedDuos.length; i++) {
     console.log(storedDuos[i]);
     if (storedDuos[i].wordValue == "" && storedDuos[i].wordTranslation == "") {
       storedDuos.splice(i, 1);
@@ -600,7 +614,11 @@ function openSavedSet() {
       currentContainer.appendChild(wordTranslationDuo);
     }
   }
+  // initialize variables
   setDuoIndex = 0;
+
+  // disply correct buttons
+showSavedSetButtons();
 }
 
 function openMySetOverview() {
@@ -614,6 +632,12 @@ function openMySetOverview() {
   openSavedSet();
   // open set overview
   showSetOverview();
+}
+
+// EDIT SAVED SET
+
+function editSavedSet() {
+  console.log("works");
 }
 
 // CARDS
