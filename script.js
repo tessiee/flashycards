@@ -458,8 +458,9 @@ function removeIncompleteDuos() {
 function removeEmptyInput() {
   console.log(storedDuos, storedDuos.length);
   for (i = 0; i < storedDuos.length - 1; i++) {
+    console.log(storedDuos[i]);
     if (storedDuos[i].wordValue == "" && storedDuos[i].wordTranslation == "") {
-      storedDuos.splice(i);
+      storedDuos.splice(i, 1);
       i--;
       console.log("splice", i);
       console.log(storedDuos, storedDuos.length);
