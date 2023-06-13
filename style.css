@@ -294,12 +294,13 @@ header p {
   right: 25%;
 }
 
-/* NEXT BUTTON & CREATING SETS BUTTONS */
+/* NEXT BUTTON & CREATE / EDIT SET BUTTONS */
 
 #nextButton,
 #restartButton,
 #startCreating,
-#createSetButton {
+#createSetButton,
+#editSetButton {
   position: fixed;
   bottom: 45px;
   left: 50%;

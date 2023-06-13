@@ -148,7 +148,7 @@
         </button>
       </div>
 
-      <!-- CREATE SET -->
+      <!-- CREATE / EDIT SET -->
       <div class="center invisible" id="createNewSetContainer">
         <div class="invisible" id="newSetStart">
           <h2>Create your own set of flashcards</h2>
@@ -201,6 +201,13 @@
               onclick="createNewSet()"
             >
               Create Set
+            </button>
+            <button
+              class="lightButton invisible"
+              id="editSetButton"
+              onclick="editSet()"
+            >
+              Edit Set
             </button>
             <div id="setNameError" class="invisible">
               <p>Please provide a set name</p>

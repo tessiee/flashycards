@@ -3,6 +3,8 @@ const aboutFlashycards = document.getElementById("aboutFlashycards");
 let flashyCategories = document.getElementsByClassName("setCategories");
 const setOverviewContainer = document.getElementById("setOverviewContainer");
 const setOverview = document.getElementById("setOverview");
+const createSetButton = document.getElementById("createSetButton");
+const editSetButton = document.getElementById("editSetButton");
 const nextWordsButton = document.getElementById("nextWordsButton");
 const previousWordsButton = document.getElementById("previousWordsButton");
 const startPracticeButton = document.getElementById("startPractice");
@@ -196,13 +198,13 @@ function startPractice() {
 }
 
 function showFlashySetButtons() {
-  startPracticeButton.classList.remove('savedSet');
-  editSavedSetButton.classList.add('invisible');
+  startPracticeButton.classList.remove("savedSet");
+  editSavedSetButton.classList.add("invisible");
 }
 
 function showSavedSetButtons() {
-  startPracticeButton.classList.add('savedSet');
-  editSavedSetButton.classList.remove('invisible');
+  startPracticeButton.classList.add("savedSet");
+  editSavedSetButton.classList.remove("invisible");
 }
 
 // RIGHT SIDEBAR
@@ -236,10 +238,13 @@ function startCreatingSet() {
   emptySetName();
   hideSetNameError();
   hideIncompleteDuosError();
-  
+
   // initialize variables
   amountOfPreviousDuos = 0;
   unsavedInputFields = 1;
+
+  // buttons
+  showCreateButton();
 }
 
 function returnToCreateSetStart() {
@@ -317,6 +322,11 @@ function updateCurrentData() {
 }
 
 //Buttons
+function showCreateButton() {
+  createSetButton.classList.remove("invisible");
+  editSetButton.classList.add("invisible");
+}
+
 function moreInputFields() {
   // update data if triggered from previous input
   if (unsavedInputFields == 0) {
@@ -429,7 +439,10 @@ function checkForIncompleteDuos() {
   for (i = 0; i < storedDuos.length - 1; i++) {
     if (storedDuos[i].wordValue == "" && !storedDuos[i].wordTranslation == "") {
       incompleteDuos = true;
-    } else if (storedDuos[i].wordTranslation == "" && !storedDuos[i].wordValue == "") {
+    } else if (
+      storedDuos[i].wordTranslation == "" &&
+      !storedDuos[i].wordValue == ""
+    ) {
       incompleteDuos = true;
     }
   }
@@ -462,7 +475,7 @@ function removeIncompleteDuos() {
     } else if (storedDuos[i].wordTranslation == "") {
       storedDuos.splice(i, 1);
       i--;
-    } 
+    }
   }
   incompleteDuos = false;
   unsavedInputFields = undefined;
@@ -504,7 +517,7 @@ function createNewSet() {
     storeCurrentData();
     unsavedInputFields = 0;
     // return to 0 in case of a setname/incompletes error
-    amountOfPreviousDuos -=10;
+    amountOfPreviousDuos -= 10;
   } else if (unsavedInputFields == 0) {
     updateCurrentData();
   }
@@ -534,8 +547,8 @@ function createNewSet() {
 
 //Reset arrays
 function clearStoredDuosArrays() {
-storedDuos = [];
-uniqueStoredDuos = [];
+  storedDuos = [];
+  uniqueStoredDuos = [];
 }
 
 //Add to Saved Sets
@@ -562,11 +575,11 @@ function addLinkToSavedSets() {
 
 function retrieveCorrectSetIndex() {
   for (let x = 0; x < mySavedSets.length; x++)
-  // find clicked saved set
-  if (event.target.matches(`#savedSet${x}`)) {
-    // assign index variable
-    savedSetIndex = x;
-}
+    // find clicked saved set
+    if (event.target.matches(`#savedSet${x}`)) {
+      // assign index variable
+      savedSetIndex = x;
+    }
 }
 
 function openSavedSet() {
@@ -618,7 +631,7 @@ function openSavedSet() {
   setDuoIndex = 0;
 
   // disply correct buttons
-showSavedSetButtons();
+  showSavedSetButtons();
 }
 
 function openMySetOverview() {
@@ -637,7 +650,41 @@ function openMySetOverview() {
 // EDIT SAVED SET
 
 function editSavedSet() {
+  // close set overview screen
+  setOverviewContainer.classList.add("invisible");
+  // open the container
+  setOverviewContainer.classList.remove("invisible");
+  newSetForm.classList.remove("invisible");
+  // display correct buttons
+  previousFieldsButton.classList.add("invisible");
+  nextFieldsButton.classList.add("invisible");
+  moreFieldsButton.classList.remove("invisible");
+  // create input fields
+  loadInputFields();
+  // delete previous data
+  emptyInputFields();
+  emptySetName();
+  hideSetNameError();
+  hideIncompleteDuosError();
+  // load saved set data
+  //setName = ;
+  //storedDuos = ;
+
+  // initialize variables
+  amountOfPreviousDuos = 0;
+  unsavedInputFields = 0;
+
+  // buttons
+  showEditButton();
+}
+
+function editSet() {
   console.log("works");
+}
+
+function showEditButton() {
+  createSetButton.classList.add("invisible");
+  editSetButton.classList.remove("invisible");
 }
 
 // CARDS
