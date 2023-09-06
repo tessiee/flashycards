@@ -38,6 +38,7 @@ let mySavedSets = [];
 let hasSetName = false;
 let incompleteDuos;
 let savedSetIndex;
+let currentSavedSet;
 
 // LEFT SIDEBAR
 function showSets() {
@@ -198,12 +199,12 @@ function startPractice() {
 }
 
 function showFlashySetButtons() {
-  startPracticeButton.classList.remove("savedSet");
+  startPracticeButton.classList.remove("savedSetOverview");
   editSavedSetButton.classList.add("invisible");
 }
 
 function showSavedSetButtons() {
-  startPracticeButton.classList.add("savedSet");
+  startPracticeButton.classList.add("savedSetOverview");
   editSavedSetButton.classList.remove("invisible");
 }
 
@@ -483,14 +484,10 @@ function removeIncompleteDuos() {
 
 //Input validation
 function removeEmptyInput() {
-  console.log(storedDuos, storedDuos.length);
   for (i = 0; i < storedDuos.length; i++) {
-    console.log(storedDuos[i]);
     if (storedDuos[i].wordValue == "" && storedDuos[i].wordTranslation == "") {
       storedDuos.splice(i, 1);
       i--;
-      console.log("splice", i);
-      console.log(storedDuos, storedDuos.length);
     }
   }
 }
@@ -579,6 +576,8 @@ function retrieveCorrectSetIndex() {
     if (event.target.matches(`#savedSet${x}`)) {
       // assign index variable
       savedSetIndex = x;
+      // store current saved set
+      currentSavedSet = event.target.innerText;
     }
 }
 
@@ -653,7 +652,8 @@ function editSavedSet() {
   // close set overview screen
   setOverviewContainer.classList.add("invisible");
   // open the container
-  setOverviewContainer.classList.remove("invisible");
+  createNewSetContainer.classList.remove("invisible");
+  newSetStart.classList.add("invisible");
   newSetForm.classList.remove("invisible");
   // display correct buttons
   previousFieldsButton.classList.add("invisible");
@@ -667,8 +667,12 @@ function editSavedSet() {
   hideSetNameError();
   hideIncompleteDuosError();
   // load saved set data
-  //setName = ;
+  setName.value = currentSavedSet;
   //storedDuos = ;
+  let setArray = mySavedSets[savedSetIndex];
+  console.log(savedSetIndex);
+  console.log(mySavedSets[savedSetIndex]);
+  
 
   // initialize variables
   amountOfPreviousDuos = 0;
@@ -676,6 +680,8 @@ function editSavedSet() {
 
   // buttons
   showEditButton();
+
+  console.log("works");
 }
 
 function editSet() {

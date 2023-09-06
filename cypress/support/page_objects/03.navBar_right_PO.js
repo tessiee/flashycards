@@ -5,8 +5,7 @@ import Base_PO from "./00.base_PO";
 class NavBar_Right_PO extends Base_PO {
   elements = {
     createSet_link: () => cy.get("#createNewSet"),
-    savedSet_link_1: () => cy.get("#savedSet1"),
-    savedSet_link_2: () => cy.get("#savedSet2"),
+    savedSet_link_1: () => cy.get("#savedSet1")
   };
 
   shouldContain(item) {
@@ -17,13 +16,14 @@ class NavBar_Right_PO extends Base_PO {
       case "My Set 1":
         cy.get("#rightSidebar").get(this.elements.savedSet_link_1());
         break;
-      case "My Set 2":
-        cy.get("#rightSidebar").get(this.elements.savedSet_link_2());
-        break;
     }
   }
-  createSet() {}
-  openSavedSet() {}
+  createSet() {
+    this.elements.createSet_link().click();
+  }
+  openSavedSet() {
+    this.elements.savedSet_link_1().click();
+  }
 }
 
 export default NavBar_Right_PO;

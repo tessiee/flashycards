@@ -35,7 +35,7 @@ class NavBar_Left_PO extends Base_PO {
     category_id.should("have.class", language.toLowerCase());
   }
 
-  setLanguage(language) {
+  setLanguage() {
     this.elements.language_1().click();
   }
   getLanguage(language) {}

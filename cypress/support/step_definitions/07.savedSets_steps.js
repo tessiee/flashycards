@@ -4,7 +4,7 @@ import SavedSets_PO from "../page_objects/07.savedSets_PO";
 
 const savedSets = new SavedSets_PO();
 
-When(/^I click on the button '(.*)'/, (buttonName) => {
+When(/^I click on button '(.*)'/, (buttonName) => {
   if (buttonName == "next") {
     savedSets.showNextDuos();
   } else if (buttonName == "previous") {

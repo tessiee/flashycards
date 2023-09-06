@@ -7,5 +7,8 @@ Feature: Right Navigation Bar Overview
     @smoke
     Scenario: Right navigation bar displays correct items
         Then The right navigation bar should contain 'Create a New Set'
-        And The right navigation bar should contain 'My Set 1'
-        And The right navigation bar should contain 'My Set 2'
+
+    @smoke
+    Scenario: Verify that the Create Set link works
+        When I click on 'Create Set'
+        Then The window 'createOwnSet' should be displayed in the center

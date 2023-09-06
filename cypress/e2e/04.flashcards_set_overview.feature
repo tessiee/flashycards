@@ -1,7 +1,7 @@
 @flashcards @flashcards-set-overview @not-ready
 Feature: Flashcards Set Overview
 
-    Background: Navigate to the Flashycards application
+    Background: Navigate to the Flashycards application - Set Overview widget
         Given I navigate to the flashycards homepage
         When I select the category 'Nouns'
         And I open the set 'People'

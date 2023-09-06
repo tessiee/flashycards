@@ -4,8 +4,9 @@ import Base_PO from "./00.base_PO";
 
 class Flashcard_SetOverview_PO extends Base_PO {
   elements = {
-    word: () => cy.get('[name="first_name"]'),
-    translation: () => cy.get('[name="first_name"]'),
+    word: () => cy.get('[id="word"]'),
+    translation: () => cy.get('[id="translation"]'),
+    startPracticeButton: () => cy.get('[id="startPractice"]'),
   };
 
   previousSet() {}
@@ -14,7 +15,9 @@ class Flashcard_SetOverview_PO extends Base_PO {
 
   shouldContain() {}
 
-  startPractice() {}
+  startPractice() {
+    this.elements.startPracticeButton().click();
+  }
 }
 
 export default Flashcard_SetOverview_PO;

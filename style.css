@@ -389,7 +389,7 @@ header p {
   z-index: 1;
 }
 
-.savedSet {
+.savedSetOverview {
   left: 65% !important;
   max-width: 150px;
 }
