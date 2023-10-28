@@ -19,21 +19,16 @@ Feature: Left Navigation Bar Overview
         And The category 'Verbs' is for the language 'Spanish'
 
 
-    Scenario: Left navigation bar displays the correct sets for the chosen category - Nouns
-        When I select the category 'Nouns'
-        Then The left navigation bar should contain 'People'
-        And The left navigation bar should contain 'Animals'
+    Scenario Outline: Left navigation bar displays the correct sets for the chosen categories
+        When I select the category '<category>'
+        Then The left navigation bar should contain '<setname_1>'
+        And The left navigation bar should contain '<setname_2>'
 
-
-    Scenario: Left navigation bar displays the correct sets for the chosen category - Adjectives
-        When I select the category 'Adjectives'
-        Then The left navigation bar should contain 'Shapes'
-        And The left navigation bar should contain 'Colours'
-
-
-    Scenario: Left navigation bar displays the correct sets for the chosen category - Verbs
-        When I select the category 'Verbs'
-        Then The left navigation bar should contain 'Frequently used'
+        Examples:
+            | category | setname_1 | setname_2 |
+            | Nouns | People  | Animals  |
+            | Adjectives | Shapes  | Colours  |
+            | Verbs | Frequently used  |   |
 
     @smoke
     Scenario: When I click on a set name, the widget 'Set Overview' should be opened

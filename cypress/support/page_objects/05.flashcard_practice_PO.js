@@ -1,33 +1,34 @@
-/// <reference types="cypress" />
+/// <reference types='cypress' />
 
-import Base_PO from "./00.base_PO";
+import Base_PO from './00.base_PO';
 
 class Flashcard_Practice_PO extends Base_PO {
   elements = {
-    word: () => cy.get('[id="word"]'),
-    translation: () => cy.get('[id="translation"]'),
-    hintButton: () => cy.get('[id="hintButton"]'),
-    revealButton: () => cy.get('[id="revealButton"]'),
-    nextWordButton: () => cy.get('[id="nextButton"]'),
-    restartPracticeButton: () => cy.get('[id="restartButton"]')
+    flashcard: () => cy.get('#flashcard'),
+    word: () => cy.get('#word'),
+    translation: () => cy.get('#translation'),
+    hintButton: () => cy.get('#hintButton'),
+    revealButton: () => cy.get('#revealButton'),
+    nextWordButton: () => cy.get('#nextButton'),
+    restartPracticeButton: () => cy.get('#restartButton')
   };
 
   shouldDisplay(text) {
-    cy.get('[id="flashcard"]').should("contain", text)
+    this.elements.flashcard().should('contain', text)
   }
   
   shouldContain(button) {
     switch (button) {
-      case "hintButton":
+      case 'hintButton':
         this.elements.hintButton().should('be.visible');
         break;
-      case "revealButton":
+      case 'revealButton':
         this.elements.revealButton().should('be.visible');
         break;
-      case "nextWordButton":
+      case 'nextWordButton':
         this.elements.nextWordButton().should('be.visible');
         break;
-      case "restartPracticeButton":
+      case 'restartPracticeButton':
         this.elements.restartPracticeButton().should('be.visible');
         break;
     } 

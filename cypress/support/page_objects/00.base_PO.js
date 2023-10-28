@@ -1,18 +1,16 @@
-/// <reference types="cypress" />
+/// <reference types='cypress' />
 
 class Base_PO {
   navigate() {
-    cy.fixture("config.json").then((data) => {
-      cy.visit(data.baseUrl);
-    });
-  }
+      cy.visit('')
+    }
 
   getPageTitle() {
     return cy.title();
   }
 
   pageShouldContain(text) {
-    cy.get("body").should("contain", text);
+    cy.get('body').should('contain', text);
   }
 }
 

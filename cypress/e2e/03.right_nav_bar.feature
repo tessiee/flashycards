@@ -11,4 +11,4 @@ Feature: Right Navigation Bar Overview
     @smoke
     Scenario: Verify that the Create Set link works
         When I click on 'Create Set'
-        Then The window 'createOwnSet' should be displayed in the center
+        Then The widget 'createOwnSet' should be displayed in the center

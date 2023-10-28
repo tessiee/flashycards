@@ -1,34 +1,35 @@
-/// <reference types="cypress" />
+/// <reference types='cypress' />
 
-import Base_PO from "./00.base_PO";
+import Base_PO from './00.base_PO';
 
 class CreateNewSet_PO extends Base_PO {
   elements = {
-    startCreatingButton: () => cy.get('[id="startCreating"]'),
-    moreFieldsButton: () => cy.get('[id="moreFieldsButton"]'),
-    previousFieldsButton: () => cy.get('[id="previousFieldsButton"]'),
-    nextFieldsButton: () => cy.get('[id="nextFieldsButton"]'),
-    createSetButton: () => cy.get('[id="createSetButton"]'),
+    newSetContainer: () => cy.get('#createNewSetContainer'),
+    startCreatingButton: () => cy.get('#createNewSetContainer').find('#startCreating'),
+    moreFieldsButton: () => cy.get('#createNewSetContainer').find('#moreFieldsButton'),
+    previousFieldsButton: () => cy.get('#createNewSetContainer').find('#previousFieldsButton'),
+    nextFieldsButton: () => cy.get('#createNewSetContainer').find('#nextFieldsButton'),
+    createSetButton: () => cy.get('#createNewSetContainer').find('#createSetButton'),
   };
 
   shouldContain(text) {
-    cy.get('[id="createNewSetContainer"]').should("contain", text)
+    this.elements.newSetContainer().should('contain', text);
   }
   shouldDisplay(button) {
     switch (button) {
-      case "startCreatingButton":
+      case 'startCreatingButton':
         this.elements.startCreatingButton().should('be.visible');
         break;
-      case "moreFieldsButton":
+      case 'moreFieldsButton':
         this.elements.moreFieldsButton().should('be.visible');
         break;
-      case "previousFieldsButton":
+      case 'previousFieldsButton':
         this.elements.previousFieldsButton().should('be.visible');
         break;
-      case "nextFieldsButton":
+      case 'nextFieldsButton':
         this.elements.nextFieldsButton().should('be.visible');
         break;
-      case "createSetButton":
+      case 'createSetButton':
         this.elements.createSetButton().should('be.visible');
         break;
     } 

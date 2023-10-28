@@ -8,7 +8,7 @@ Feature: Flashcards Set Overview
 
     @smoke
     Scenario: Flashcards - Set Overview displays correct items
-        Then The window 'setOverviewContainer' should be displayed in the center
+        Then The widget 'setOverviewContainer' should be displayed in the center
         And The set overview should contain 'Set overview'
         And The set overview should contain 'Sister'
         And The set overview should contain 'Hermana'

@@ -4,8 +4,8 @@ import Base_PO from "./00.base_PO";
 
 class SavedSets_PO extends Base_PO {
     elements = {
-        firstSet: () => cy.get('[name="first_name"]'),
-        SecondSet: () => cy.get('[name="first_name"]')
+        firstSet: () => cy.get('#savedSets').first('li'),
+        SecondSet: () => cy.get('#savedSets').last('li')
       };
 
       shouldContain() {}

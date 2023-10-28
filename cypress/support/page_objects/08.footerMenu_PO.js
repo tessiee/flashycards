@@ -4,10 +4,10 @@ import Base_PO from "./00.base_PO";
 
 class FooterMenu_PO extends Base_PO {
   elements = {
-    firstLink: () => cy.get('[id="footerFirst"]'),
+    firstLink: () => cy.get('#footerMenu').first('li'),
   };
 
-  shouldContain() {
+  shouldContain(text) {
     cy.get("#footerMenu").should("contain", text);
   }
   aboutFlashy() {

@@ -9,7 +9,7 @@ Feature: Flashcards Practice
 
     @smoke
     Scenario: Flashcards - practice is correctly displayed
-        Then The window 'flashcard' should be displayed in the center
+        Then The widget 'flashcard' should be displayed in the center
         And The flashcard should display the text 'I'
         And The flashcard should contain the button 'hintButton'
 

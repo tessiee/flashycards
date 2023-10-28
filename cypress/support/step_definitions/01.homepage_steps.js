@@ -8,6 +8,6 @@ Given(/^I navigate to the flashycards homepage/, () => {
   homePage.navigateToHomepage();
 });
 
-Then(/^The window '(.*)' should be displayed in the center/, (item) => {
+Then(/^The widget '(.*)' should be displayed in the center/, (item) => {
   homePage.shouldDisplayWidget(item);
 });

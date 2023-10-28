@@ -1,61 +1,83 @@
-/// <reference types="cypress" />
+/// <reference types='cypress' />
 
-import Base_PO from "./00.base_PO";
+import Base_PO from './00.base_PO';
 
 class NavBar_Left_PO extends Base_PO {
   elements = {
-    language_1: () => cy.get("#language_1"),
-    category_1: () => cy.get("#category_1_es"),
-    category_1_set_1: () => cy.get("#set_1_1_es"),
-    category_1_set_2: () => cy.get("#set_1_2_es"),
-    category_2: () => cy.get("#category_2_es"),
-    category_2_set_1: () => cy.get("#set_2_1_es"),
-    category_2_set_2: () => cy.get("#set_2_2_es"),
-    category_3: () => cy.get("#category_3_es"),
-    category_3_set_1: () => cy.get("#set_3_1_es"),
+    left_NavBar: () => cy.get('#leftSidebar'),
+    language_1: () => cy.get('#leftSidebar').find('#language_1'),
+    category_1: () => cy.get('#leftSidebar').find('#category_1_es'),
+    category_1_set_1: () => cy.get('#leftSidebar').find('#set_1_1_es'),
+    category_1_set_2: () => cy.get('#leftSidebar').find('#set_1_2_es'),
+    category_2: () => cy.get('#leftSidebar').find('#category_2_es'),
+    category_2_set_1: () => cy.get('#leftSidebar').find('#set_2_1_es'),
+    category_2_set_2: () => cy.get('#leftSidebar').find('#set_2_2_es'),
+    category_3: () => cy.get('#leftSidebar').find('#category_3_es'),
+    category_3_set_1: () => cy.get('#leftSidebar').find('#set_3_1_es'),
   };
 
   shouldContain(text) {
-    cy.get("#leftSidebar").should("contain", text);
+    this.elements.left_NavBar().should('contain', text);
   }
 
   verifyCategoryLanguage(categoryName, language) {
-    let category_id;
+    let category;
     switch (categoryName) {
-      case "Nouns":
-        category_id = cy.get("#flashySetsCategory_1_es");
+      case 'Nouns':
+        category = this.elements.category_1();
         break;
-      case "Adjectives":
-        category_id = cy.get("#flashySetsCategory_2_es");
+      case 'Adjectives':
+        category = this.elements.category_2();
         break;
-      case "Verbs":
-        category_id = cy.get("#flashySetsCategory_3_es");
+      case 'Verbs':
+        category = this.elements.category_3();
         break;
     }
-    category_id.should("have.class", language.toLowerCase());
+    category.parent().should('have.class', language.toLowerCase());
   }
 
   setLanguage() {
     this.elements.language_1().click();
   }
-  getLanguage(language) {}
+
+  getLanguage(language) {
+    switch (language) {
+      case 'Spanish':
+        this.elements.language_1().should('have.class', 'active');
+        break;
+  }
+  }
+
   setCategory(categoryName) {
     switch (categoryName) {
-      case "Nouns":
+      case 'Nouns':
         this.elements.category_1().click();
         break;
-      case "Adjectives":
+      case 'Adjectives':
         this.elements.category_2().click();
         break;
-      case "Verbs":
+      case 'Verbs':
         this.elements.category_3().click();
         break;
+      }
     }
-  }
-  openSet(setName) {
-    switch (setName) {
-      case ('People'):
-        cy.get('#set_1_1_es').click();
+    
+    openSet(setName) {
+      switch (setName) {
+        case 'People':
+        this.elements.category_1_set_1().click();
+        break;
+      case 'Animals':
+        this.elements.category_1_set_2().click();
+        break;
+      case 'Shapes':
+        this.elements.category_2_set_1().click();
+        break;
+      case 'Colours':
+        this.elements.category_2_set_2().click();
+        break;
+      case 'Frequent':
+        this.elements.category_3_set_1().click();
         break;
     }
   }
