@@ -6,8 +6,8 @@ class Homepage_PO extends Base_PO {
   elements = {
     setOverviewContainer: () => cy.get('#setOverviewContainer'),
     aboutFlashycards: () => cy.get('#aboutFlashycards'),
-    newSetStart: () => cy.get('#newSetStart'),
-    createNewSetForm: () => cy.get('#createNewSetForm'),
+    createNewSetStart: () => cy.get('#newSetStart'),
+    createNewSetForm: () => cy.get('#newSetForm'),
     flashcard: () => cy.get('#flashcard'),
   };
 
@@ -32,6 +32,8 @@ class Homepage_PO extends Base_PO {
       case 'flashcard':
         this.elements.flashcard().should('be.visible');
         break;
+        default:
+          cy.log('Unknown widget');
     }
   }
 }

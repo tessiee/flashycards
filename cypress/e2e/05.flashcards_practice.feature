@@ -8,16 +8,16 @@ Feature: Flashcards Practice
         And I start the flashcard practice
 
     @smoke
-    Scenario: Flashcards - practice is correctly displayed
+    Scenario: Thw widget Flashcards - practice is correctly displayed
         Then The widget 'flashcard' should be displayed in the center
         And The flashcard should display the text 'I'
         And The flashcard should contain the button 'hintButton'
 
-    Scenario: Flascards - practice hint button functions correctly
+    Scenario: Flashcards - practice hint button functions correctly
         When I click on the 'hintButton' button
         Then The flashcard should display the text 'Y'
 
-    Scenario: Flascards - practice reveal button functions correctly
+    Scenario: Flashcards - practice reveal button functions correctly
         When I click on the 'revealButton' button
         Then The flashcard should display the text 'Yo'
         And The flashcard should contain the button 'nextWordButton'

@@ -10,6 +10,9 @@ class CreateNewSet_PO extends Base_PO {
     previousFieldsButton: () => cy.get('#createNewSetContainer').find('#previousFieldsButton'),
     nextFieldsButton: () => cy.get('#createNewSetContainer').find('#nextFieldsButton'),
     createSetButton: () => cy.get('#createNewSetContainer').find('#createSetButton'),
+    wordField: () => cy.get('#createNewSetContainer').find('#newDuo_1>input').eq(0),
+    translationField: () => cy.get('#createNewSetContainer').find('#newDuo_1>input').eq(1),
+    setNameField: () => cy.get('#createNewSetContainer').find('#newSetName'),
   };
 
   shouldContain(text) {
@@ -32,6 +35,8 @@ class CreateNewSet_PO extends Base_PO {
       case 'createSetButton':
         this.elements.createSetButton().should('be.visible');
         break;
+        default:
+          cy.log('Unknown button');
     } 
   }
   startCreatingNewSet() {
@@ -49,6 +54,21 @@ class CreateNewSet_PO extends Base_PO {
   createSet() {
     this.elements.createSetButton().click();
   }
+  enterValue(value, field){
+    switch (field) {
+      case 'word':
+      this.elements.wordField().click().type(value);
+      break;
+    case 'translation':
+      this.elements.translationField().type(value);
+      break;
+    case 'set name':
+      this.elements.setNameField().type(value);
+      break;
+      default:
+        cy.log('Unknown field');
+  }
+}
 }
 
 export default CreateNewSet_PO;

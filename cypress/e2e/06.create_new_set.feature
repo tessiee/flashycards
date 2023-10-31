@@ -1,19 +1,23 @@
-@create-new-set @not-ready
+@create-new-set @regression
 Feature: Create New Set
 
     Background: Navigate to the Flashycards application - create set widget
         Given I navigate to the flashycards homepage
-        And I click on 'Create Set'
+        When I click on 'Create Set'
 
     @smoke
-    Scenario: Can start creating a new set
+    Scenario: Create new set widget displays the correct items
         Then The widget 'createNewSetStart' should be displayed in the center
         And The create new set overview should display the button 'startCreatingButton'
         When I click on the button 'startCreatingButton'
         Then The widget 'createNewSetForm' should be displayed in the center
-
-    @smoke
-    Scenario: The create new set form displays the correct items
-        When I click on the button 'startCreatingButton'
-        Then The create new set overview should display the button 'createSetButton'
+        And The create new set overview should display the button 'createSetButton'
         And The create new set overview should display the button 'moreFieldsButton'
+
+    Scenario: Can create a new set
+        And I click on the button 'startCreatingButton'
+        When I enter the value 'My first set' into the field 'set name'
+        And I enter the value 'hello' into the field 'word'
+        And I enter the value 'hola' into the field 'translation'
+        And I click on the button 'createSetButton'
+        Then The right navigation bar should contain 'My first set'

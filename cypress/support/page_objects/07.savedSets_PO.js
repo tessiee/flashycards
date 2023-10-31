@@ -4,16 +4,22 @@ import Base_PO from "./00.base_PO";
 
 class SavedSets_PO extends Base_PO {
     elements = {
-        firstSet: () => cy.get('#savedSets').first('li'),
-        SecondSet: () => cy.get('#savedSets').last('li')
+        setWord: () => cy.get('.duo>div').eq(0),
+        setTranslation: () => cy.get('.duo>div').eq(1),
       };
 
-      shouldContain() {}
-      showNextDuos(){}
-      showPreviousDuos(){}
-      editMode(){}
-      readMode(){}
-      startPractice(){}
+      checkInput(field, value) {
+        switch (field) {
+          case 'word':
+          this.elements.setWord().should('have.text', value)
+          break;
+        case 'translation':
+          this.elements.setTranslation().should('have.text', value)
+          break;
+          default:
+            cy.log('Unknown field');
+      }
+      }
 
 }
 

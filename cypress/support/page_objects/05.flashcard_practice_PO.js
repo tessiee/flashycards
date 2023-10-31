@@ -5,12 +5,12 @@ import Base_PO from './00.base_PO';
 class Flashcard_Practice_PO extends Base_PO {
   elements = {
     flashcard: () => cy.get('#flashcard'),
-    word: () => cy.get('#word'),
-    translation: () => cy.get('#translation'),
-    hintButton: () => cy.get('#hintButton'),
-    revealButton: () => cy.get('#revealButton'),
-    nextWordButton: () => cy.get('#nextButton'),
-    restartPracticeButton: () => cy.get('#restartButton')
+    word: () => cy.get('#flashcard').find('#word'),
+    translation: () => cy.get('#flashcard').find('#translation'),
+    hintButton: () => cy.get('#flashcard').find('#hintButton'),
+    revealButton: () => cy.get('#flashcard').find('#revealButton'),
+    nextWordButton: () => cy.get('#flashcard').find('#nextButton'),
+    restartPracticeButton: () => cy.get('#flashcard').find('#restartButton')
   };
 
   shouldDisplay(text) {
@@ -31,6 +31,8 @@ class Flashcard_Practice_PO extends Base_PO {
       case 'restartPracticeButton':
         this.elements.restartPracticeButton().should('be.visible');
         break;
+        default:
+          cy.log('Unknown button');
     } 
   }
 

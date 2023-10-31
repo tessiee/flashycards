@@ -1,4 +1,4 @@
-@footer-menu @not-ready
+@footer-menu @regression
 Feature: Footer Menu
 
     Background: Navigate to the Flashycards application
@@ -11,7 +11,7 @@ Feature: Footer Menu
     @smoke
     Scenario: Footer menu link opens correct widget
         When I select the category 'Nouns'
-        When I open the set 'People'
+        And I open the set 'People'
         Then The widget 'setOverviewContainer' should be displayed in the center
         When I select the link 'aboutFlashy'
         Then The widget 'aboutFlashycards' should be displayed in the center

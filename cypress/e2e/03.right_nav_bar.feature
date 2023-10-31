@@ -1,4 +1,4 @@
-@right-nav-bar @not-ready
+@right-nav-bar @regression
 Feature: Right Navigation Bar Overview
 
     Background: Navigate to the Flashycards application
@@ -11,4 +11,4 @@ Feature: Right Navigation Bar Overview
     @smoke
     Scenario: Verify that the Create Set link works
         When I click on 'Create Set'
-        Then The widget 'createOwnSet' should be displayed in the center
+        Then The widget 'createNewSetStart' should be displayed in the center

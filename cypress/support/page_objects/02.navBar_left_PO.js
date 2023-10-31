@@ -32,6 +32,8 @@ class NavBar_Left_PO extends Base_PO {
       case 'Verbs':
         category = this.elements.category_3();
         break;
+        default:
+          cy.log('Unknown category');
     }
     category.parent().should('have.class', language.toLowerCase());
   }
@@ -45,6 +47,8 @@ class NavBar_Left_PO extends Base_PO {
       case 'Spanish':
         this.elements.language_1().should('have.class', 'active');
         break;
+        default:
+          cy.log('Unknown language');
   }
   }
 
@@ -59,6 +63,8 @@ class NavBar_Left_PO extends Base_PO {
       case 'Verbs':
         this.elements.category_3().click();
         break;
+        default:
+          cy.log('Unknown category');
       }
     }
     
@@ -79,6 +85,8 @@ class NavBar_Left_PO extends Base_PO {
       case 'Frequent':
         this.elements.category_3_set_1().click();
         break;
+        default:
+          cy.log('Unknown set');
     }
   }
 }

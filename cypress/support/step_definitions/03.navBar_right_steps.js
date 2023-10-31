@@ -8,8 +8,8 @@ When(/^I click on 'Create Set'/, () => {
   navBar_right.createSet();
 });
 
-When(/^I open the saved set '(.*)'/, (setName) => {
-  navBar_right.openSavedSet(setName);
+When(/^I open the saved set '(.*)'/, (index) => {
+  navBar_right.openSavedSet(index);
 });
 
 Then(/^The right navigation bar should contain '(.*)'/, (item) => {

@@ -5,13 +5,13 @@ import Flashcard_Practice_PO from "../page_objects/05.flashcard_practice_PO";
 const flashCardPractice = new Flashcard_Practice_PO();
 
 When(/^I click on the '(.*)' button/, (buttonName) => {
-  if (buttonName == "hintButton") {
+  if (buttonName === "hintButton") {
     flashCardPractice.showHint();
-  } else if (buttonName == "revealButton") {
+  } else if (buttonName === "revealButton") {
     flashCardPractice.revealWord();
-  } else if (buttonName == "nextWordButton") {
+  } else if (buttonName === "nextWordButton") {
     flashCardPractice.nextWord();
-  } else if (buttonName == "restartPracticeButton") {
+  } else if (buttonName === "restartPracticeButton") {
     flashCardPractice.restartPractice();
   }
 });

@@ -5,15 +5,15 @@ import CreateNewSet_PO from "../page_objects/06.createNewSet_PO";
 const createNewSet = new CreateNewSet_PO();
 
 When(/^I click on the button '(.*)'/, (buttonName) => {
-  if (buttonName == "startCreatingButton") {
+  if (buttonName === "startCreatingButton") {
     createNewSet.startCreatingNewSet();
-  } else if (buttonName == "moreFieldsButton") {
+  } else if (buttonName === "moreFieldsButton") {
     createNewSet.showMoreFields();
-  } else if (buttonName == "previousFieldsButton") {
+  } else if (buttonName === "previousFieldsButton") {
     createNewSet.showPreviousFields();
-  } else if (buttonName == "nextFieldsButton") {
+  } else if (buttonName === "nextFieldsButton") {
     createNewSet.showNextFields();
-  } else if (buttonName == "createSetButton") {
+  } else if (buttonName === "createSetButton") {
     createNewSet.createSet();
   }
 });
@@ -24,4 +24,8 @@ Then(/^The create new set overview should contain the text '(.*)'/, (text) => {
 
 Then(/^The create new set overview should display the button '(.*)'/, (button) => {
   createNewSet.shouldDisplay(button);
+});
+
+Then(/^I enter the value '(.*)' into the field '(.*)'/, (value, field) => {
+  createNewSet.enterValue(value, field);
 });

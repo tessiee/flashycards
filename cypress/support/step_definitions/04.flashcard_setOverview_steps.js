@@ -5,9 +5,9 @@ import Flashcard_SetOverview_PO from "../page_objects/04.flashcard_setOverview_P
 const flashcard_setOverview = new Flashcard_SetOverview_PO();
 
 When(/^I navigate to the '(.*) set duo's/, (direction) => {
-  if (direction == "next") {
+  if (direction === "next") {
     flashcard_setOverview.nextSet();
-  } else if (direction == "previous") {
+  } else if (direction === "previous") {
     flashcard_setOverview.previousSet();
   }
 });
