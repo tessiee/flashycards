@@ -22,9 +22,12 @@ Then(/^The create new set overview should contain the text '(.*)'/, (text) => {
   createNewSet.shouldContain(text);
 });
 
-Then(/^The create new set overview should display the button '(.*)'/, (button) => {
-  createNewSet.shouldDisplay(button);
-});
+Then(
+  /^The create new set overview should display the button '(.*)'/,
+  (button) => {
+    createNewSet.shouldDisplay(button);
+  }
+);
 
 Then(/^I enter the value '(.*)' into the field '(.*)'/, (value, field) => {
   createNewSet.enterValue(value, field);

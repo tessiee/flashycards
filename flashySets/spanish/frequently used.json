@@ -1,138 +1,138 @@
 [
-    {
-      "word": "To be",
-      "translation": "Ser / Estar"
-    },
-    {
-      "word": "To see",
-      "translation": "Ver"
-    },
-    {
-      "word": "To feel",
-      "translation": "Sentir"
-    },
-    {
-      "word": "To eat",
-      "translation": "Comer"
-    },
-    {
-      "word": "To drink",
-      "translation": "Beber"
-    },
-    {
-      "word": "To wait",
-      "translation": "Esperar"
-    },
-    {
-      "word": "To speak",
-      "translation": "Hablar"
-    },
-    {
-      "word": "To sit",
-      "translation": "Sentar"
-    },
-    {
-      "word": "To have",
-      "translation": "Tener / Haber"
-    },
-    {
-      "word": "To take",
-      "translation": "Tomar"
-    },
-    {
-      "word": "To understand",
-      "translation": "Entender"
-    },
-    {
-      "word": "To buy",
-      "translation": "Comprar"
-    },
-    {
-      "word": "To give",
-      "translation": "Dar"
-    },
-    {
-      "word": "To cook",
-      "translation": "Cocinar"
-    },
-    {
-      "word": "To improve",
-      "translation": "Mejorar"
-    },
-    {
-      "word": "To know",
-      "translation": "Conocer"
-    },
-    {
-      "word": "To think",
-      "translation": "Pensar"
-    },
-    {
-      "word": "To believe",
-      "translation": "Creer"
-    },
-    {
-      "word": "To hear",
-      "translation": "Oír / Escuchar"
-    },
-    {
-      "word": "To meet",
-      "translation": "Encontrar"
-    },
-    {
-      "word": "To return",
-      "translation": "Volver / Regressar"
-    },
-    {
-      "word": "To fall",
-      "translation": "Caer"
-    },
-    {
-      "word": "To run",
-      "translation": "Correr"
-    },
-    {
-      "word": "To remain",
-      "translation": "Permanecer"
-    },
-    {
-      "word": "To stay",
-      "translation": "Quedar"
-    },
-    {
-      "word": "To follow",
-      "translation": "Seguir"
-    },
-    {
-      "word": "To count",
-      "translation": "Contar"
-    },
-    {
-      "word": "To wash",
-      "translation": "Lavar"
-    },
-    {
-      "word": "To work",
-      "translation": "Trabajar"
-    },
-    {
-      "word": "To study",
-      "translation": "Estudiar"
-    },
-    {
-      "word": "To practice",
-      "translation": "Practicar"
-    },
-    {
-      "word": "To say",
-      "translation": "Decir"
-    },
-    {
-      "word": "To jump",
-      "translation": "Saltar"
-    },
-    {
-      "word": "To bath",
-      "translation": "Bañar"
-    }
-  ]
+  {
+    "word": "To be",
+    "translation": "Ser / Estar"
+  },
+  {
+    "word": "To see",
+    "translation": "Ver"
+  },
+  {
+    "word": "To feel",
+    "translation": "Sentir"
+  },
+  {
+    "word": "To eat",
+    "translation": "Comer"
+  },
+  {
+    "word": "To drink",
+    "translation": "Beber"
+  },
+  {
+    "word": "To wait",
+    "translation": "Esperar"
+  },
+  {
+    "word": "To speak",
+    "translation": "Hablar"
+  },
+  {
+    "word": "To sit",
+    "translation": "Sentar"
+  },
+  {
+    "word": "To have",
+    "translation": "Tener / Haber"
+  },
+  {
+    "word": "To take",
+    "translation": "Tomar"
+  },
+  {
+    "word": "To understand",
+    "translation": "Entender"
+  },
+  {
+    "word": "To buy",
+    "translation": "Comprar"
+  },
+  {
+    "word": "To give",
+    "translation": "Dar"
+  },
+  {
+    "word": "To cook",
+    "translation": "Cocinar"
+  },
+  {
+    "word": "To improve",
+    "translation": "Mejorar"
+  },
+  {
+    "word": "To know",
+    "translation": "Saber / Conocer"
+  },
+  {
+    "word": "To think",
+    "translation": "Pensar"
+  },
+  {
+    "word": "To believe",
+    "translation": "Creer"
+  },
+  {
+    "word": "To hear",
+    "translation": "Oír / Escuchar"
+  },
+  {
+    "word": "To meet",
+    "translation": "Encontrar"
+  },
+  {
+    "word": "To return",
+    "translation": "Volver / Regressar"
+  },
+  {
+    "word": "To fall",
+    "translation": "Caer"
+  },
+  {
+    "word": "To run",
+    "translation": "Correr"
+  },
+  {
+    "word": "To remain",
+    "translation": "Permanecer"
+  },
+  {
+    "word": "To stay",
+    "translation": "Quedar"
+  },
+  {
+    "word": "To follow",
+    "translation": "Seguir"
+  },
+  {
+    "word": "To count",
+    "translation": "Contar"
+  },
+  {
+    "word": "To wash",
+    "translation": "Lavar"
+  },
+  {
+    "word": "To work",
+    "translation": "Trabajar"
+  },
+  {
+    "word": "To study",
+    "translation": "Estudiar"
+  },
+  {
+    "word": "To practice",
+    "translation": "Practicar"
+  },
+  {
+    "word": "To say",
+    "translation": "Decir"
+  },
+  {
+    "word": "To jump",
+    "translation": "Saltar"
+  },
+  {
+    "word": "To bath",
+    "translation": "Bañar"
+  }
+]

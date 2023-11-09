@@ -1,14 +1,15 @@
 @right-nav-bar @regression
-Feature: Right Navigation Bar Overview
+Feature: Flashycards right navigation bar
 
     Background: Navigate to the Flashycards application
         Given I navigate to the flashycards homepage
 
     @smoke
-    Scenario: Right navigation bar displays correct items
+    Scenario: The right navigation bar displays correct items
         Then The right navigation bar should contain 'Create a New Set'
+        And There should be '0' saved sets
 
     @smoke
-    Scenario: Verify that the Create Set link works
+    Scenario: When clicking the link 'create set', the widget 'Create Set Overview' should be displayed
         When I click on 'Create Set'
-        Then The widget 'createNewSetStart' should be displayed in the center
+        Then The widget 'Create Set - Start' should be displayed in the center

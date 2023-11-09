@@ -1,5 +1,5 @@
 @saved-sets @regression
-Feature: Saved Sets
+Feature: Flashycards saved sets
 
     Background: Create a new saved set
         Given I navigate to the flashycards homepage

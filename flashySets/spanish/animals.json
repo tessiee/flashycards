@@ -1,26 +1,18 @@
 [
-    {
-      "word": "Cat (male)",
-      "translation": "Gato (el)"
-    },
-    {
-      "word": "Cat (female)",
-      "translation": "Gata (la)"
-    },
-    {
-      "word": "Dog (male)",
-      "translation": "Perro (el)"
-    },
-    {
-      "word": "Dog (female)",
-      "translation": "Perra (la)"
-    },
-    {
-      "word": "Bird",
-      "translation": "Ave (la)"
-    },
-    {
-      "word": "Pig (male)",
-      "translation": "Puerco (el)"
-    }
-  ]
+  {
+    "word": "Cat",
+    "translation": "Gato/a"
+  },
+  {
+    "word": "Dog",
+    "translation": "Perro/a"
+  },
+  {
+    "word": "Bird",
+    "translation": "Ave"
+  },
+  {
+    "word": "Pig",
+    "translation": "Puerco/a"
+  }
+]

@@ -10,19 +10,9 @@
   </head>
   <body>
     <!--Functionality to be added later-->
-    <button
-      class="lightButton invisible"
-      id="logInButton"
-      onclick="showLoginWindow()"
-    >
-      Log In
-    </button>
+    <button class="lightButton invisible" id="logInButton">Log In</button>
     <!--Functionality to be added later-->
-    <button
-      class="darkButton invisible"
-      id="registrationButton"
-      onclick="showRegistrationForm()"
-    >
+    <button class="darkButton invisible" id="registrationButton">
       Register Here
     </button>
 
@@ -46,25 +36,25 @@
 
       <h3>Categories</h3>
       <div class="spanish" id="flashySetsCategory_1_es">
-        <h4 class="setCategories" id="category_1_es" onclick="showSets()">Nouns</h4>
+        <h4 class="setCategories" id="category_1_es">Nouns</h4>
         <ul class="categorySets">
-          <li class="flashySet cat_1 invisible" id="set_1_1_es" onclick="openSetOverview()">People</li>
-          <li class="flashySet cat_1 invisible" id="set_1_2_es" onclick="openSetOverview()">Animals</li>
+          <li class="flashySet cat_1 invisible" id="set_1_1_es">People</li>
+          <li class="flashySet cat_1 invisible" id="set_1_2_es">Animals</li>
         </ul>
       </div>
 
       <div class="spanish" id="flashySetsCategory_2_es">
-        <h4 class="setCategories" id="category_2_es" onclick="showSets()">Adjectives</h4>
+        <h4 class="setCategories" id="category_2_es">Adjectives</h4>
         <ul class="categorySets">
-          <li class="flashySet cat_2 invisible" id="set_2_1_es" onclick="openSetOverview()">Shapes</li>
-          <li class="flashySet cat_2 invisible" id="set_2_2_es" onclick="openSetOverview()">Colours</li>
+          <li class="flashySet cat_2 invisible" id="set_2_1_es">Sizes</li>
+          <li class="flashySet cat_2 invisible" id="set_2_2_es">Colours</li>
         </ul>
       </div>
 
       <div class="spanish" id="flashySetsCategory_3_es">
-        <h4 class="setCategories" id="category_3_es" onclick="showSets()">Verbs</h4>
+        <h4 class="setCategories" id="category_3_es">Verbs</h4>
         <ul class="categorySets">
-          <li class="flashySet cat_3 invisible" id="set_3_1_es" onclick="openSetOverview()">
+          <li class="flashySet cat_3 invisible" id="set_3_1_es">
             Frequently used
           </li>
         </ul>
@@ -77,9 +67,10 @@
       <div class="center" id="aboutFlashycards">
         <h2>Pick a set to begin!</h2>
         <p>
-          1. Pick a set <br />
-          2. Go through the words <br />
-          3. Practice with flashcards <br />
+          1. Choose a category<br />
+          2. Pick one of the flashy sets<br />
+          3. Memorize the words<br />
+          4. Practice with flashcards<br />
         </p>
       </div>
       <!-- SET OVERVIEW -->
@@ -87,34 +78,12 @@
         <div id="setOverview">
           <h3>Set overview</h3>
         </div>
-        <button
-          class="darkButton invisible"
-          id="previousWordsButton"
-          onclick="showPreviousWords()"
-        >
-          P
+        <button class="darkButton invisible" id="previousDuosButton">↩</button>
+        <button class="lightButton invisible" id="nextDuosButton">↪</button>
+        <button class="darkButton invisible" id="editSavedSetButton">
+          Edit set
         </button>
-        <button
-          class="lightButton invisible"
-          id="nextWordsButton"
-          onclick="showNextWords()"
-        >
-          N
-        </button>
-        <button
-        class="darkButton invisible"
-        id="editSavedSetButton"
-        onclick="editSavedSet()"
-      >
-        Edit set
-      </button>
-        <button
-          class="lightButton"
-          id="startPractice"
-          onclick="startPractice()"
-        >
-          Start Practice!
-        </button>
+        <button class="lightButton" id="startPractice">Start Practice!</button>
       </div>
 
       <!-- SET CARDS -->
@@ -122,28 +91,12 @@
         <div id="word"></div>
         <div id="translation"></div>
         <hr />
-        <button class="button lightButton" id="hintButton" onclick="showHint()">
-          Hint
-        </button>
-        <button
-          class="button darkButton"
-          id="revealButton"
-          onclick="revealTranslation()"
-        >
-          Reveal
-        </button>
-        <button
-          class="button lightButton invisible"
-          id="nextButton"
-          onclick="nextPracticeWord()"
-        >
+        <button class="button lightButton" id="hintButton">Hint</button>
+        <button class="button darkButton" id="revealButton">Reveal</button>
+        <button class="button lightButton invisible" id="nextButton">
           NEXT
         </button>
-        <button
-          class="button darkButton invisible"
-          id="restartButton"
-          onclick="reStartPractice()"
-        >
+        <button class="button darkButton invisible" id="restartButton">
           RESTART
         </button>
       </div>
@@ -153,81 +106,46 @@
         <div class="invisible" id="newSetStart">
           <h2>Create your own set of flashcards</h2>
           <p>
-            1. Pick a name for your set <br />
-            2. Add your words & translations <br />
-            3. Click "Create set" and done! <br />
+            1. Pick a name for your set<br />
+            2. Add your words & translations<br />
+            3. Click "Create set" and start practicing!<br />
           </p>
-          <button
-            class="lightButton"
-            id="startCreating"
-            onclick="startCreatingSet()"
-          >
-            Start Creating
-          </button>
+          <button class="lightButton" id="startCreating">Start Creating</button>
         </div>
         <div class="invisible" id="newSetForm">
           <div id="setNameContainer">
             <h3>Set name</h3>
-            <input id="newSetName" type="text" oninput="storeValue()"/> <br />
+            <input id="newSetName" type="text" /> <br />
           </div>
           <div id="setWordsContainer">
             <h4>Word</h4>
             <h4>Translation</h4>
             <br />
-            <button
-              class="darkButton invisible"
-              id="previousFieldsButton"
-              onclick="showPreviousData()"
-            >
-              P
+            <button class="darkButton invisible" id="previousFieldsButton">
+              ↩
             </button>
-            <button
-              class="darkButton invisible"
-              id="nextFieldsButton"
-              onclick="showNextData()"
-            >
-              N
+            <button class="darkButton invisible" id="nextFieldsButton">
+              ↪
             </button>
-            <button
-              class="lightButton"
-              id="moreFieldsButton"
-              onclick="moreInputFields()"
-            >
-              +
-            </button>
-            <button
-              class="lightButton"
-              id="createSetButton"
-              onclick="createNewSet()"
-            >
-              Create Set
-            </button>
-            <button
-              class="lightButton invisible"
-              id="editSetButton"
-              onclick="editSet()"
-            >
+            <button class="lightButton" id="moreFieldsButton">+</button>
+            <button class="lightButton" id="createSetButton">Create Set</button>
+            <button class="lightButton invisible" id="editSetButton">
               Edit Set
             </button>
             <div id="setNameError" class="invisible">
               <p>Please provide a set name</p>
             </div>
-            <div id="incompleteDuosError" class="center invisible">
-              <p>If you proceed, incomplete and duplicate duos will be removed</p>
-          <button
-            class="lightButton"
-            id="declineIncompleteError"
-            onclick="declineIncompleteDuosError()"
-          >
-            cancel
-          </button>
-          <button
-          class="darkButton"
-          id="acceptIncompleteError"
-          onclick="acceptIncompleteDuosError()"
-        >
-          create set
-        </button>
+            <div id="invalidDuosError" class="center invisible">
+              <p>
+                If you proceed, incomplete and duplicate duos will be removed
+                from your set
+              </p>
+              <button class="lightButton" id="declineInvalidError">
+                cancel
+              </button>
+              <button class="darkButton" id="acceptInvalidError">
+                create set
+              </button>
             </div>
           </div>
         </div>
@@ -240,9 +158,7 @@
       <h2>My Own Card Sets</h2>
 
       <div id="newSet">
-        <a href="#/" id="createNewSet" onclick="openNewSetCreator()"
-          >Create a New Set</a
-        >
+        <a href="#/" id="createNewSet">Create a New Set</a>
       </div>
 
       <!-- SAVED SETS -->
@@ -250,8 +166,7 @@
       <div id="savedSetsContainer">
         <h3>Saved Sets</h3>
 
-        <ul id="savedSets">
-        </ul>
+        <ul id="savedSets"></ul>
       </div>
     </nav>
 
@@ -261,9 +176,7 @@
       <nav id="footerMenu">
         <ul id="footerMenuLinks">
           <li>
-            <a href="#/" id="footerFirst" onclick="showAboutFlashy()"
-              ><b>About Flashycards</b></a
-            >
+            <a href="#/" id="footerFirst"><b>About Flashycards</b></a>
           </li>
         </ul>
       </nav>

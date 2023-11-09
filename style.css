@@ -347,7 +347,7 @@ header p {
   padding-top: 3px;
 }
 
-#previousWordsButton {
+#previousDuosButton {
   position: fixed;
   left: 25%;
   bottom: 15%;
@@ -356,7 +356,7 @@ header p {
   font-size: 20px;
 }
 
-#nextWordsButton {
+#nextDuosButton {
   position: fixed;
   right: 25%;
   bottom: 15%;
@@ -481,7 +481,7 @@ header p {
   font-size: 20px;
 }
 
-#incompleteDuosError {
+#invalidDuosError {
   width: 250px;
   height: 170px;
   padding-top: 20px;
@@ -493,7 +493,7 @@ header p {
   border-radius: 10px;
 }
 
-#acceptIncompleteError {
+#acceptInvalidError {
   position: fixed;
   right: 20px;
   bottom: 15px;
@@ -502,7 +502,7 @@ header p {
   font-size: 14px;
 }
 
-#declineIncompleteError {
+#declineInvalidError {
   position: fixed;
   left: 20px;
   bottom: 15px;

@@ -15,3 +15,7 @@ When(/^I open the saved set '(.*)'/, (index) => {
 Then(/^The right navigation bar should contain '(.*)'/, (item) => {
   navBar_right.shouldContain(item);
 });
+
+Then(/^There should be '(.*)' saved sets/, (amount) => {
+  navBar_right.amountOf_SavedSets(amount);
+});

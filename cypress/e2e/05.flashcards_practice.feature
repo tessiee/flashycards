@@ -1,5 +1,5 @@
 @flashcards @flashcards-practice @not-ready
-Feature: Flashcards Practice
+Feature: Flashycards flashcards practice
 
     Background: Navigate to the Flashycards application - Practice Overview widget
         Given I navigate to the flashycards homepage

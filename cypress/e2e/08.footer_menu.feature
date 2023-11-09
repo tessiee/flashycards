@@ -1,5 +1,5 @@
 @footer-menu @regression
-Feature: Footer Menu
+Feature: Flashycards footer menu
 
     Background: Navigate to the Flashycards application
         Given I navigate to the flashycards homepage

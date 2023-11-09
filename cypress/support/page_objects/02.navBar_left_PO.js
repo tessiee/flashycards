@@ -1,41 +1,41 @@
 /// <reference types='cypress' />
 
-import Base_PO from './00.base_PO';
+import Base_PO from "./00.base_PO";
 
 class NavBar_Left_PO extends Base_PO {
   elements = {
-    left_NavBar: () => cy.get('#leftSidebar'),
-    language_1: () => cy.get('#leftSidebar').find('#language_1'),
-    category_1: () => cy.get('#leftSidebar').find('#category_1_es'),
-    category_1_set_1: () => cy.get('#leftSidebar').find('#set_1_1_es'),
-    category_1_set_2: () => cy.get('#leftSidebar').find('#set_1_2_es'),
-    category_2: () => cy.get('#leftSidebar').find('#category_2_es'),
-    category_2_set_1: () => cy.get('#leftSidebar').find('#set_2_1_es'),
-    category_2_set_2: () => cy.get('#leftSidebar').find('#set_2_2_es'),
-    category_3: () => cy.get('#leftSidebar').find('#category_3_es'),
-    category_3_set_1: () => cy.get('#leftSidebar').find('#set_3_1_es'),
+    left_NavBar: () => cy.get("#leftSidebar"),
+    language_1: () => cy.get("#leftSidebar").find("#language_1"),
+    category_1: () => cy.get("#leftSidebar").find("#category_1_es"),
+    category_1_set_1: () => cy.get("#leftSidebar").find("#set_1_1_es"),
+    category_1_set_2: () => cy.get("#leftSidebar").find("#set_1_2_es"),
+    category_2: () => cy.get("#leftSidebar").find("#category_2_es"),
+    category_2_set_1: () => cy.get("#leftSidebar").find("#set_2_1_es"),
+    category_2_set_2: () => cy.get("#leftSidebar").find("#set_2_2_es"),
+    category_3: () => cy.get("#leftSidebar").find("#category_3_es"),
+    category_3_set_1: () => cy.get("#leftSidebar").find("#set_3_1_es"),
   };
 
   shouldContain(text) {
-    this.elements.left_NavBar().should('contain', text);
+    this.elements.left_NavBar().should("contain", text);
   }
 
   verifyCategoryLanguage(categoryName, language) {
     let category;
     switch (categoryName) {
-      case 'Nouns':
+      case "Nouns":
         category = this.elements.category_1();
         break;
-      case 'Adjectives':
+      case "Adjectives":
         category = this.elements.category_2();
         break;
-      case 'Verbs':
+      case "Verbs":
         category = this.elements.category_3();
         break;
-        default:
-          cy.log('Unknown category');
+      default:
+        cy.log("Unknown category");
     }
-    category.parent().should('have.class', language.toLowerCase());
+    category.parent().should("have.class", language.toLowerCase());
   }
 
   setLanguage() {
@@ -44,49 +44,49 @@ class NavBar_Left_PO extends Base_PO {
 
   getLanguage(language) {
     switch (language) {
-      case 'Spanish':
-        this.elements.language_1().should('have.class', 'active');
+      case "Spanish":
+        this.elements.language_1().should("have.class", "active");
         break;
-        default:
-          cy.log('Unknown language');
-  }
+      default:
+        cy.log("Unknown language");
+    }
   }
 
   setCategory(categoryName) {
     switch (categoryName) {
-      case 'Nouns':
+      case "Nouns":
         this.elements.category_1().click();
         break;
-      case 'Adjectives':
+      case "Adjectives":
         this.elements.category_2().click();
         break;
-      case 'Verbs':
+      case "Verbs":
         this.elements.category_3().click();
         break;
-        default:
-          cy.log('Unknown category');
-      }
+      default:
+        cy.log("Unknown category");
     }
-    
-    openSet(setName) {
-      switch (setName) {
-        case 'People':
+  }
+
+  openSet(setName) {
+    switch (setName) {
+      case "People":
         this.elements.category_1_set_1().click();
         break;
-      case 'Animals':
+      case "Animals":
         this.elements.category_1_set_2().click();
         break;
-      case 'Shapes':
+      case "Shapes":
         this.elements.category_2_set_1().click();
         break;
-      case 'Colours':
+      case "Colours":
         this.elements.category_2_set_2().click();
         break;
-      case 'Frequent':
+      case "Frequent":
         this.elements.category_3_set_1().click();
         break;
-        default:
-          cy.log('Unknown set');
+      default:
+        cy.log("Unknown set");
     }
   }
 }

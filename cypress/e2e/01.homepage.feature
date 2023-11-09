@@ -1,5 +1,5 @@
 @homepage @regression
-Feature: Homepage Overview
+Feature: Flashycards homepage overview
 
     Background: Navigate to the Flashycards application
         Given I navigate to the flashycards homepage
@@ -10,3 +10,4 @@ Feature: Homepage Overview
         And The page should contain 'Flashy Card Sets'
         And The page should contain 'My Own Card Sets'
         And The page should contain 'Pick a set to begin!'
+        And The page should contain 'About Flashycards'

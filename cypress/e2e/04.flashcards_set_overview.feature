@@ -1,5 +1,5 @@
 @flashcards @flashcards-set-overview @not-ready
-Feature: Flashcards Set Overview
+Feature: Flashycards set overview
 
     Background: Navigate to the Flashycards application - Set Overview widget
         Given I navigate to the flashycards homepage

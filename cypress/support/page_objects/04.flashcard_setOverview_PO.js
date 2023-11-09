@@ -1,12 +1,12 @@
 /// <reference types='cypress' />
 
-import Base_PO from './00.base_PO';
+import Base_PO from "./00.base_PO";
 
 class Flashcard_SetOverview_PO extends Base_PO {
   elements = {
-    word: () => cy.get('#word'),
-    translation: () => cy.get('#translation'),
-    startPracticeButton: () => cy.get('#startPractice'),
+    word: () => cy.get("#word"),
+    translation: () => cy.get("#translation"),
+    startPracticeButton: () => cy.get("#startPractice"),
   };
 
   previousSet() {}

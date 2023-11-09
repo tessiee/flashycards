@@ -1,25 +1,26 @@
 /// <reference types='cypress' />
 
-import Base_PO from './00.base_PO';
+import Base_PO from "./00.base_PO";
 
 let i = 1;
 
 class NavBar_Right_PO extends Base_PO {
   elements = {
-    createSet_link: () => cy.get('#rightSidebar').find('#createNewSet'),
-    savedSet_link: (i) => cy.get('#rightSidebar').find('#savedSets>li').eq(i)
+    createSet_link: () => cy.get("#rightSidebar").find("#createNewSet"),
+    savedSets_container: () => cy.get("#savedSets"),
+    savedSet_link: (i) => cy.get("#rightSidebar").find("#savedSets>li").eq(i),
   };
 
   shouldContain(item) {
     switch (item) {
-      case 'Create a New Set':
+      case "Create a New Set":
         cy.get(this.elements.createSet_link());
         break;
-      case 'My Set 1':
-        cy.get(this.elements.savedSet_link_1());
+      case "My Set 1":
+        cy.get(this.elements.savedSet_link(1));
         break;
-        default:
-          cy.log('Unknown set');
+      default:
+        cy.log("Unknown set");
     }
   }
   createSet() {
@@ -28,6 +29,12 @@ class NavBar_Right_PO extends Base_PO {
   openSavedSet(index) {
     i = index - 1;
     this.elements.savedSet_link(i).click();
+  }
+  amountOf_SavedSets(amount) {
+    this.elements
+      .savedSets_container()
+      .children()
+      .should("have.length", amount);
   }
 }
 
