@@ -5,20 +5,31 @@ import CreateNewSet_PO from "../page_objects/06.createNewSet_PO";
 const createNewSet = new CreateNewSet_PO();
 
 When(/^I click on the button '(.*)'/, (buttonName) => {
-  if (buttonName === "startCreatingButton") {
-    createNewSet.startCreatingNewSet();
-  } else if (buttonName === "moreFieldsButton") {
-    createNewSet.showMoreFields();
-  } else if (buttonName === "previousFieldsButton") {
-    createNewSet.showPreviousFields();
-  } else if (buttonName === "nextFieldsButton") {
-    createNewSet.showNextFields();
-  } else if (buttonName === "createSetButton") {
-    createNewSet.createSet();
+  switch (buttonName) {
+    case "Start Creating":
+      createNewSet.startCreatingNewSet();
+      break;
+    case "More Fields":
+      createNewSet.showMoreFields();
+      break;
+    case "Previous Fields":
+      createNewSet.showPreviousFields();
+      break;
+    case "Next Fields":
+      createNewSet.showNextFields();
+      break;
+    case "Create Set":
+      createNewSet.createSet();
+      break;
+    case "Edit Set":
+      createNewSet.editSet();
+      break;
+    default:
+      cy.log("Unknown button");
   }
 });
 
-Then(/^The create new set overview should contain the text '(.*)'/, (text) => {
+Then(/^The widget 'Create New Set' should contain the text '(.*)'/, (text) => {
   createNewSet.shouldContain(text);
 });
 
@@ -29,6 +40,34 @@ Then(
   }
 );
 
-Then(/^I enter the value '(.*)' into the field '(.*)'/, (value, field) => {
-  createNewSet.enterValue(value, field);
+Then(
+  /^I enter the value '(.*)' into the field '(.*)' on position '(.*)'/,
+  (value, field, position) => {
+    createNewSet.enterValue(value, field, position);
+  }
+);
+
+Then(/^I enter the value '(.*)' as the set name/, (value) => {
+  createNewSet.setName(value);
+});
+
+Then(/^The field '(.*)' should display the error '(.*)'/, (field, text) => {
+  createNewSet.displayError(field, text);
+});
+
+Then(/^I should receive a notification regarding invalid data/, () => {
+  createNewSet.displayNotification();
+});
+
+When(/^I click on the '(.*)' notification button/, (buttonName) => {
+  switch (buttonName) {
+    case "Create Set":
+      createNewSet.acceptNotification();
+      break;
+    case "Cancel":
+      createNewSet.declineNotification();
+      break;
+    default:
+      cy.log("Unknown button");
+  }
 });

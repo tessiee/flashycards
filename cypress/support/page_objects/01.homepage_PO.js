@@ -17,10 +17,10 @@ class Homepage_PO extends Base_PO {
 
   shouldDisplayWidget(item) {
     switch (item) {
-      case "setOverviewContainer":
+      case "Set Overview":
         this.elements.setOverviewContainer().should("be.visible");
         break;
-      case "aboutFlashycards":
+      case "About Flashycards":
         this.elements.aboutFlashycards().should("be.visible");
         break;
       case "Create Set - Start":
@@ -29,8 +29,30 @@ class Homepage_PO extends Base_PO {
       case "Create Set - Form":
         this.elements.createNewSetForm().should("be.visible");
         break;
-      case "flashcard":
+      case "Flashcard":
         this.elements.flashcard().should("be.visible");
+        break;
+      default:
+        cy.log("Unknown widget");
+    }
+  }
+
+  shouldNotDisplayWidget(item) {
+    switch (item) {
+      case "Set Overview":
+        this.elements.setOverviewContainer().should("not.be.visible");
+        break;
+      case "About Flashycards":
+        this.elements.aboutFlashycards().should("not.be.visible");
+        break;
+      case "Create Set - Start":
+        this.elements.createNewSetStart().should("not.be.visible");
+        break;
+      case "Create Set - Form":
+        this.elements.createNewSetForm().should("not.be.visible");
+        break;
+      case "Flashcard":
+        this.elements.flashcard().should("not.be.visible");
         break;
       default:
         cy.log("Unknown widget");

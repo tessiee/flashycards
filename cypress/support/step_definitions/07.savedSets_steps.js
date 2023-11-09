@@ -4,24 +4,32 @@ import SavedSets_PO from "../page_objects/07.savedSets_PO";
 
 const savedSets = new SavedSets_PO();
 
-When(/^I click on button '(.*)'/, (buttonName) => {
-  if (buttonName === "next") {
-    savedSets.showNextDuos();
-  } else if (buttonName === "previous") {
-    savedSets.showPreviousDuos();
-  } else if (buttonName === "edit") {
-    savedSets.editMode();
-  } else if (buttonName === "read") {
-    savedSets.readMode();
-  } else if (buttonName === "startPractice") {
-    savedSets.startPractice();
+When(/^I click on button '(.*)'/, (button) => {
+  switch (button) {
+    case "Next":
+      savedSets.showNextDuos();
+      break;
+    case "Previous":
+      savedSets.showPreviousDuos();
+      break;
+    case "Start Practice":
+      savedSets.startPractice();
+      break;
+    case "Edit Set":
+      savedSets.editSet();
+      break;
+    default:
+      cy.log("Unknown button");
   }
 });
 
-Then(/^The saved set overview should contain '(.*)'/, (item) => {
-  savedSets.shouldContain(item);
+Then(/^The widget 'Saved Set' should contain the text '(.*)'/, (text) => {
+  savedSets.shouldContain(text);
 });
 
-Then(/^The field '(.*)' should contain the value '(.*)'/, (field, value) => {
-  savedSets.checkInput(field, value);
-});
+Then(
+  /^The field '(.*)' on position '(.*)' should contain the value '(.*)'/,
+  (field, position, value) => {
+    savedSets.verifyValue(field, position, value);
+  }
+);

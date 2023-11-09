@@ -4,21 +4,51 @@ import Base_PO from "./00.base_PO";
 
 class SavedSets_PO extends Base_PO {
   elements = {
-    setWord: () => cy.get(".duo>div").eq(0),
-    setTranslation: () => cy.get(".duo>div").eq(1),
+    setWord: (position) =>
+      cy
+        .get("#setOverviewContainer")
+        .find("#duoContainer_1>.duo")
+        .eq(position - 1)
+        .find(".setWord"),
+    setTranslation: (position) =>
+      cy
+        .get("#setOverviewContainer")
+        .find("#duoContainer_1>.duo")
+        .eq(position - 1)
+        .find(".setTranslation"),
+    startPracticeButton: () =>
+      cy.get("#setOverviewContainer").find("#startPractice"),
+    nextButton: () => cy.get("#setOverviewContainer").find("#nextDuosButton"),
+    previousButton: () =>
+      cy.get("#setOverviewContainer").find("#previousDuosButton"),
+    editButton: () =>
+      cy.get("#setOverviewContainer").find("#editSavedSetButton"),
   };
 
-  checkInput(field, value) {
+  verifyValue(field, position, value) {
     switch (field) {
-      case "word":
-        this.elements.setWord().should("have.text", value);
+      case "Word":
+        this.elements.setWord(position).should("have.text", value);
         break;
-      case "translation":
-        this.elements.setTranslation().should("have.text", value);
+      case "Translation":
+        this.elements.setTranslation(position).should("have.text", value);
         break;
       default:
         cy.log("Unknown field");
     }
+  }
+
+  showNextDuos() {
+    this.elements.nextButton().click();
+  }
+  showPreviousDuos() {
+    this.elements.previousButton().click();
+  }
+  startPractice() {
+    this.elements.startPracticeButton().click();
+  }
+  editSet() {
+    this.elements.editButton().click();
   }
 }
 

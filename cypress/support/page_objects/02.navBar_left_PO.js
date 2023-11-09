@@ -76,7 +76,7 @@ class NavBar_Left_PO extends Base_PO {
       case "Animals":
         this.elements.category_1_set_2().click();
         break;
-      case "Shapes":
+      case "Sizes":
         this.elements.category_2_set_1().click();
         break;
       case "Colours":

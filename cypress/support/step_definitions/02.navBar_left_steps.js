@@ -8,7 +8,7 @@ When(/^I select the language '(.*)'/, (language) => {
   navBar_left.setLanguage(language);
 });
 
-When(/^The set language should be '(.*)'/, (language) => {
+When(/^The selected language should be '(.*)'/, (language) => {
   navBar_left.getLanguage(language);
 });
 
@@ -20,9 +20,12 @@ When(/^I open the set '(.*)'/, (setName) => {
   navBar_left.openSet(setName);
 });
 
-Then(/^The left navigation bar should contain '(.*)'/, (item) => {
-  navBar_left.shouldContain(item);
-});
+Then(
+  /^The widget 'Navigation Bar - Left' should contain the text '(.*)'/,
+  (item) => {
+    navBar_left.shouldContain(item);
+  }
+);
 
 Then(
   /^The category '(.*)' is for the language '(.*)'/,

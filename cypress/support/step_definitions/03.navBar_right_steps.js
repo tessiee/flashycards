@@ -8,13 +8,23 @@ When(/^I click on 'Create Set'/, () => {
   navBar_right.createSet();
 });
 
-When(/^I open the saved set '(.*)'/, (index) => {
+When(/^I open the saved set on position '(.*)'/, (index) => {
   navBar_right.openSavedSet(index);
 });
 
-Then(/^The right navigation bar should contain '(.*)'/, (item) => {
-  navBar_right.shouldContain(item);
-});
+Then(
+  /^The widget 'Navigation Bar - Right' should contain the item '(.*)'/,
+  (item) => {
+    navBar_right.shouldContain(item);
+  }
+);
+
+Then(
+  /^The widget 'Navigation Bar - Right' should not contain the item '(.*)'/,
+  (item) => {
+    navBar_right.shouldNotContain(item);
+  }
+);
 
 Then(/^There should be '(.*)' saved sets/, (amount) => {
   navBar_right.amountOf_SavedSets(amount);

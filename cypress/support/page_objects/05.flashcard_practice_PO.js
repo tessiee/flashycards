@@ -17,19 +17,42 @@ class Flashcard_Practice_PO extends Base_PO {
     this.elements.flashcard().should("contain", text);
   }
 
+  shouldNotDisplay(text) {
+    this.elements.flashcard().should("not.contain", text);
+  }
+
   shouldContain(button) {
     switch (button) {
-      case "hintButton":
+      case "Hint":
         this.elements.hintButton().should("be.visible");
         break;
-      case "revealButton":
+      case "Reveal":
         this.elements.revealButton().should("be.visible");
         break;
-      case "nextWordButton":
+      case "Next Word":
         this.elements.nextWordButton().should("be.visible");
         break;
-      case "restartPracticeButton":
+      case "Restart Practice":
         this.elements.restartPracticeButton().should("be.visible");
+        break;
+      default:
+        cy.log("Unknown button");
+    }
+  }
+
+  shouldBeEnabled(button) {
+    switch (button) {
+      case "Hint":
+        this.elements.hintButton().should("be.enabled");
+        break;
+      case "Reveal":
+        this.elements.revealButton().should("be.enabled");
+        break;
+      case "Next Word":
+        this.elements.nextWordButton().should("be.enabled");
+        break;
+      case "Restart Practice":
+        this.elements.restartPracticeButton().should("be.enabled");
         break;
       default:
         cy.log("Unknown button");

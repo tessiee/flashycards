@@ -4,18 +4,43 @@ import Flashcard_SetOverview_PO from "../page_objects/04.flashcard_setOverview_P
 
 const flashcard_setOverview = new Flashcard_SetOverview_PO();
 
-When(/^I navigate to the '(.*) set duo's/, (direction) => {
-  if (direction === "next") {
-    flashcard_setOverview.nextSet();
-  } else if (direction === "previous") {
-    flashcard_setOverview.previousSet();
-  }
-});
-
-Then(/^The set overview should contain '(.*)'/, (text) => {
+Then(/^The widget 'Set Overview' should contain the text '(.*)'/, (text) => {
   flashcard_setOverview.shouldContain(text);
 });
 
-When(/^I start the flashcard practice/, () => {
-  flashcard_setOverview.startPractice();
+Then(
+  /^The widget 'Set Overview' should not contain the text '(.*)'/,
+  (text) => {
+    flashcard_setOverview.shouldNotContain(text);
+  }
+);
+
+Then(
+  /^The widget 'Set Overview' should contain the button '(.*)'/,
+  (button) => {
+    flashcard_setOverview.shouldHaveButton(button);
+  }
+);
+
+Then(
+  /^The widget 'Set Overview' should not contain the button '(.*)'/,
+  (button) => {
+    flashcard_setOverview.shouldNotHaveButton(button);
+  }
+);
+
+When(/^I click on the button - '(.*)'/, (button) => {
+  switch (button) {
+    case "Next":
+      flashcard_setOverview.nextSet();
+      break;
+    case "Previous":
+      flashcard_setOverview.previousSet();
+      break;
+    case "Start Practice":
+      flashcard_setOverview.startPractice();
+      break;
+    default:
+      cy.log("Unknown button");
+  }
 });

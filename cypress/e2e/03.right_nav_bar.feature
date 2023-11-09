@@ -6,7 +6,7 @@ Feature: Flashycards right navigation bar
 
     @smoke
     Scenario: The right navigation bar displays correct items
-        Then The right navigation bar should contain 'Create a New Set'
+        Then The widget 'Navigation Bar - Right' should contain the item 'Create a New Set'
         And There should be '0' saved sets
 
     @smoke

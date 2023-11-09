@@ -13,7 +13,7 @@ When(/^I wait for '(.*)' seconds/, (amount) => {
   cy.wait(amount * 1000);
 });
 
-Then(/^The page should contain '(.*)'/, (text) => {
+Then(/^The page should contain the text '(.*)'/, (text) => {
   basePage.pageShouldContain(text);
 });
 

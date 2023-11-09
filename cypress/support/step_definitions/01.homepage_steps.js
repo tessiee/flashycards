@@ -11,3 +11,7 @@ Given(/^I navigate to the flashycards homepage/, () => {
 Then(/^The widget '(.*)' should be displayed in the center/, (item) => {
   homePage.shouldDisplayWidget(item);
 });
+
+Then(/^The widget '(.*)' should not be displayed in the center/, (item) => {
+  homePage.shouldNotDisplayWidget(item);
+});

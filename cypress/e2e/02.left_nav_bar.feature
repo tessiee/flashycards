@@ -6,14 +6,14 @@ Feature: Flashycards left navigation bar
 
     @smoke
     Scenario: The left navigation bar displays the correct items
-        Then The left navigation bar should contain 'Spanish'
-        And The left navigation bar should contain 'Nouns'
-        And The left navigation bar should contain 'Adjectives'
-        And The left navigation bar should contain 'Verbs'
+        Then The widget 'Navigation Bar - Left' should contain the text 'Spanish'
+        And The widget 'Navigation Bar - Left' should contain the text 'Nouns'
+        And The widget 'Navigation Bar - Left' should contain the text 'Adjectives'
+        And The widget 'Navigation Bar - Left' should contain the text 'Verbs'
 
 
     Scenario: The default language is spanish
-        Then The set language should be 'Spanish'
+        Then The selected language should be 'Spanish'
         And The category 'Nouns' is for the language 'Spanish'
         And The category 'Adjectives' is for the language 'Spanish'
         And The category 'Verbs' is for the language 'Spanish'
@@ -21,13 +21,13 @@ Feature: Flashycards left navigation bar
 
     Scenario Outline: The left navigation bar displays the correct sets per chosen category
         When I select the category '<category>'
-        Then The left navigation bar should contain '<setname_1>'
-        And The left navigation bar should contain '<setname_2>'
+        Then The widget 'Navigation Bar - Left' should contain the text '<setname_1>'
+        And The widget 'Navigation Bar - Left' should contain the text '<setname_2>'
 
         Examples:
             | category | setname_1 | setname_2 |
             | Nouns | People  | Animals  |
-            | Adjectives | Shapes  | Colours  |
+            | Adjectives | Sizes  | Colours  |
             | Verbs | Frequently used  |   |
 
     @smoke
