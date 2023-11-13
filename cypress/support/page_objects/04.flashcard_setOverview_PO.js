@@ -15,15 +15,15 @@ class Flashcard_SetOverview_PO extends Base_PO {
   };
 
   shouldContain(condition, text) {
-    if (condition === "not") {
-      condition += ".";
+    if (condition === "not ") {
+      condition = "not.";
     }
     this.elements.setOverview().should(`${condition}to.have`, text);
   }
 
   shouldHaveButton(condition, button) {
-    if (condition === "not") {
-      condition += ".";
+    if (condition === "not ") {
+      condition = "not.";
     }
     switch (button) {
       case "Next":

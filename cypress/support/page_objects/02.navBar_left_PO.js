@@ -17,8 +17,8 @@ class NavBar_Left_PO extends Base_PO {
   };
 
   shouldContain(condition, text) {
-    if (condition === "not") {
-      condition += ".";
+    if (condition === "not ") {
+      condition = "not.";
     }
     this.elements.left_NavBar().should(`${condition}contain`, text);
   }

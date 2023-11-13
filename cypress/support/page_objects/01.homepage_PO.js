@@ -16,8 +16,8 @@ class Homepage_PO extends Base_PO {
   }
 
   shouldDisplayWidget(item, condition) {
-    if (condition === "not") {
-      condition += ".";
+    if (condition === "not ") {
+      condition = "not.";
     }
     switch (item) {
       case "Set Overview":

@@ -8,8 +8,8 @@ class FooterMenu_PO extends Base_PO {
   };
 
   shouldContain(condition, text) {
-    if (condition === "not") {
-      condition += ".";
+    if (condition === "not ") {
+      condition = "not.";
     }
     cy.get("#footerMenu").should(`${condition}contain`, text);
   }

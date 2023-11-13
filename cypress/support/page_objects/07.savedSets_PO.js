@@ -27,15 +27,15 @@ class SavedSets_PO extends Base_PO {
   };
 
   shouldContain(condition, text) {
-    if (condition === "not") {
-      condition += ".";
+    if (condition === "not ") {
+      condition = "not.";
     }
     this.elements.setOverview().should(`${condition}to.have`, text);
   }
 
   verifyValue(field, position, condition, value) {
-    if (condition === "not") {
-      condition += ".";
+    if (condition === "not ") {
+      condition = "not.";
     }
     switch (field) {
       case "Word":

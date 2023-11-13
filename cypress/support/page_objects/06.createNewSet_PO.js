@@ -26,15 +26,15 @@ class CreateNewSet_PO extends Base_PO {
   };
 
   shouldContain(condition, text) {
-    if (condition === "not") {
-      condition += ".";
+    if (condition === "not ") {
+      condition = "not.";
     }
     this.elements.newSetContainer().should(`${condition}have`, text);
   }
 
   shouldDisplay(condition, button) {
-    if (condition === "not") {
-      condition += ".";
+    if (condition === "not ") {
+      condition = "not.";
     }
     switch (button) {
       case "startCreatingButton":
@@ -101,8 +101,8 @@ class CreateNewSet_PO extends Base_PO {
   }
 
   displayError(field, condition, text) {
-    if (condition === "not") {
-      condition += ".";
+    if (condition === "not ") {
+      condition = "not.";
     }
     switch (field) {
       case "Set Name":

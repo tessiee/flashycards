@@ -30,14 +30,14 @@ When(/^I click on the button '(.*)'/, (buttonName) => {
 });
 
 Then(
-  /^The widget 'Create New Set' should (.*) contain the text '(.*)'/,
+  /^The widget 'Create New Set' should (.*)contain the text '(.*)'/,
   (condition, text) => {
     createNewSet.shouldContain(condition, text);
   }
 );
 
 Then(
-  /^The create new set overview should (.*) display the button '(.*)'/,
+  /^The create new set overview should (.*)display the button '(.*)'/,
   (condition, button) => {
     createNewSet.shouldDisplay(condition, button);
   }
@@ -55,7 +55,7 @@ Then(/^I enter the value '(.*)' as the set name/, (value) => {
 });
 
 Then(
-  /^The field '(.*)' should (.*) display the error '(.*)'/,
+  /^The field '(.*)' should (.*)display the error '(.*)'/,
   (field, condition, text) => {
     createNewSet.displayError(field, condition, text);
   }

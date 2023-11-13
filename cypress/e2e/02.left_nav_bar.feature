@@ -6,10 +6,10 @@ Feature: Flashycards left navigation bar
 
     @smoke
     Scenario: The left navigation bar displays the correct items
-        Then The widget 'Navigation Bar - Left' should  contain the text 'Spanish'
-        And The widget 'Navigation Bar - Left' should  contain the text 'Nouns'
-        And The widget 'Navigation Bar - Left' should  contain the text 'Adjectives'
-        And The widget 'Navigation Bar - Left' should  contain the text 'Verbs'
+        Then The widget 'Navigation Bar - Left' should contain the text 'Spanish'
+        And The widget 'Navigation Bar - Left' should contain the text 'Nouns'
+        And The widget 'Navigation Bar - Left' should contain the text 'Adjectives'
+        And The widget 'Navigation Bar - Left' should contain the text 'Verbs'
 
 
     Scenario: The default language is spanish
@@ -21,8 +21,8 @@ Feature: Flashycards left navigation bar
 
     Scenario Outline: The left navigation bar displays the correct sets per chosen category
         When I select the category '<category>'
-        Then The widget 'Navigation Bar - Left' should  contain the text '<setname_1>'
-        And The widget 'Navigation Bar - Left' should  contain the text '<setname_2>'
+        Then The widget 'Navigation Bar - Left' should contain the text '<setname_1>'
+        And The widget 'Navigation Bar - Left' should contain the text '<setname_2>'
 
         Examples:
             | category | setname_1 | setname_2 |
@@ -34,4 +34,4 @@ Feature: Flashycards left navigation bar
     Scenario: When opening a set, the widget 'Set Overview' should be displayed
         When I select the category 'Nouns'
         And I open the set 'People'
-        Then The widget 'Set Overview' should  be displayed in the center
+        Then The widget 'Set Overview' should be displayed in the center

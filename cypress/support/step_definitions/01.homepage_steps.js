@@ -9,7 +9,7 @@ Given(/^I navigate to the flashycards homepage/, () => {
 });
 
 Then(
-  /^The widget '(.*)' should (.*) be displayed in the center/,
+  /^The widget '(.*)' should (.*)be displayed in the center/,
   (item, condition) => {
     homePage.shouldDisplayWidget(item, condition);
   }

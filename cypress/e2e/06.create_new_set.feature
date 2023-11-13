@@ -7,12 +7,12 @@ Feature: Flashycards create new set feature
 
     @smoke
     Scenario: Create new set widget displays the correct items
-        Then The widget 'Create Set - Start' should  be displayed in the center
-        And The create new set overview should  display the button 'Start Creating'
+        Then The widget 'Create Set - Start' should be displayed in the center
+        And The create new set overview should display the button 'Start Creating'
         When I click on the button 'Start Creating'
-        Then The widget 'Create Set - Form' should  be displayed in the center
-        And The create new set overview should  display the button 'Create Set'
-        And The create new set overview should  display the button 'More Fields'
+        Then The widget 'Create Set - Form' should be displayed in the center
+        And The create new set overview should display the button 'Create Set'
+        And The create new set overview should display the button 'More Fields'
 
     Scenario: Can create a new set without errors
         And I click on the button 'Start Creating'
@@ -28,7 +28,7 @@ Feature: Flashycards create new set feature
         And I enter the value 'Hello' into the field 'Word' on position '1'
         And I enter the value 'Hola' into the field 'Translation' on position '1'
         When I click on the button 'Create Set'
-        Then The field 'Set Name' should  display the error 'Please provide a set name'
+        Then The field 'Set Name' should display the error 'Please provide a set name'
         And There should be '0' saved sets
 
     Scenario: Verify that empty sets are not being saved
@@ -63,7 +63,7 @@ Feature: Flashycards create new set feature
         When I click on the button 'Create Set'
         And I click on the 'Create Set' notification button
         Then The widget 'Navigation Bar - Right' should contain the item 'Accept Notification'
-        And The widget 'Create Set - Start' should  be displayed in the center
+        And The widget 'Create Set - Start' should be displayed in the center
         And There should be '1' saved sets
 
     Scenario: Verify that declining the 'invalid set' notification, does not lead to the creation of the set
@@ -74,5 +74,5 @@ Feature: Flashycards create new set feature
         When I click on the button 'Create Set'
         And I click on the 'Cancel' notification button
         Then The widget 'Navigation Bar - Right' should not contain the item 'Decline Notification'
-        And The widget 'Create Set - Form' should  be displayed in the center
+        And The widget 'Create Set - Form' should be displayed in the center
         And There should be '0' saved sets

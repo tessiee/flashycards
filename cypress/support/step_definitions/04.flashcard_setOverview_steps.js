@@ -5,14 +5,14 @@ import Flashcard_SetOverview_PO from "../page_objects/04.flashcard_setOverview_P
 const flashcard_setOverview = new Flashcard_SetOverview_PO();
 
 Then(
-  /^The widget 'Set Overview' should (.*) contain the text '(.*)'/,
+  /^The widget 'Set Overview' should (.*)contain the text '(.*)'/,
   (condition, text) => {
     flashcard_setOverview.shouldContain(condition, text);
   }
 );
 
 Then(
-  /^The widget 'Set Overview' should (.*) contain the button '(.*)'/,
+  /^The widget 'Set Overview' should (.*)contain the button '(.*)'/,
   (button) => {
     flashcard_setOverview.shouldHaveButton(button);
   }

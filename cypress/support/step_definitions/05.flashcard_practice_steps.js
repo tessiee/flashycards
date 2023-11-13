@@ -24,7 +24,7 @@ When(/^I click on the '(.*)' button/, (buttonName) => {
 });
 
 Then(
-  /^The widget 'Flashcard' should (.*) display the text '(.*)'/,
+  /^The widget 'Flashcard' should (.*)display the text '(.*)'/,
   (condition, text) => {
     flashCardPractice.shouldDisplay(condition, text);
   }

@@ -10,8 +10,8 @@ class Base_PO {
   }
 
   pageShouldContain(condition, text) {
-    if (condition === "not") {
-      condition += ".";
+    if (condition === "not ") {
+      condition = "not.";
     }
     cy.get("body").should(`${condition}contain`, text);
   }

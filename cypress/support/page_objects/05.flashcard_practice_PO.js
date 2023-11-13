@@ -14,8 +14,8 @@ class Flashcard_Practice_PO extends Base_PO {
   };
 
   shouldDisplay(condition, text) {
-    if (condition === "not") {
-      condition += ".";
+    if (condition === "not ") {
+      condition = "not.";
     }
     this.elements.flashcard().should(`${condition}contain`, text);
   }
