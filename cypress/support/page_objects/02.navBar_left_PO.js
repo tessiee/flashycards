@@ -16,8 +16,11 @@ class NavBar_Left_PO extends Base_PO {
     category_3_set_1: () => cy.get("#leftSidebar").find("#set_3_1_es"),
   };
 
-  shouldContain(text) {
-    this.elements.left_NavBar().should("contain", text);
+  shouldContain(condition, text) {
+    if (condition === "not") {
+      condition += ".";
+    }
+    this.elements.left_NavBar().should(`${condition}contain`, text);
   }
 
   verifyCategoryLanguage(categoryName, language) {

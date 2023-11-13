@@ -14,40 +14,28 @@ class Flashcard_SetOverview_PO extends Base_PO {
       cy.get("#setOverviewContainer").find("#previousDuosButton"),
   };
 
-  shouldContain(text) {
-    this.elements.setOverview().should("contain", text);
-  }
-
-  shouldNotContain(text) {
-    this.elements.setOverview().should("not.have.text", text);
-  }
-
-  shouldHaveButton(button) {
-    switch (button) {
-      case "Next":
-        cy.get(this.elements.nextButton());
-        break;
-      case "Previous":
-        cy.get(this.elements.previousButton());
-        break;
-      case "Start Practice":
-        cy.get(this.elements.startPracticeButton());
-        break;
-      default:
-        cy.log("Unknown button");
+  shouldContain(condition, text) {
+    if (condition === "not") {
+      condition += ".";
     }
+    this.elements.setOverview().should(`${condition}to.have`, text);
   }
 
-  shouldNotHaveButton(button) {
+  shouldHaveButton(condition, button) {
+    if (condition === "not") {
+      condition += ".";
+    }
     switch (button) {
       case "Next":
-        cy.get(this.elements.nextButton()).should("not.be.visible");
+        cy.get(this.elements.nextButton()).should(`${condition}be.visible`);
         break;
       case "Previous":
-        cy.get(this.elements.previousButton()).should("not.be.visible");
+        cy.get(this.elements.previousButton()).should(`${condition}be.visible`);
         break;
       case "Start Practice":
-        cy.get(this.elements.startPracticeButton()).should("not.be.visible");
+        cy.get(this.elements.startPracticeButton()).should(
+          `${condition}be.visible`
+        );
         break;
       default:
         cy.log("Unknown button");

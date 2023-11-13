@@ -12,4 +12,4 @@ Feature: Flashycards right navigation bar
     @smoke
     Scenario: When clicking the link 'create set', the widget 'Create Set Overview' should be displayed
         When I click on 'Create Set'
-        Then The widget 'Create Set - Start' should be displayed in the center
+        Then The widget 'Create Set - Start' should  be displayed in the center

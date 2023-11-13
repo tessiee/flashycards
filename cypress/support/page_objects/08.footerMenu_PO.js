@@ -7,9 +7,13 @@ class FooterMenu_PO extends Base_PO {
     firstLink: () => cy.get("#footerMenu").first("li"),
   };
 
-  shouldContain(text) {
-    cy.get("#footerMenu").should("contain", text);
+  shouldContain(condition, text) {
+    if (condition === "not") {
+      condition += ".";
+    }
+    cy.get("#footerMenu").should(`${condition}contain`, text);
   }
+
   aboutFlashy() {
     this.elements.firstLink().click();
   }

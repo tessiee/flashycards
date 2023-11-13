@@ -23,13 +23,16 @@ When(/^I click on button '(.*)'/, (button) => {
   }
 });
 
-Then(/^The widget 'Saved Set' should contain the text '(.*)'/, (text) => {
-  savedSets.shouldContain(text);
-});
+Then(
+  /^The widget 'Saved Set' should (.*) contain the text '(.*)'/,
+  (condition, text) => {
+    savedSets.shouldContain(condition, text);
+  }
+);
 
 Then(
-  /^The field '(.*)' on position '(.*)' should contain the value '(.*)'/,
-  (field, position, value) => {
-    savedSets.verifyValue(field, position, value);
+  /^The field '(.*)' on position '(.*)' should (.*) contain the value '(.*)'/,
+  (field, position, condition, value) => {
+    savedSets.verifyValue(field, position, condition, value);
   }
 );

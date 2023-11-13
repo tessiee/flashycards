@@ -13,12 +13,11 @@ class Flashcard_Practice_PO extends Base_PO {
     restartPracticeButton: () => cy.get("#flashcard").find("#restartButton"),
   };
 
-  shouldDisplay(text) {
-    this.elements.flashcard().should("contain", text);
-  }
-
-  shouldNotDisplay(text) {
-    this.elements.flashcard().should("not.contain", text);
+  shouldDisplay(condition, text) {
+    if (condition === "not") {
+      condition += ".";
+    }
+    this.elements.flashcard().should(`${condition}contain`, text);
   }
 
   shouldContain(button) {

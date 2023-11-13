@@ -8,10 +8,9 @@ Given(/^I navigate to the flashycards homepage/, () => {
   homePage.navigateToHomepage();
 });
 
-Then(/^The widget '(.*)' should be displayed in the center/, (item) => {
-  homePage.shouldDisplayWidget(item);
-});
-
-Then(/^The widget '(.*)' should not be displayed in the center/, (item) => {
-  homePage.shouldNotDisplayWidget(item);
-});
+Then(
+  /^The widget '(.*)' should (.*) be displayed in the center/,
+  (item, condition) => {
+    homePage.shouldDisplayWidget(item, condition);
+  }
+);

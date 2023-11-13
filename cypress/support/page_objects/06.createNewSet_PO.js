@@ -25,26 +25,32 @@ class CreateNewSet_PO extends Base_PO {
     invalidError: () => cy.get("#invalidDuosError"),
   };
 
-  shouldContain(text) {
-    this.elements.newSetContainer().should("contain", text);
+  shouldContain(condition, text) {
+    if (condition === "not") {
+      condition += ".";
+    }
+    this.elements.newSetContainer().should(`${condition}have`, text);
   }
 
-  shouldDisplay(button) {
+  shouldDisplay(condition, button) {
+    if (condition === "not") {
+      condition += ".";
+    }
     switch (button) {
       case "startCreatingButton":
-        this.elements.startCreatingButton().should("be.visible");
+        this.elements.startCreatingButton().should(`${condition}be.visible`);
         break;
       case "moreFieldsButton":
-        this.elements.moreFieldsButton().should("be.visible");
+        this.elements.moreFieldsButton().should(`${condition}be.visible`);
         break;
       case "previousFieldsButton":
-        this.elements.previousFieldsButton().should("be.visible");
+        this.elements.previousFieldsButton().should(`${condition}be.visible`);
         break;
       case "nextFieldsButton":
-        this.elements.nextFieldsButton().should("be.visible");
+        this.elements.nextFieldsButton().should(`${condition}be.visible`);
         break;
       case "createSetButton":
-        this.elements.createSetButton().should("be.visible");
+        this.elements.createSetButton().should(`${condition}be.visible`);
         break;
       default:
         cy.log("Unknown button");
@@ -94,12 +100,15 @@ class CreateNewSet_PO extends Base_PO {
     this.elements.setNameField().type(value);
   }
 
-  displayError(field, text) {
+  displayError(field, condition, text) {
+    if (condition === "not") {
+      condition += ".";
+    }
     switch (field) {
       case "Set Name":
         cy.get("#newSetForm")
           .find("#setNameError")
-          .should("exist")
+          .should(`${condition}exist`)
           .and("contain", text);
         break;
       default:

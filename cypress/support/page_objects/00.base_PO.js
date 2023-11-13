@@ -9,8 +9,11 @@ class Base_PO {
     return cy.title();
   }
 
-  pageShouldContain(text) {
-    cy.get("body").should("contain", text);
+  pageShouldContain(condition, text) {
+    if (condition === "not") {
+      condition += ".";
+    }
+    cy.get("body").should(`${condition}contain`, text);
   }
 }
 

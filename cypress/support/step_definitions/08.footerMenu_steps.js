@@ -10,6 +10,6 @@ When(/^I select the link '(.*)'/, (linkName) => {
   }
 });
 
-Then(/^The footer menu should contain '(.*)'/, (item) => {
-  footerMenu.shouldContain(item);
+Then(/^The footer menu should (.*) contain '(.*)'/, (condition, item) => {
+  footerMenu.shouldContain(condition, item);
 });

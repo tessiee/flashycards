@@ -29,14 +29,17 @@ When(/^I click on the button '(.*)'/, (buttonName) => {
   }
 });
 
-Then(/^The widget 'Create New Set' should contain the text '(.*)'/, (text) => {
-  createNewSet.shouldContain(text);
-});
+Then(
+  /^The widget 'Create New Set' should (.*) contain the text '(.*)'/,
+  (condition, text) => {
+    createNewSet.shouldContain(condition, text);
+  }
+);
 
 Then(
-  /^The create new set overview should display the button '(.*)'/,
-  (button) => {
-    createNewSet.shouldDisplay(button);
+  /^The create new set overview should (.*) display the button '(.*)'/,
+  (condition, button) => {
+    createNewSet.shouldDisplay(condition, button);
   }
 );
 
@@ -51,9 +54,12 @@ Then(/^I enter the value '(.*)' as the set name/, (value) => {
   createNewSet.setName(value);
 });
 
-Then(/^The field '(.*)' should display the error '(.*)'/, (field, text) => {
-  createNewSet.displayError(field, text);
-});
+Then(
+  /^The field '(.*)' should (.*) display the error '(.*)'/,
+  (field, condition, text) => {
+    createNewSet.displayError(field, condition, text);
+  }
+);
 
 Then(/^I should receive a notification regarding invalid data/, () => {
   createNewSet.displayNotification();

@@ -13,8 +13,8 @@ When(/^I wait for '(.*)' seconds/, (amount) => {
   cy.wait(amount * 1000);
 });
 
-Then(/^The page should contain the text '(.*)'/, (text) => {
-  basePage.pageShouldContain(text);
+Then(/^The page should (.*) contain the text '(.*)'/, (condition, text) => {
+  basePage.pageShouldContain(condition, text);
 });
 
 Then(/^The page title should be '(.*)'/, (title) => {

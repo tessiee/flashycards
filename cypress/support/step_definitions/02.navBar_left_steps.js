@@ -21,9 +21,9 @@ When(/^I open the set '(.*)'/, (setName) => {
 });
 
 Then(
-  /^The widget 'Navigation Bar - Left' should contain the text '(.*)'/,
-  (item) => {
-    navBar_left.shouldContain(item);
+  /^The widget 'Navigation Bar - Left' should (.*) contain the text '(.*)'/,
+  (condition, item) => {
+    navBar_left.shouldContain(condition, item);
   }
 );
 

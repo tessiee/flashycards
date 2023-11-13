@@ -23,13 +23,12 @@ When(/^I click on the '(.*)' button/, (buttonName) => {
   }
 });
 
-Then(/^The widget 'Flashcard' should display the text '(.*)'/, (text) => {
-  flashCardPractice.shouldDisplay(text);
-});
-
-Then(/^The widget 'Flashcard' should not display the text '(.*)'/, (text) => {
-  flashCardPractice.shouldNotDisplay(text);
-});
+Then(
+  /^The widget 'Flashcard' should (.*) display the text '(.*)'/,
+  (condition, text) => {
+    flashCardPractice.shouldDisplay(condition, text);
+  }
+);
 
 Then(/^The widget 'Flashcard' should contain the button '(.*)'/, (button) => {
   flashCardPractice.shouldContain(button);
